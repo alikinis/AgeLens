@@ -7,24 +7,24 @@ import zipfile
 from pathlib import Path
 
 FORBIDDEN_EXTENSIONS = {
-    ".parquet",
-    ".xpt",
-    ".dat",
-    ".sas7bdat",
-    ".feather",
-    ".rds",
-    ".rdata",
-    ".pkl",
-    ".pickle",
-    ".joblib",
+    ".parquet", ".xpt", ".dat", ".sas7bdat", ".feather",
+    ".rds", ".rdata", ".pkl", ".pickle", ".joblib",
 }
 
-FORBIDDEN_DIRECTORY_NAMES = {
-    "raw",
-    "interim",
-    "processed",
-    "participant_level",
-    "participant-level",
+FORBIDDEN_DIRECTORIES = {
+    "raw", "interim", "processed", "participant_level",
+    "participant-level", "manuscript",
+}
+
+FORBIDDEN_FILENAMES = {
+    "agelens_v1_final_report.md",
+    "agelens_v1_release_20260722.zip",
+    "release_manifest.csv",
+    "release_package_metadata.json",
+}
+
+FORBIDDEN_NAME_FRAGMENTS = {
+    "agelens_v1_independent_research_article",
 }
 
 SECRET_PATTERNS = {
@@ -37,19 +37,17 @@ SECRET_PATTERNS = {
     "Private key": re.compile(r"BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY"),
 }
 
+PERSONAL_PATH_PATTERNS = {
+    "Windows user-home path": re.compile(
+        r"(?i)\b[A-Z]:\\Users\\[^\\\r\n\"]+\\"
+    ),
+    "macOS user-home path": re.compile(r"/Users/[^/\s\"']+/"),
+    "Linux user-home path": re.compile(r"/home/[^/\s\"']+/"),
+}
+
 TEXT_EXTENSIONS = {
-    ".md",
-    ".txt",
-    ".py",
-    ".r",
-    ".json",
-    ".csv",
-    ".yml",
-    ".yaml",
-    ".cff",
-    ".ps1",
-    ".gitignore",
-    ".gitattributes",
+    ".md", ".txt", ".py", ".r", ".json", ".csv", ".yml",
+    ".yaml", ".cff", ".ps1", ".ipynb",
 }
 
 MAX_FILE_BYTES = 50 * 1024 * 1024
@@ -59,54 +57,90 @@ def relative(path: Path, root: Path) -> str:
     return path.relative_to(root).as_posix()
 
 
+def forbidden_filename(name: str) -> bool:
+    lowered = name.lower()
+    return (
+        lowered in FORBIDDEN_FILENAMES
+        or any(part in lowered for part in FORBIDDEN_NAME_FRAGMENTS)
+    )
+
+
 def inspect_zip(path: Path, root: Path, errors: list[str]) -> None:
     try:
         with zipfile.ZipFile(path) as archive:
-            bad = archive.testzip()
-            if bad:
+            damaged = archive.testzip()
+            if damaged:
                 errors.append(
-                    f"Damaged ZIP entry in {relative(path, root)}: {bad}"
+                    f"Damaged ZIP entry in {relative(path, root)}: "
+                    f"{damaged}"
                 )
                 return
 
             for info in archive.infolist():
                 member = Path(info.filename)
+                parts = {part.lower() for part in member.parts[:-1]}
 
                 if member.suffix.lower() in FORBIDDEN_EXTENSIONS:
                     errors.append(
-                        "Forbidden file inside ZIP "
+                        f"Forbidden data file inside ZIP "
                         f"{relative(path, root)}: {info.filename}"
                     )
 
-                lowered_parts = {
-                    part.lower()
-                    for part in member.parts
-                }
-                blocked_parts = (
-                    lowered_parts
-                    & FORBIDDEN_DIRECTORY_NAMES
-                )
-                if blocked_parts:
+                if parts & FORBIDDEN_DIRECTORIES:
                     errors.append(
-                        "Forbidden directory inside ZIP "
+                        f"Forbidden directory inside ZIP "
+                        f"{relative(path, root)}: {info.filename}"
+                    )
+
+                if member.name and forbidden_filename(member.name):
+                    errors.append(
+                        f"Forbidden public artifact inside ZIP "
                         f"{relative(path, root)}: {info.filename}"
                     )
     except zipfile.BadZipFile:
-        errors.append(
-            f"Invalid ZIP file: {relative(path, root)}"
-        )
+        errors.append(f"Invalid ZIP file: {relative(path, root)}")
+
+
+def inspect_workflow(root: Path, errors: list[str]) -> None:
+    path = root / ".github/workflows/repository-safety-check.yml"
+    if not path.exists():
+        errors.append("Missing repository-safety-check workflow.")
+        return
+
+    lines = path.read_text(
+        encoding="utf-8",
+        errors="ignore",
+    ).splitlines()
+
+    required = {
+        "jobs:",
+        "  preflight:",
+        "    runs-on: ubuntu-latest",
+        "    steps:",
+        "        run: python scripts/preflight_repository.py .",
+        "        run: python scripts/check_governance_consistency.py .",
+    }
+
+    for line in sorted(required):
+        if line not in lines:
+            errors.append(
+                f"Workflow line missing or misindented: {line!r}"
+            )
+
+    if any(
+        line.startswith("runs-on:") or line.startswith("steps:")
+        for line in lines
+    ):
+        errors.append("Workflow has job fields at the YAML root.")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "repository",
-        nargs="?",
-        default=".",
-    )
+    parser.add_argument("repository", nargs="?", default=".")
     args = parser.parse_args()
 
     root = Path(args.repository).resolve()
+    this_script = Path(__file__).resolve()
     errors: list[str] = []
     inspected_files = 0
     total_bytes = 0
@@ -116,10 +150,7 @@ def main() -> int:
         return 2
 
     for path in sorted(root.rglob("*")):
-        if not path.is_file():
-            continue
-
-        if ".git" in path.parts:
+        if not path.is_file() or ".git" in path.parts:
             continue
 
         inspected_files += 1
@@ -127,60 +158,48 @@ def main() -> int:
         rel = relative(path, root)
 
         if path.stat().st_size > MAX_FILE_BYTES:
-            errors.append(
-                f"File exceeds 50 MiB: {rel}"
-            )
+            errors.append(f"File exceeds 50 MiB: {rel}")
+
+        if forbidden_filename(path.name):
+            errors.append(f"Forbidden public artifact: {rel}")
 
         if path.suffix.lower() in FORBIDDEN_EXTENSIONS:
-            errors.append(
-                f"Forbidden participant/raw-data extension: {rel}"
-            )
+            errors.append(f"Forbidden data extension: {rel}")
 
-        lowered_parts = {
+        directories = {
             part.lower()
             for part in path.relative_to(root).parts[:-1]
         }
-        blocked_parts = (
-            lowered_parts
-            & FORBIDDEN_DIRECTORY_NAMES
-        )
-        if blocked_parts:
-            errors.append(
-                f"Forbidden data directory: {rel}"
-            )
+        if directories & FORBIDDEN_DIRECTORIES:
+            errors.append(f"Forbidden directory: {rel}")
 
-        if path.name.lower() == ".env" or path.name.lower().startswith(
-            ".env."
-        ):
-            errors.append(
-                f"Environment-secret file: {rel}"
-            )
+        lowered_name = path.name.lower()
+        if lowered_name == ".env" or lowered_name.startswith(".env."):
+            errors.append(f"Environment-secret file: {rel}")
 
         if path.suffix.lower() == ".zip":
             inspect_zip(path, root, errors)
 
-        suffix = path.suffix.lower()
-        is_special_text = path.name in {
-            ".gitignore",
-            ".gitattributes",
-        }
-        if suffix in TEXT_EXTENSIONS or is_special_text:
-            try:
-                text = path.read_text(
-                    encoding="utf-8",
-                    errors="ignore",
-                )
-            except OSError as exc:
-                errors.append(
-                    f"Could not read text file {rel}: {exc}"
-                )
-                continue
+        if (
+            path.suffix.lower() in TEXT_EXTENSIONS
+            or path.name in {".gitignore", ".gitattributes"}
+        ):
+            text = path.read_text(
+                encoding="utf-8",
+                errors="ignore",
+            )
 
             for label, pattern in SECRET_PATTERNS.items():
                 if pattern.search(text):
-                    errors.append(
-                        f"Possible {label} in {rel}"
-                    )
+                    errors.append(f"Possible {label} in {rel}")
+
+            # The checker source contains the regex definitions themselves.
+            if path.resolve() != this_script:
+                for label, pattern in PERSONAL_PATH_PATTERNS.items():
+                    if pattern.search(text):
+                        errors.append(f"Possible {label} in {rel}")
+
+    inspect_workflow(root, errors)
 
     print(f"Repository: {root}")
     print(f"Files inspected: {inspected_files}")
@@ -193,7 +212,10 @@ def main() -> int:
         return 1
 
     print("\nPREFLIGHT PASSED")
-    print("No forbidden raw/participant-level data or common secrets found.")
+    print(
+        "No forbidden raw/participant-level data, unpublished "
+        "manuscript artifacts, personal paths, or common secrets found."
+    )
     return 0
 
 

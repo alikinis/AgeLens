@@ -7,11 +7,11 @@
 | Document Title    | AgeLens Evidence Gap Register  |
 | Project             | AgeLens                        |
 | Document ID         | AL-GOV-003                     |
-| Version              | 0.20|
+| Version              | 0.21|
 | Status               | Approved — all V1 gaps dispositioned |
 | Author               | Project Team                   |
 | Reviewer             | —                               |
-| Last Updated          | 2026-07-22                     |
+| Last Updated          | 2026-07-23                     |
 | Related Documents  | Research Protocol (AL-RP-001), Decision_Log.md, Assumption_Register.md, NHANES_Harmonization_Report.md, Replication_Protocol.md, Validation_Protocol.md, Evidence_Matrix.xlsx, Paper_004_SelvinEtAl2007.md |
 
 ---
@@ -41,6 +41,7 @@
 | 0.18    | 2026-07-19 | EG-014 (Core, Critical, HIGHEST MAGNITUDE) opened: NHANES age top-coding mismatch (80 in application data vs 90 in D-001 training data) produces ~6-9 year systematic bias for the 80+ subgroup. |
 | 0.19 | 2026-07-22 | Closed EG-002 after direct BioAge source inspection; closed EG-004, EG-010, and EG-014 through D-012, D-010, and D-011. |
 | 0.20 | 2026-07-22 | Synchronized current Classification, Planned Resolution, and impact wording for EG-004, EG-010, and EG-014 with their approved closure Decisions. |
+| 0.21 | 2026-07-23 | Closed EG-012 after direct verification of the published wording, official BioAge interface, and completed D-013 benchmark. The phrase remains documented as a wording ambiguity; no distinct bone-specific ALP substitution was demonstrated in the PhenoAge implementation. |
 
 **Current-state interpretation:** Revision History records the status that applied at each earlier version and therefore may use terms such as *open*, *unresolved*, or *blocking*. Those historical entries do not override the current operative sections, the latest Review Status fields, or Decisions D-010 through D-017.
 
@@ -238,18 +239,14 @@ This register tracks every documented methodological uncertainty (Evidence Gap) 
 
 | Field                 | Value |
 | ---------------------- | ----- |
-| Description                | Paper_002_BioAge.md Section 16 states the BioAge package's published Methods text describes an adjustment to "bone alkaline phosphatase" values. NHANES has a genuinely distinct "Bone Alkaline Phosphatase" (BAP) lab component, measured via a different immunoenzymatic assay, separate from the standard/total serum ALP (LBXSAPSI) that is part of the BIOPRO panel and that Replication_Protocol.md specifies extracting. If BioAge's paper genuinely references bone-specific ALP rather than total ALP, this would indicate a biomarker mismatch between BioAge's implementation and the standard ALP Levine's original formula requires, relevant to Validation Protocol Check 2. It is not yet confirmed whether "bone alkaline phosphatase" is the paper's precise wording or an imprecise restatement introduced during this project's earlier full-text review. |
-| Affected Component         | Paper_002_BioAge.md Section 16; Validation_Protocol.md Check 2 (BioAge cross-implementation comparison) |
-| Scientific Impact          | Moderate - if confirmed, this would mean BioAge's own PhenoAge output is not directly comparable to AgeLens's for Check 2 purposes without further investigation, since it would rely on a different ALP measure entirely. |
-| Classification               | Peripheral (does not block Replication_Protocol.md, which correctly specifies standard ALP per Levine et al. 2018) |
-| Existing Evidence            | Paper_002_BioAge.md Section 16 (as currently written); general confirmation that NHANES maintains a separate Bone ALP lab component distinct from standard ALP (E2) |
-| Missing Evidence             | Direct re-verification of the BioAge paper's exact original wording - whether it says "bone alkaline phosphatase" or simply "alkaline phosphatase" |
-| Planned Resolution           | Re-fetch and directly re-quote the exact sentence from Kwon & Belsky (2021) before relying on this claim for Validation Protocol Check 2 interpretation |
-| Review Status                 | Open - flagged for re-verification, not yet resolved either way |
-
----
-
-*Add new entries below using the same template, incrementing the Evidence Gap ID.*
+| Description                | The published BioAge Methods text does use the phrase "bone alkaline phosphatase values" for a 1999–2000 NHANES harmonization step. However, the same article identifies the original Levine PhenoAge biomarker as alkaline phosphatase, and the official BioAge examples and interface use the generic variable `alp`. The wording alone therefore does not demonstrate that the distinct NHANES bone-specific ALP component replaced standard total serum ALP in the PhenoAge algorithm. |
+| Affected Component         | Validation_Protocol.md Check 2 and interpretation of the Kwon & Belsky (2021) harmonization description |
+| Scientific Impact          | Low after verification. AgeLens supplied standard total ALP to the directly inspected BioAge implementation and satisfied the D-013 agreement threshold. No implementation-level ALP mismatch affecting the completed benchmark was demonstrated. |
+| Classification               | Peripheral at identification; closed as a documented wording ambiguity after publication, package-interface, and benchmark verification |
+| Existing Evidence            | Kwon & Belsky (2021), GeroScience 43:2795–2808, doi:10.1007/s11357-021-00480-5; official `dayoonkwon/BioAge` examples and interface using `alp`; AgeLens installed-source audit and D-013 BioAge agreement results |
+| Missing Evidence             | None required for the approved V1 scope. A future package-history audit could investigate why the harmonization sentence used the word "bone," but this does not alter the governed AgeLens input or completed validation result. |
+| Planned Resolution           | Completed. Preserve the phrase as a documented ambiguity, continue using standard total ALP as specified by Levine et al. and Replication_Protocol.md, and treat the completed direct package benchmark as the governing Check 2 evidence. |
+| Review Status                 | **Closed — documented wording ambiguity; no implementation mismatch demonstrated**, 2026-07-23. |
 
 ---
 

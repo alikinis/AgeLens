@@ -3,17 +3,32 @@ name: repository-safety-check
 on:
   push:
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   preflight:
-runs-on: ubuntu-latest
-steps:
-  - uses: actions/checkout@v4
-  - uses: actions/setup-python@v5
-    with:
-      python-version: "3.12"
-  - name: Check for sensitive or forbidden files
-    run: python scripts/preflight_repository.py .
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
 
-      - name: Check governance document consistency
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile repository checks
+        run: >-
+          python -m py_compile
+          scripts/preflight_repository.py
+          scripts/check_governance_consistency.py
+          scripts/prepare_repository.py
+
+      - name: Check repository safety
+        run: python scripts/preflight_repository.py .
+
+      - name: Check governance consistency
         run: python scripts/check_governance_consistency.py .

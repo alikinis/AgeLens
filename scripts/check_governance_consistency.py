@@ -22,7 +22,6 @@ def main() -> int:
     args = parser.parse_args()
 
     root = Path(args.repository).resolve()
-
     files = {
         "replication": root / "docs/governed/Replication_Protocol.md",
         "validation": root / "docs/governed/Validation_Protocol.md",
@@ -32,35 +31,38 @@ def main() -> int:
     }
 
     errors: list[str] = []
+    current: dict[str, str] = {}
 
     for label, path in files.items():
         if not path.exists():
-            errors.append(f"Missing required governance file: {path}")
+            errors.append(f"Missing governance file: {path}")
             continue
-
-        current = without_revision_history(
+        current[label] = without_revision_history(
             path.read_text(encoding="utf-8")
         )
 
-        forbidden = {
-            "provisional choice pending empirical resolution":
-                "D-010 is already approved",
-            "Final release remains disabled":
-                "D-017 already approved final release",
-            "not yet written) Validation Report":
-                "validation was completed",
-            "NHANES-III training bias: unresolved":
-                "D-012 closed EG-004",
-            "## 9. Remaining Open Items":
-                "final harmonization has no open V1 blockers",
-            "All three open gaps (EG-004, EG-010, EG-014)":
-                "all three gaps are closed",
-            "highest magnitude of any open gap":
-                "EG-014 is closed as an accepted limitation",
-        }
+    forbidden = {
+        "provisional choice pending empirical resolution":
+            "D-010 is approved",
+        "Final release remains disabled":
+            "D-017 approved final release",
+        "not yet written) Validation Report":
+            "validation is complete",
+        "NHANES-III training bias: unresolved":
+            "D-012 closed EG-004",
+        "## 9. Remaining Open Items":
+            "V1 harmonization is complete",
+        "All three open gaps (EG-004, EG-010, EG-014)":
+            "those gaps are closed",
+        "highest magnitude of any open gap":
+            "EG-014 is closed as an accepted limitation",
+        "Open - flagged for re-verification":
+            "EG-012 is closed",
+    }
 
+    for label, text in current.items():
         for phrase, reason in forbidden.items():
-            if phrase in current:
+            if phrase in text:
                 errors.append(
                     f"{label}: stale phrase {phrase!r} ({reason})"
                 )
@@ -87,21 +89,38 @@ def main() -> int:
             "closed under D-010",
             "closed under D-011",
             "closed under D-012",
+            "Closed — documented wording ambiguity",
         ],
     }
 
     for label, phrases in required.items():
-        path = files[label]
-        if not path.exists():
-            continue
-        current = without_revision_history(
-            path.read_text(encoding="utf-8")
-        )
+        text = current.get(label, "")
         for phrase in phrases:
-            if phrase not in current:
+            if phrase not in text:
                 errors.append(
-                    f"{label}: required current-state phrase missing: {phrase!r}"
+                    f"{label}: required phrase missing: {phrase!r}"
                 )
+
+    gap_text = current.get("gaps", "")
+    statuses = re.findall(
+        r"\|\s*Review Status\s*\|\s*(.*?)\s*\|",
+        gap_text,
+        flags=re.IGNORECASE,
+    )
+
+    if len(statuses) != 14:
+        errors.append(
+            "gaps: expected 14 operative Review Status rows, "
+            f"found {len(statuses)}"
+        )
+
+    for status in statuses:
+        cleaned = re.sub(r"[*_`]", "", status).strip().lower()
+        if not cleaned.startswith("closed"):
+            errors.append(
+                "gaps: operative Review Status is not closed: "
+                f"{status.strip()!r}"
+            )
 
     if errors:
         print("GOVERNANCE CONSISTENCY FAILED")
@@ -111,8 +130,8 @@ def main() -> int:
 
     print("GOVERNANCE CONSISTENCY PASSED")
     print(
-        "EG-004, EG-010, and EG-014 are synchronized with "
-        "D-012, D-010, and D-011; D-017 final status is current."
+        "All 14 V1 Evidence Gaps are dispositioned; "
+        "EG-004, EG-010, EG-012, and EG-014 are current."
     )
     return 0
 
