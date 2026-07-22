@@ -1,0 +1,4 @@
+sample,n_python,events_python,weighted_population_sum_python,strata_python,psus_python,n_r,events_r,weighted_population_sum_r,strata_r,psus_r
+canonical_full,4350,127,226687150.3142044,30,60,4350,127,226687150.314204,30,60
+no_topcode,4079,88,217613089.26795796,30,60,4079,88,217613089.267958,30,60
+exclude_early_deaths,4309,86,224815598.31961337,30,60,4309,86,224815598.319613,30,60

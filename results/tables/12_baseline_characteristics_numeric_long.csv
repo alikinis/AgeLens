@@ -1,0 +1,61 @@
+table,group,characteristic,statistic,n,weighted_mean,weighted_sd,weighted_percent,unweighted_yes
+main,Overall,"Chronological age, years",weighted_mean_sd,4350,47.91072422352959,17.09169246674996,,
+main,2015–2016,"Chronological age, years",weighted_mean_sd,2178,47.73401311570003,16.94981159090445,,
+main,2017–2018,"Chronological age, years",weighted_mean_sd,2172,48.08522195271603,17.228871377712466,,
+main,Overall,"Phenotypic Age, years",weighted_mean_sd,4350,46.95901759434297,19.624948946193317,,
+main,2015–2016,"Phenotypic Age, years",weighted_mean_sd,2178,46.46839843881113,19.40595961287912,,
+main,2017–2018,"Phenotypic Age, years",weighted_mean_sd,2172,47.44349154500291,19.826913715956586,,
+main,Overall,"Phenotypic Age acceleration, years",weighted_mean_sd,4350,-8.96864766074125e-15,7.3733837037169,,
+main,2015–2016,"Phenotypic Age acceleration, years",weighted_mean_sd,2178,-8.769191520509111e-15,7.347573522841523,,
+main,2017–2018,"Phenotypic Age acceleration, years",weighted_mean_sd,2172,-9.055373304647305e-15,7.398782249478282,,
+main,Overall,"Female, %",weighted_percent,4350,,,51.299383191812154,2250.0
+main,2015–2016,"Female, %",weighted_percent,2178,,,51.56564813383295,1123.0
+main,2017–2018,"Female, %",weighted_percent,2172,,,51.03645332670482,1127.0
+main,Overall,"Age top-coded at 80 years, %",weighted_percent,4350,,,4.002900488037893,271.0
+main,2015–2016,"Age top-coded at 80 years, %",weighted_percent,2178,,,3.6420475255095517,121.0
+main,2017–2018,"Age top-coded at 80 years, %",weighted_percent,2172,,,4.359233620147139,150.0
+main,Overall,"Mexican American, %",weighted_percent,4350,,,9.111442513028376,691.0
+main,2015–2016,"Mexican American, %",weighted_percent,2178,,,8.503985967039322,368.0
+main,2017–2018,"Mexican American, %",weighted_percent,2172,,,9.7112904182137,323.0
+main,Overall,"Other Hispanic, %",weighted_percent,4350,,,6.609367544747691,514.0
+main,2015–2016,"Other Hispanic, %",weighted_percent,2178,,,6.756122452724569,308.0
+main,2017–2018,"Other Hispanic, %",weighted_percent,2172,,,6.464450801802291,206.0
+main,Overall,"Non-Hispanic White, %",weighted_percent,4350,,,63.03237032519736,1469.0
+main,2015–2016,"Non-Hispanic White, %",weighted_percent,2178,,,63.77647332539086,744.0
+main,2017–2018,"Non-Hispanic White, %",weighted_percent,2172,,,62.29758751833593,725.0
+main,Overall,"Non-Hispanic Black, %",weighted_percent,4350,,,11.056072758860662,909.0
+main,2015–2016,"Non-Hispanic Black, %",weighted_percent,2178,,,11.009915263735175,424.0
+main,2017–2018,"Non-Hispanic Black, %",weighted_percent,2172,,,11.101652112548495,485.0
+main,Overall,"Non-Hispanic Asian, %",weighted_percent,4350,,,5.727793423035779,568.0
+main,2015–2016,"Non-Hispanic Asian, %",weighted_percent,2178,,,5.947619539820492,258.0
+main,2017–2018,"Non-Hispanic Asian, %",weighted_percent,2172,,,5.510720717952589,310.0
+main,Overall,"Other or multiracial, %",weighted_percent,4350,,,4.4629534351301405,199.0
+main,2015–2016,"Other or multiracial, %",weighted_percent,2178,,,4.005883451289584,76.0
+main,2017–2018,"Other or multiracial, %",weighted_percent,2172,,,4.914298431147003,123.0
+biomarkers,Overall,"Albumin, g/dL",weighted_mean_sd,4350,4.095045073222336,0.32188779998234934,,
+biomarkers,2015–2016,"Albumin, g/dL",weighted_mean_sd,2178,4.150850291988765,0.3065846599946069,,
+biomarkers,2017–2018,"Albumin, g/dL",weighted_mean_sd,2172,4.039938837564032,0.32710392947983125,,
+biomarkers,Overall,"Creatinine, mg/dL",weighted_mean_sd,4350,0.8755522118670844,0.3197358162677465,,
+biomarkers,2015–2016,"Creatinine, mg/dL",weighted_mean_sd,2178,0.8770444540160527,0.3181738485085,,
+biomarkers,2017–2018,"Creatinine, mg/dL",weighted_mean_sd,2172,0.874078660659186,0.3212639662966532,,
+biomarkers,Overall,"Fasting glucose, mg/dL",weighted_mean_sd,4350,109.42521190092555,31.655255317538774,,
+biomarkers,2015–2016,"Fasting glucose, mg/dL",weighted_mean_sd,2178,108.78892759829489,31.878933541280933,,
+biomarkers,2017–2018,"Fasting glucose, mg/dL",weighted_mean_sd,2172,110.05352648335199,31.420175207034852,,
+biomarkers,Overall,"hs-CRP, mg/L",weighted_mean_sd,4350,3.020468249526419,3.288554686885458,,
+biomarkers,2015–2016,"hs-CRP, mg/L",weighted_mean_sd,2178,3.006639256286935,3.1338738906970525,,
+biomarkers,2017–2018,"hs-CRP, mg/L",weighted_mean_sd,2172,3.0341240289896545,3.434414054593339,,
+biomarkers,Overall,"Lymphocyte percentage, %",weighted_mean_sd,4350,30.633258030162647,8.220267307931874,,
+biomarkers,2015–2016,"Lymphocyte percentage, %",weighted_mean_sd,2178,30.382213277164578,8.057193335553485,,
+biomarkers,2017–2018,"Lymphocyte percentage, %",weighted_mean_sd,2172,30.881158345317644,8.370799742075798,,
+biomarkers,Overall,"Mean cell volume, fL",weighted_mean_sd,4350,89.187132952089,5.63554120808272,,
+biomarkers,2015–2016,"Mean cell volume, fL",weighted_mean_sd,2178,89.37465248559778,5.57770170208192,,
+biomarkers,2017–2018,"Mean cell volume, fL",weighted_mean_sd,2172,89.00196217715985,5.6860142632123285,,
+biomarkers,Overall,"Red cell distribution width, %",weighted_mean_sd,4350,13.661457041060283,1.209105489373554,,
+biomarkers,2015–2016,"Red cell distribution width, %",weighted_mean_sd,2178,13.616640631240195,1.1441169294308733,,
+biomarkers,2017–2018,"Red cell distribution width, %",weighted_mean_sd,2172,13.705712107082716,1.2684680580405443,,
+biomarkers,Overall,"Alkaline phosphatase, U/L",weighted_mean_sd,4350,74.79564363903998,25.26943219227092,,
+biomarkers,2015–2016,"Alkaline phosphatase, U/L",weighted_mean_sd,2178,73.4506930544429,26.34633043395295,,
+biomarkers,2017–2018,"Alkaline phosphatase, U/L",weighted_mean_sd,2172,76.12374816943857,24.085377441984956,,
+biomarkers,Overall,"White blood cell count, 10³ cells/µL",weighted_mean_sd,4350,6.842461943638589,2.2205492425192346,,
+biomarkers,2015–2016,"White blood cell count, 10³ cells/µL",weighted_mean_sd,2178,6.854811647846747,2.2905196104813608,,
+biomarkers,2017–2018,"White blood cell count, 10³ cells/µL",weighted_mean_sd,2172,6.830266924508682,2.1491514608202507,,

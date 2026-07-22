@@ -1,0 +1,11 @@
+check,pass
+Cross-sectional release gate is open,True
+Mortality release gate is open,True
+No Core Evidence Gap remains open,True
+Primary mortality estimate is finite,True
+Primary PH diagnostic passes,True
+Final report exists,True
+Aggregate-only package exists,True
+Release archive exists,True
+Participant-level files excluded,True
+Cause-specific mortality remains unauthorized,True

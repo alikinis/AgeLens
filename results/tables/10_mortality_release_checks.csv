@@ -1,0 +1,23 @@
+check,pass,observed,expected,tolerance
+All required models are present,True,"['canonical_adjusted_per_sd', 'canonical_exposure_only', 'canonical_primary_adjusted', 'sensitivity_creatinine_plus_0_11', 'sensitivity_creatinine_plus_0_17', 'sensitivity_creatinine_plus_0_23', 'sensitivity_erratum', 'sensitivity_exclude_early_deaths', 'sensitivity_no_topcode']","['canonical_adjusted_per_sd', 'canonical_exposure_only', 'canonical_primary_adjusted', 'sensitivity_creatinine_plus_0_11', 'sensitivity_creatinine_plus_0_17', 'sensitivity_creatinine_plus_0_23', 'sensitivity_erratum', 'sensitivity_exclude_early_deaths', 'sensitivity_no_topcode']",
+Each model has an exposure coefficient,True,"['canonical_adjusted_per_sd', 'canonical_exposure_only', 'canonical_primary_adjusted', 'sensitivity_creatinine_plus_0_11', 'sensitivity_creatinine_plus_0_17', 'sensitivity_creatinine_plus_0_23', 'sensitivity_erratum', 'sensitivity_exclude_early_deaths', 'sensitivity_no_topcode']","['canonical_adjusted_per_sd', 'canonical_exposure_only', 'canonical_primary_adjusted', 'sensitivity_creatinine_plus_0_11', 'sensitivity_creatinine_plus_0_17', 'sensitivity_creatinine_plus_0_23', 'sensitivity_erratum', 'sensitivity_exclude_early_deaths', 'sensitivity_no_topcode']",
+All models converged,True,[],[],
+All model coefficients are finite,True,finite,finite,
+No fatal model warnings occurred,True,[],[],
+No R model errors occurred,True,[],[],
+Every model retains at least two PSUs per stratum,True,2.0,2,>=
+Python and R n reconcile,True,"[{'sample': 'canonical_full', 'n_python': 4350, 'n_r': 4350}, {'sample': 'no_topcode', 'n_python': 4079, 'n_r': 4079}, {'sample': 'exclude_early_deaths', 'n_python': 4309, 'n_r': 4309}]",exact equality,
+Python and R events reconcile,True,"[{'sample': 'canonical_full', 'events_python': 127, 'events_r': 127}, {'sample': 'no_topcode', 'events_python': 88, 'events_r': 88}, {'sample': 'exclude_early_deaths', 'events_python': 86, 'events_r': 86}]",exact equality,
+Python and R strata reconcile,True,"[{'sample': 'canonical_full', 'strata_python': 30, 'strata_r': 30}, {'sample': 'no_topcode', 'strata_python': 30, 'strata_r': 30}, {'sample': 'exclude_early_deaths', 'strata_python': 30, 'strata_r': 30}]",exact equality,
+Python and R psus reconcile,True,"[{'sample': 'canonical_full', 'psus_python': 60, 'psus_r': 60}, {'sample': 'no_topcode', 'psus_python': 60, 'psus_r': 60}, {'sample': 'exclude_early_deaths', 'psus_python': 60, 'psus_r': 60}]",exact equality,
+Python and R weighted sums reconcile,True,3.8743019104003906e-07,0.0,0.0001
+Primary PH diagnostic is present,True,"[{'method': 'cox.zph_on_svycoxph', 'term': 'phenoage_acceleration_per_5_years', 'p_value': 0.998565199157246}]",one exposure row,
+Primary acceleration passes PH threshold,True,0.998565199157246,0.05,>=
+sensitivity_creatinine_plus_0_11 coefficient equals canonical,True,9.992007221626409e-16,0.0,1e-10
+sensitivity_creatinine_plus_0_11 SE equals canonical,True,1.0061396160665481e-16,0.0,1e-10
+sensitivity_creatinine_plus_0_17 coefficient equals canonical,True,9.992007221626409e-16,0.0,1e-10
+sensitivity_creatinine_plus_0_17 SE equals canonical,True,0.0,0.0,1e-10
+sensitivity_creatinine_plus_0_23 coefficient equals canonical,True,0.0,0.0,1e-10
+sensitivity_creatinine_plus_0_23 SE equals canonical,True,0.0,0.0,1e-10
+No cause-specific outcome was modeled,True,[],[],
+Primary adjusted result is finite,True,"{'hazard_ratio': 1.18535425565943, 'ci_low_95': 1.12863341528632, 'ci_high_95': 1.24492567062041, 'p_value': 1.0687146800218799e-11}",finite,

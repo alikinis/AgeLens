@@ -1,0 +1,57 @@
+# Sensitive/project data
+data/
+**/data/
+logs/
+**/logs/
+*.parquet
+*.xpt
+*.XPT
+*.dat
+*.DAT
+*.sas7bdat
+*.feather
+*.rds
+*.RData
+*.pkl
+*.pickle
+*.joblib
+
+# Secrets and local settings
+.env
+.env.*
+*.pem
+*.key
+credentials*
+secrets*
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+renv/staging/
+
+# OS and office temporary files
+.DS_Store
+Thumbs.db
+~$*
+*.tmp
+*.temp
+
+# Local build products
+github/
+AgeLens_GitHub_Repo/

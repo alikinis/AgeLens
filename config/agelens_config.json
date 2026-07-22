@@ -1,0 +1,341 @@
+{
+  "project": {
+    "name": "AgeLens",
+    "project_root_folder": "nhanes",
+    "software_version": "0.2.0",
+    "config_schema_version": "1.1",
+    "status": "agelens_v1_release_package_complete",
+    "final_scientific_results_allowed": true
+  },
+  "governance": {
+    "research_protocol": {
+      "document_id": "AL-RP-001",
+      "version": "1.0",
+      "status": "Draft / Internal Review"
+    },
+    "decisions": {
+      "formula": "D-001",
+      "cycle_scope": "D-009",
+      "hscrp_bridging": "D-003",
+      "biopro_bridging": "D-004",
+      "bridging_direction": "D-005",
+      "missing_data": "D-006",
+      "unit_conversions": "D-007",
+      "bridging_equations": "D-008",
+      "formula_constants": "D-010",
+      "age_topcoding": "D-011",
+      "creatinine_training_scale": "D-012",
+      "validation_acceptance": "D-013",
+      "xpt_zero_normalization": "D-014"
+    },
+    "open_core_evidence_gaps": [],
+    "closed_2026_07_22": [
+      "EG-002",
+      "EG-004",
+      "EG-010",
+      "EG-014"
+    ],
+    "mortality_analysis_decision": "D-015",
+    "mortality_results_release_decision": "D-016",
+    "final_release_decision": "D-017"
+  },
+  "nhanes": {
+    "cycles": {
+      "2015_2016": {
+        "suffix": "I",
+        "demographics": "DEMO_I.XPT",
+        "biochemistry": "BIOPRO_I.XPT",
+        "fasting_glucose": "GLU_I.XPT",
+        "hscrp": "HSCRP_I.XPT",
+        "cbc": "CBC_I.XPT"
+      },
+      "2017_2018": {
+        "suffix": "J",
+        "demographics": "DEMO_J.XPT",
+        "biochemistry": "BIOPRO_J.XPT",
+        "fasting_glucose": "GLU_J.XPT",
+        "hscrp": "HSCRP_J.XPT",
+        "cbc": "CBC_J.XPT"
+      }
+    },
+    "merge_key": "SEQN",
+    "cycle_column": "NHANES_CYCLE",
+    "age_variable": "RIDAGEYR",
+    "age_topcode_value": 80,
+    "age_topcode_flag": "age_topcoded",
+    "survey_design": {
+      "weight_variable": "WTSAF2YR",
+      "pooled_weight_variable": "WTSAF4YR",
+      "pooled_weight_formula": "WTSAF2YR / 2",
+      "stratum_variable": "SDMVSTRA",
+      "psu_variable": "SDMVPSU"
+    }
+  },
+  "mortality": {
+    "enabled": true,
+    "release": "2019_public",
+    "raw_directory": "data/raw/mortality/2019_public",
+    "format": "fixed_width_dat",
+    "parse_in_setup": false,
+    "merge_key": "SEQN",
+    "files": {
+      "2015_2016": "NHANES_2015_2016_MORT_2019_PUBLIC.dat",
+      "2017_2018": "NHANES_2017_2018_MORT_2019_PUBLIC.dat"
+    },
+    "required_parser_source": "official_NCHS_sample_program_or_data_dictionary",
+    "status": "stored_but_not_ingested"
+  },
+  "source_variables": {
+    "albumin": "LBXSAL",
+    "creatinine": "LBXSCR",
+    "glucose": "LBXGLU",
+    "biopro_glucose_not_for_primary_pipeline": "LBXSGL",
+    "crp": "LBXHSCRP",
+    "lymphocyte_percent": "LBXLYPCT",
+    "mcv": "LBXMCVSI",
+    "rdw": "LBXRDW",
+    "alp": "LBXSAPSI",
+    "wbc": "LBXWBCSI",
+    "chronological_age": "RIDAGEYR"
+  },
+  "pipeline": {
+    "execution_order": [
+      "file_acquisition_and_cycle_tagging",
+      "variable_extraction",
+      "cross_cycle_bridging_in_native_units",
+      "unit_standardization",
+      "complete_case_filtering",
+      "formula_application_diagnostic_only",
+      "validation"
+    ],
+    "missing_data_policy": "complete_case",
+    "imputation_allowed": false,
+    "bridge_before_unit_conversion": true,
+    "mortality_ingestion_separate_from_biomarker_ingestion": true
+  },
+  "formula_units": {
+    "albumin": "g/L",
+    "creatinine": "umol/L",
+    "glucose": "mmol/L",
+    "crp": "mg/dL before natural log",
+    "lymphocyte_percent": "%",
+    "mcv": "fL",
+    "rdw": "%",
+    "alp": "U/L",
+    "wbc": "1000 cells/uL",
+    "chronological_age": "years"
+  },
+  "unit_conversions": {
+    "albumin": {
+      "operation": "multiply",
+      "factor": 10.0
+    },
+    "creatinine": {
+      "operation": "multiply",
+      "factor": 88.4
+    },
+    "glucose": {
+      "operation": "multiply",
+      "factor": 0.0555
+    },
+    "crp": {
+      "operation": "divide",
+      "factor": 10.0
+    },
+    "lymphocyte_percent": null,
+    "mcv": null,
+    "rdw": null,
+    "alp": null,
+    "wbc": null
+  },
+  "bridging": {
+    "reference_cycle": "2017_2018",
+    "apply_to_cycle": "2015_2016",
+    "native_units_required": true,
+    "hscrp": {
+      "equation": "cobas = 0.8695 * dxc660i + 0.2954",
+      "valid_raw_max_mg_L": 23.0,
+      "above_range_policy": "flag_and_exclude_from_cross_cycle_comparative_validation"
+    },
+    "albumin": {
+      "equation": "cobas = 0.9581 * dxc660i - 0.0108"
+    },
+    "creatinine": {
+      "equation": "cobas = 0.9515 * dxc660i + 0.06608"
+    },
+    "alp": {
+      "equation": "cobas = 10 ** (0.9986 * log10(dxc660i) + 0.04288)"
+    }
+  },
+  "formula": {
+    "xb_coefficients": {
+      "intercept": -19.907,
+      "albumin": -0.0336,
+      "creatinine": 0.0095,
+      "glucose": 0.1953,
+      "log_crp": 0.0954,
+      "lymphocyte_percent": -0.012,
+      "mcv": 0.0268,
+      "rdw": 0.3306,
+      "alp": 0.00188,
+      "wbc": 0.0554,
+      "chronological_age": 0.0804
+    },
+    "mortality_constants": {
+      "numerator": 1.51714,
+      "denominator": 0.0076927
+    },
+    "diagnostic_variants": {
+      "erratum": {
+        "intercept": 141.5,
+        "multiplier": -0.00553,
+        "denominator": 0.09165,
+        "status": "provisional_default_pending_EG-010"
+      },
+      "supplement": {
+        "intercept": 141.50225,
+        "multiplier": -0.00553,
+        "denominator": 0.090165,
+        "status": "sensitivity_variant_pending_EG-010"
+      }
+    },
+    "primary_variant": "supplement",
+    "canonical_variant": "supplement",
+    "sensitivity_variants": [
+      "erratum"
+    ]
+  },
+  "paths": {
+    "raw_data": "data/raw",
+    "raw_mortality": "data/raw/mortality/2019_public",
+    "interim_data": "data/interim",
+    "processed_data": "data/processed",
+    "figures": "results/figures",
+    "tables": "results/tables",
+    "logs": "logs"
+  },
+  "age_topcoding_policy": {
+    "decision": "D-011",
+    "retain": true,
+    "flag": "age_topcoded",
+    "impute_exact_age": false,
+    "mandatory_no_topcode_sensitivity": true
+  },
+  "creatinine_training_scale_policy": {
+    "decision": "D-012",
+    "canonical_shift_mg_dL": 0.0,
+    "mandatory_sensitivity_shifts_mg_dL": [
+      0.11,
+      0.17,
+      0.23
+    ]
+  },
+  "validation": {
+    "decision": "D-013",
+    "check_1_max_absolute_delta_r": 0.02,
+    "check_2_max_mae_years": 0.1,
+    "check_2_min_pearson": 0.999999,
+    "check_2_min_spearman": 0.999999,
+    "supplement_baseline_mae_by_cycle": {
+      "2015_2016": 0.0497257249378897,
+      "2017_2018": 0.0503475696870258
+    }
+  },
+  "ingestion": {
+    "xpt_ibm_zero_normalization": {
+      "decision": "D-014",
+      "sentinel_value": 5.397605346934028e-79,
+      "replacement_value": 0.0,
+      "exact_match_only": true,
+      "audit_required": true
+    }
+  },
+  "release_gates": {
+    "governance_core_gaps_resolved": true,
+    "validation_completed": true,
+    "canonical_outputs_regenerated": true,
+    "canonical_regression_checks_passed": true,
+    "mortality_analysis_authorized": true,
+    "final_scientific_results_allowed": true,
+    "cross_sectional_v1_results_allowed": true,
+    "mortality_cohort_defined": true,
+    "mortality_models_completed": true,
+    "mortality_model_validation_passed": true,
+    "mortality_results_allowed": true,
+    "final_release_package_complete": true,
+    "final_report_written": true,
+    "aggregate_release_archive_created": true
+  },
+  "release_scope": {
+    "cross_sectional_agelens_v1": "authorized",
+    "mortality_analysis": "completed_and_validated",
+    "mortality_data_use": "not_permitted_by_notebook_08",
+    "mortality_results": "authorized",
+    "cause_specific_mortality": "not_authorized",
+    "agelens_v1": "final_release_complete"
+  },
+  "canonical_outputs": {
+    "participant_file": "data\\processed\\agelens_v1_canonical_complete_case.parquet",
+    "no_topcode_file": "data\\processed\\agelens_v1_sensitivity_no_topcode.parquet",
+    "required_sensitivities_file": "data\\processed\\agelens_v1_required_sensitivities_long.parquet",
+    "survey_summary": "results\\tables\\08_canonical_survey_summary.csv",
+    "manifest": "results\\tables\\08_canonical_output_manifest.csv",
+    "report": "docs\\methodology\\Canonical_V1_Rebuild_Report.md",
+    "created_at_utc": "2026-07-22T16:11:25.107480+00:00"
+  },
+  "mortality_analysis": {
+    "decision": "D-015",
+    "status": "completed_validated_and_released",
+    "primary_outcome": "all_cause_mortality",
+    "event_column": "mortality_event",
+    "time_origin": "MEC examination",
+    "followup_column": "PERMTH_EXM",
+    "minimum_age_years": 20,
+    "linkage_eligibility": "ELIGSTAT == 1",
+    "primary_exposure": "cycle-specific WTSAF4YR-weighted Supplement Phenotypic Age acceleration",
+    "primary_exposure_scale_years": 5,
+    "secondary_exposure_scale": "one weighted standard deviation",
+    "primary_model_covariates": [
+      "chronological_age_years",
+      "RIAGENDR",
+      "RIDRETH3",
+      "NHANES_CYCLE"
+    ],
+    "survey_weight": "WTSAF4YR",
+    "survey_stratum": "pooled_stratum",
+    "survey_psu": "pooled_psu",
+    "planned_estimator": "survey::svycoxph",
+    "required_sensitivities": [
+      "no_topcode",
+      "erratum_constants",
+      "creatinine_plus_0_11_mg_dL",
+      "creatinine_plus_0_17_mg_dL",
+      "creatinine_plus_0_23_mg_dL",
+      "exclude_deaths_within_12_months"
+    ],
+    "cause_specific_mortality_authorized": false,
+    "cohort_file": "data\\processed\\agelens_v1_mortality_cohort_authorized.parquet",
+    "protocol_file": "docs\\methodology\\Mortality_Analysis_Protocol.md",
+    "results_release_decision": "D-016",
+    "primary_result": {
+      "scale": "hazard ratio per 5-year higher Phenotypic Age acceleration",
+      "hazard_ratio": 1.18535425565943,
+      "ci_low_95": 1.12863341528632,
+      "ci_high_95": 1.24492567062041,
+      "p_value": 1.0687146800218799e-11,
+      "ph_diagnostic_p_value": 0.998565199157246
+    },
+    "validation_report": "docs\\methodology\\Mortality_Model_Validation_Report.md"
+  },
+  "final_release": {
+    "version": "AgeLens V1",
+    "decision": "D-017",
+    "release_date": "2026-07-22",
+    "final_report": "docs\\results\\AgeLens_V1_Final_Report.md",
+    "package_directory": "release\\agelens_v1_release_20260722",
+    "archive": "release\\agelens_v1_release_20260722.zip",
+    "aggregate_only": true,
+    "participant_level_data_included": false,
+    "cause_specific_mortality_authorized": false
+  }
+}

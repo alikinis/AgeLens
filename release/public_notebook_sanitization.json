@@ -1,0 +1,119 @@
+{
+  "purpose": "Remove personal absolute local paths from executed notebook outputs before public release.",
+  "scope": "outputs only; notebook source cells were not changed",
+  "replacement": "<PROJECT_ROOT>",
+  "notebooks": [
+    {
+      "notebook": "00_setup_agelens.ipynb",
+      "governed_sha256": "ec86e2e60d6c8ee8cdf80a65d18d6e7b8bfdef325251c2023540ab3b31cc6db0",
+      "public_sha256": "d05e31b3069b5c992cc5c4d0b4ae7d9c4814b57da129c46ed8d371543367dcb4",
+      "redacted_output_path_occurrences": 8,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "01_data_ingestion.ipynb",
+      "governed_sha256": "c9d3ad021a15a36a0aed2247b02f5a291f4b987ef119cf4dab7cd272bb241402",
+      "public_sha256": "15ca6ab44335b280c46f4bbc3e9d94f93845931500d193816e9dc83aa757a278",
+      "redacted_output_path_occurrences": 4,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "02_data_preprocessing.ipynb",
+      "governed_sha256": "08801ab9a3e4e08a929aa342ede6ccea18d8c025cac578a6b51004bc1065fe5f",
+      "public_sha256": "3f3bb0f9cf0be71a6628c3a9e8f0bdc6d77267092b38d6241fa61084add36838",
+      "redacted_output_path_occurrences": 3,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "03_validation.ipynb",
+      "governed_sha256": "b703c42b749842b5f3e8602b66e30203ba7c449a7034484c282dc690e9a72247",
+      "public_sha256": "81ea38044580fdc2c39d0eca235f3855ca84cc11c7719f7ffb5c558697bedec3",
+      "redacted_output_path_occurrences": 3,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "04_external_validation.ipynb",
+      "governed_sha256": "54cbb55e7a1ef1478aabd361b0a68776508c8516e768599d8be36b76adea5579",
+      "public_sha256": "60c6607791c6d3a5964e6606cd35a8ca0a2bf1d50171290fd21e3ab2cff786a3",
+      "redacted_output_path_occurrences": 5,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "05_validation_completion.ipynb",
+      "governed_sha256": "dbb2ecbac734c008a0f5bd897d58e77d4344b409e6445a58a25bc45ee2373991",
+      "public_sha256": "bc3023b7d38e3b8e341328cbc9bf8cfa2e4ca68c6072a7b47af272c9fc0ac7a4",
+      "redacted_output_path_occurrences": 6,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "06_eg004_creatinine_sensitivity.ipynb",
+      "governed_sha256": "64ddea3f93da919cc6423ba80b62c7f25f98eb2f196874122670b9cbae6e2faf",
+      "public_sha256": "853e9b8c648401277a18dfdac5441ac2d598df5e68390f19cb4469d36563c8ab",
+      "redacted_output_path_occurrences": 3,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "07_governance_resolution.ipynb",
+      "governed_sha256": "c98a3088fc30891022583a875bd9f75d0d549c0be689eb4757d6f8b795f579b3",
+      "public_sha256": "0562991ce38c53f33c7d21f567645521e0333710dac90d09cece2975c72487ea",
+      "redacted_output_path_occurrences": 6,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "08_canonical_output_rebuild.ipynb",
+      "governed_sha256": "1534a2eecc4f97903c6474bd7cf561af48d0e49588502f7cbcc50ffd6622e1e8",
+      "public_sha256": "24dea704ded25f08deb6129d36a40dc10eb6a8243bb493ca5658259bd54d6fbc",
+      "redacted_output_path_occurrences": 5,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "09_mortality_analysis_authorization.ipynb",
+      "governed_sha256": "b0c14e54e26b10ec63f3f57f5c5fdeb82e70941162adf59d18431088532cf9db",
+      "public_sha256": "c190730ba48b013ba71e1a57ee3378ad41c276cbb9a82e6472ca9e1410c1d2f3",
+      "redacted_output_path_occurrences": 8,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "10_mortality_survival_analysis.ipynb",
+      "governed_sha256": "97c5824f4159436f427d8c99c1cbc0d496038e17183ce9d960326086928950b5",
+      "public_sha256": "740ec48990acb3e267800ed19ecbc24ac7dfda9d418e7d50249a169b1498bfeb",
+      "redacted_output_path_occurrences": 5,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "11_final_reporting_and_release_package.ipynb",
+      "governed_sha256": "e18cdc54755451740b3d0d6eed41e894c863e094d6e0c7c04b9d34fa1729e709",
+      "public_sha256": "f2fab91e3e12c2cfe3ddd70ef8b9e3e6894c5600dd5b6d29abc10cfeac4d6569",
+      "redacted_output_path_occurrences": 8,
+      "transformation": "absolute local project paths redacted from executed outputs only",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "11b_release_package_rebuild.ipynb",
+      "governed_sha256": "055506fa1f1fe9880a4119f1a030a57e8e9ca18146fd1c75d0ac1a4ad4800285",
+      "public_sha256": "7dcc613d4dbf6d17accc48257246255396832189894d21ab8fc9264d816b549d",
+      "redacted_output_path_occurrences": 0,
+      "transformation": "unchanged",
+      "source_cells_changed": false
+    },
+    {
+      "notebook": "12_baseline_characteristics.ipynb",
+      "governed_sha256": "01c5d85d7c2b41b2b310d1fd94c52d550c601c5983ee8a3d0f4c002c150c1e9d",
+      "public_sha256": "9f5b042cb1c8037aabb951fc1f23766986745d70b21ce5da89b61f0b04264d18",
+      "redacted_output_path_occurrences": 0,
+      "transformation": "unchanged",
+      "source_cells_changed": false
+    }
+  ]
+}

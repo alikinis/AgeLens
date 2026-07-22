@@ -1,0 +1,10 @@
+# Exact versions recorded in the final governed run
+numpy==2.4.6
+pandas==2.3.3
+
+# Notebook/runtime dependencies
+matplotlib
+pyarrow
+tabulate
+jupyterlab
+ipykernel

@@ -1,0 +1,7 @@
+method,term,chi_square,p_value,fallback_reason
+cox.zph_on_svycoxph,phenoage_acceleration_per_5_years,3.23372877621287e-06,0.998565199157246,
+cox.zph_on_svycoxph,chronological_age_years,0.0016560805304736,0.967539072151502,
+cox.zph_on_svycoxph,sex_factor,2.37378855615275e-06,0.99877069144048,
+cox.zph_on_svycoxph,race_factor,0.0004899659155715,0.98234012877317,
+cox.zph_on_svycoxph,cycle_factor,0.0016493271284686,0.967605290218413,
+cox.zph_on_svycoxph,GLOBAL,0.0044801799437537,0.999999999999977,

@@ -1,0 +1,12 @@
+check,pass,observed
+Mortality cohort n equals governed value,True,4350
+Death count equals governed value,True,127
+2015–2016 cohort n equals governed value,True,2178
+2017–2018 cohort n equals governed value,True,2172
+No baseline biomarker is missing,True,0
+Sex codes are restricted to 1 and 2,True,"[1, 2]"
+Race/ethnicity codes are recognized,True,"[1, 2, 3, 4, 6, 7]"
+No p-value column was created,True,True
+Race percentages sum to 100 in Overall,True,100.00000000000001
+Race percentages sum to 100 in 2015–2016,True,100.0
+Race percentages sum to 100 in 2017–2018,True,100.00000000000001

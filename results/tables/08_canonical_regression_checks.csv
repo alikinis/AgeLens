@@ -1,0 +1,30 @@
+check,pass,observed,expected,tolerance
+Canonical participant values reproduce Supplement reference,True,0.0,0.0,1e-12
+canonical_full counts match notebook 03,True,"[2645, 2578]","[2645, 2578]",0
+sensitivity_no_topcode counts match notebook 03,True,"[2524, 2427]","[2524, 2427]",0
+canonical_full weighted means match notebook 03,True,0.0,0.0,1e-10
+canonical_full Taylor SEs match notebook 03,True,0.0,0.0,1e-10
+sensitivity_no_topcode weighted means match notebook 03,True,0.0,0.0,1e-10
+sensitivity_no_topcode Taylor SEs match notebook 03,True,0.0,0.0,1e-10
+BioAge Supplement MAE baseline matches for 2015_2016,True,0.0497257249378897,0.0497257249378897,1e-12
+BioAge Supplement MAE passes D-013 for 2015_2016,True,0.0497257249378897,0.1,<=
+BioAge Pearson passes D-013 for 2015_2016,True,0.9999999400507084,0.999999,>=
+BioAge Spearman passes D-013 for 2015_2016,True,0.9999997367124565,0.999999,>=
+BioAge Supplement MAE baseline matches for 2017_2018,True,0.0503475696870258,0.0503475696870258,1e-12
+BioAge Supplement MAE passes D-013 for 2017_2018,True,0.0503475696870258,0.1,<=
+BioAge Pearson passes D-013 for 2017_2018,True,0.9999999457575428,0.999999,>=
+BioAge Spearman passes D-013 for 2017_2018,True,0.9999997870850504,0.999999,>=
+EG-004 zero-shift reference equivalence,True,True,True,
+EG-004 governed sensitivity shifts are present,True,"[0.11, 0.17, 0.23]","[0.11, 0.17, 0.23]",0
+Erratum sensitivity differs from canonical Supplement,True,1.5693560861782627,non-zero named sensitivity,
+Creatinine +0.11 mg/dL sensitivity is positive,True,1.0245438917540064,> 0,
+Creatinine +0.11 mg/dL sensitivity is deterministic,True,2.029426707743914e-14,0.0,1e-10
+Creatinine +0.11 mg/dL sensitivity is monotonic,True,1.0245438917540064,> -inf,
+Creatinine +0.17 mg/dL sensitivity is positive,True,1.5833860145289205,> 0,
+Creatinine +0.17 mg/dL sensitivity is deterministic,True,2.3754824663832112e-14,0.0,1e-10
+Creatinine +0.17 mg/dL sensitivity is monotonic,True,1.5833860145289205,> 1.0245438917540064,
+Creatinine +0.23 mg/dL sensitivity is positive,True,2.1422281373038317,> 0,
+Creatinine +0.23 mg/dL sensitivity is deterministic,True,1.1409897545980695e-14,0.0,1e-10
+Creatinine +0.23 mg/dL sensitivity is monotonic,True,2.1422281373038317,> 1.5833860145289205,
+Canonical source contains no linked-mortality fields,True,[],[],
+Formula mortality-score intermediates are classified separately,True,"['prebridge_mortality_score', 'harmonized_mortality_score']",Allowed formula intermediates; not linked mortality data,
