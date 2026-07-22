@@ -7,11 +7,11 @@
 | Document Title    | AgeLens Decision Log           |
 | Project            | AgeLens                        |
 | Document ID        | AL-GOV-001                     |
-| Version            | 2.1|
+| Version            | 2.2|
 | Status              | Approved — current through D-017 |
 | Author              | Project Team                   |
 | Reviewer            | —                               |
-| Last Updated        | 2026-07-22                     |
+| Last Updated        | 2026-07-23                     |
 | Related Documents  | Research Protocol (AL-RP-001), Assumption_Register.md, Evidence_Gap_Register.md, Literature_Matrix.xlsx, NHANES_Harmonization_Report.md, Replication_Protocol.md, Validation_Protocol.md, Evidence_Matrix.xlsx |
 
 ---
@@ -41,6 +41,7 @@
 | 1.9 | 2026-07-22 | Approved D-016: mortality models completed, validated, reconciled, and released for reporting. |
 | 2.0 | 2026-07-22 | Approved D-017: final AgeLens V1 scientific report, aggregate-only release package, provenance manifest, and archive. |
 | 2.1 | 2026-07-22 | Synchronized D-001's current Notes and Evidence Gap references with D-010 through D-013; historical revision entries remain unchanged. |
+| 2.2 | 2026-07-23 | Replaced tool-specific verification attribution with neutral evidence-provenance wording; no decision, evidence grade, or scientific conclusion changed. |
 
 **Current-state interpretation:** Revision History records the status that applied at each earlier version and therefore may use terms such as *open*, *unresolved*, or *blocking*. Those historical entries do not override the current operative sections, the latest Review Status fields, or Decisions D-010 through D-017.
 
@@ -228,7 +229,7 @@ This document records every officially adopted methodological Decision within th
 | Title                       | Confirmed NCHS bridging regression equations for hs-CRP and BIOPRO panel |
 | Description                 | AgeLens V1 will apply the following official NCHS bridging equations, verified directly against primary source: hs-CRP: Y(Cobas)=0.8695×X(DxC660i)+0.2954, valid only for DxC660i ≤23 mg/L; Albumin: X(Cobas)=0.9581×Y(DxC660i)−0.0108; Creatinine: X(Cobas)=0.9515×Y(DxC660i)+0.06608; ALP: log10[X(Cobas)]=0.9986×log10[Y(DxC660i)]+0.04288. Full detail in Replication_Protocol.md Section 8. |
 | Related Research Question   | RQ2 |
-| Supporting Evidence          | Official CDC/NCHS documentation, directly fetched and verified: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BIOPRO_J.htm and https://wwwn.cdc.gov/nchs/data/nhanes/public/2017/datafiles/HSCRP_J.htm, "Analytic Notes" sections, both provided by the user and fetched directly by Claude 2026-07-19 (E2, official NHANES/CDC documentation) |
+| Supporting Evidence          | Official CDC/NCHS documentation, directly fetched and verified: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BIOPRO_J.htm and https://wwwn.cdc.gov/nchs/data/nhanes/public/2017/datafiles/HSCRP_J.htm, "Analytic Notes" sections, both directly retrieved and verified against official CDC/NCHS documentation on 2026-07-19 (E2, official NHANES/CDC documentation) |
 | Evidence Level               | E2 (official NHANES/CDC documentation, directly verified — not a secondary summary) |
 | Confidence Rating            | High |
 | Reviewer                     | — |

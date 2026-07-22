@@ -7,11 +7,11 @@
 | Document Title    | AgeLens Replication Protocol   |
 | Project             | AgeLens                        |
 | Document ID         | AL-METH-001                    |
-| Version              | 1.4|
+| Version              | 1.5|
 | Status               | Approved — canonical V1 implemented, validated, and released |
 | Author               | Project Team                   |
 | Reviewer             | —                               |
-| Last Updated          | 2026-07-22                     |
+| Last Updated          | 2026-07-23                     |
 | Related Documents  | Research Protocol (AL-RP-001), Decision_Log.md, NHANES_Harmonization_Report.md, Variable_Mapping_Table.xlsx, Paper_001_Levine2018.md, Paper_002_BioAge.md |
 
 ---
@@ -26,8 +26,8 @@
 | 0.4     | 2026-07-16 | Full sentence-by-sentence internal consistency review: (1) EG-009 resolution via D-007 (user-provided Supplement 1) reflected in Section 7 and Section 12, which had gone stale; (2) corrected a false claim that fasting sample weights were "addressed in Validation_Protocol.md" — they were not; now flagged accurately and actually added to Validation_Protocol.md Section 8; (3) Section 13 corrected — Validation Protocol already exists, next step is Implementation |
 | 0.5     | 2026-07-17 | CRITICAL CORRECTION: the "Note on formula constants" previously and incorrectly dismissed the 0.09165 vs 0.090165 discrepancy as a rounding difference. Following the user's detailed mathematical challenge (proving a ~1.8 year systematic impact), this is now correctly flagged as EG-010 (Core, Critical, open), with 0.09165 retained as a provisional default pending empirical resolution. |
 | 0.6     | 2026-07-17 | CRITICAL: flagged EG-013 - the literal NCHS bridging equations were never recorded anywhere in this project, only referenced conceptually |
-| 0.7     | 2026-07-19 | Pipeline order corrected: Step D (bridging) now runs before Step C (unit standardization) - user's worked example (0.3824 vs 0.1165 mg/dL) confirmed the original order was wrong. User-supplied bridging equations recorded in Step D with an explicit unverified-provenance warning (Claude cannot confirm cdc.gov access claim or corroborate the coefficients). |
-| 0.8     | 2026-07-19 | RESOLVED: EG-013 closed via D-008. User provided exact official CDC source URLs (BIOPRO_J.htm, HSCRP_J.htm); Claude fetched both directly and verified every coefficient word-for-word - all confirmed correct. Equations in Step D are now confirmed, cited primary-source values, including the previously-unknown CRP validity range (<=23 mg/L). |
+| 0.7     | 2026-07-19 | Pipeline order corrected: Step D (bridging) now runs before Step C (unit standardization) - user's worked example (0.3824 vs 0.1165 mg/dL) confirmed the original order was wrong. User-supplied bridging equations were recorded in Step D with an explicit warning that their provenance had not yet been directly confirmed against the cited CDC/NCHS pages. |
+| 0.8     | 2026-07-19 | RESOLVED: EG-013 closed via D-008. Exact official CDC source URLs (BIOPRO_J.htm, HSCRP_J.htm) were recorded; both pages were retrieved directly and every coefficient was verified word-for-word — all were confirmed correct. Equations in Step D are now confirmed, cited primary-source values, including the previously-unknown CRP validity range (<=23 mg/L). |
 | 0.9     | 2026-07-19 | Added step-discontinuity warning for the CRP bridging boundary (23 mg/L) - a naive threshold implementation would create an artificial ~2.8 mg/L jump; added flagging guidance instead. Added confirmed pooled fasting-weight formula (WTSAF2YR x2/5.2 + WTSAFPRP x3.2/5.2) for combining the two unequal-duration D-002 cycles - both per user's detailed technical review. |
 | 1.0     | 2026-07-19 | CRITICAL SELF-CONSISTENCY FIX: Sections 12-13 falsely claimed 'no Core gap blocks implementation' while Evidence_Gap_Register.md listed EG-004 and EG-010 as Core/Open - a direct violation of Research Protocol Section 6.6 ('Block implementation until resolved'). Corrected to accurately state these two Core gaps must be resolved before Implementation proceeds to producing final scores. Identified by user's detailed cross-document consistency review. |
 | 1.1     | 2026-07-19 | MAJOR: D-009 narrowed scope to 2015-2016 + 2017-2018 only, dropping 2017-March 2020. Removed P_DEMO/P_BIOPRO/P_GLU/P_HSCRP/P_CBC file references; simplified pooled-weight section to standard 2-cycle combination (WTSAF2YR/2), removing the fractional WTSAFPRP approach entirely. |
@@ -35,6 +35,7 @@
 | 1.2     | 2026-07-19 | CRITICAL: EG-014 opened - NHANES age top-coding at 80 (vs NHANES III's 90 in D-001's training data) creates a ~6-9 year systematic understatement for genuinely 80+ participants, the largest-magnitude issue found to date. Added age_topcoded indicator requirement to Step B; updated Section 12/13 blocker list to include EG-014. |
 | 1.3 | 2026-07-22 | Incorporated D-010 through D-014 and removed the former Core-gap blockers after completed governance resolution. |
 | 1.4 | 2026-07-22 | Synchronized all operative sections with D-010, D-011, D-012, D-013, D-014, and D-017; historical open-gap language retained only in Revision History. |
+| 1.5 | 2026-07-23 | Replaced tool-specific verification attribution with neutral evidence-provenance wording; implementation requirements and governed decisions are unchanged. |
 
 **Current-state interpretation:** Revision History records the status that applied at each earlier version and therefore may use terms such as *open*, *unresolved*, or *blocking*. Those historical entries do not override the current operative sections, the latest Review Status fields, or Decisions D-010 through D-017.
 
@@ -162,7 +163,7 @@ Extract, per Variable_Mapping_Table.xlsx (VM-001 through VM-014):
 
 ## 8. Step D — Cross-Cycle Bridging (D-003, D-004)
 
-**RESOLVED 2026-07-19:** The user supplied the exact official CDC/NCHS documentation URLs (BIOPRO_J.htm, HSCRP_J.htm), which Claude fetched and used to directly verify every equation below against the primary source. All previously-unverified coefficients are confirmed correct, word-for-word matching the official NCHS "Analytic Notes" sections. See **D-008** in Decision_Log.md, closing **EG-013**.
+**RESOLVED 2026-07-19:** The user supplied the exact official CDC/NCHS documentation URLs (BIOPRO_J.htm, HSCRP_J.htm), which were retrieved directly and used to verify every equation below against the primary source. All previously-unverified coefficients are confirmed correct, word-for-word matching the official NCHS "Analytic Notes" sections. See **D-008** in Decision_Log.md, closing **EG-013**.
 
 **Confirmed equations (source: wwwn.cdc.gov, BIOPRO_J.htm and HSCRP_J.htm, "Analytic Notes" sections, fetched and verified 2026-07-19):**
 
