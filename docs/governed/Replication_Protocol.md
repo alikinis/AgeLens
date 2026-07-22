@@ -7,8 +7,8 @@
 | Document Title    | AgeLens Replication Protocol   |
 | Project             | AgeLens                        |
 | Document ID         | AL-METH-001                    |
-| Version              | 1.3|
-| Status               | Approved for canonical V1 rebuild                          |
+| Version              | 1.4|
+| Status               | Approved — canonical V1 implemented, validated, and released |
 | Author               | Project Team                   |
 | Reviewer             | —                               |
 | Last Updated          | 2026-07-22                     |
@@ -34,6 +34,9 @@
 | 1.2     | 2026-07-19 | CRITICAL: EG-014 (age top-coding) added to Step B, Section 12, and Section 13 - highest-magnitude open gap identified to date (~6-9 years). Sections 12-13 now list three open Core blockers (EG-004, EG-010, EG-014). |
 | 1.2     | 2026-07-19 | CRITICAL: EG-014 opened - NHANES age top-coding at 80 (vs NHANES III's 90 in D-001's training data) creates a ~6-9 year systematic understatement for genuinely 80+ participants, the largest-magnitude issue found to date. Added age_topcoded indicator requirement to Step B; updated Section 12/13 blocker list to include EG-014. |
 | 1.3 | 2026-07-22 | Incorporated D-010 through D-014 and removed the former Core-gap blockers after completed governance resolution. |
+| 1.4 | 2026-07-22 | Synchronized all operative sections with D-010, D-011, D-012, D-013, D-014, and D-017; historical open-gap language retained only in Revision History. |
+
+**Current-state interpretation:** Revision History records the status that applied at each earlier version and therefore may use terms such as *open*, *unresolved*, or *blocking*. Those historical entries do not override the current operative sections, the latest Review Status fields, or Decisions D-010 through D-017.
 
 *This file is a single authoritative document per DP-1 (Protocol Section 8.2) — never duplicated under a new filename. Update in place and bump the version above.*
 
@@ -41,7 +44,7 @@
 
 ## 1. Purpose
 
-This document specifies the exact, reproducible procedure for computing AgeLens Version 1 Phenotypic Age scores from NHANES data. It is a **methodology specification**, not source code — per Section 10 of the Research Protocol ("Implementation has intentionally not yet started"), this document exists to fully determine *what* the implementation must do before any code is written, per SP-2 (Evidence Before Implementation).
+This document records the exact, reproducible procedure implemented for AgeLens Version 1 Phenotypic Age computation from NHANES data. It is the normative methodology specification against which the completed notebooks, validation checks, and final aggregate release were evaluated.
 
 Every step below is governed by a specific prior Decision. No step in this protocol may be altered without a corresponding Decision Log update.
 
@@ -65,6 +68,12 @@ Every step below is governed by a specific prior Decision. No step in this proto
 | D-004 | BIOPRO (albumin, creatinine, ALP) bridging equations between 2015–2016 and 2017+ cycles |
 | D-005 | Bridging direction: adjust 2015–2016 values onto the 2017+ reference scale |
 | D-006 | Missing-data policy: complete-case exclusion |
+| D-010 | Canonical final conversion pair: Supplement `141.50225 / 0.090165`; Erratum pair retained as sensitivity |
+| D-011 | Retain and flag age-topcoded records; never invent exact ages; report no-topcode sensitivity |
+| D-012 | Use observed modern harmonized creatinine canonically; require +0.11/+0.17/+0.23 mg/dL sensitivities |
+| D-013 | Final validation tolerances and acceptance criteria |
+| D-014 | Normalize only the exact XPT IBM-zero sentinel and audit replacements |
+| D-017 | Final V1 reporting and aggregate-only release package approved |
 
 ---
 
@@ -117,7 +126,9 @@ Extract, per Variable_Mapping_Table.xlsx (VM-001 through VM-014):
 - Lymphocyte % (LBXLYPCT), MCV (LBXMCVSI), RDW (LBXRDW), WBC (LBXWBCSI) — from CBC
 - Chronological age — from the Demographics file (RIDAGEYR)
 
-**CRITICAL — Age Top-Coding (added 2026-07-19, following user's detailed technical review):** NHANES top-codes RIDAGEYR at 80 in the D-009 target cycles (2015-2016, 2017-2018) — every participant genuinely aged 80 or older is recorded simply as "80." D-001's coefficients were trained on NHANES III, which top-coded age at 90, not 80. Since chronological age enters the formula directly (coefficient 0.0804), this top-coding artificially compresses xb for the entire 80+ subgroup. Independent simulation confirms this produces an approximately 6-9 year *understatement* of Phenotypic Age for genuinely 87-90-year-old participants recorded as 80 — the largest-magnitude distortion identified in this project to date, exceeding both EG-004 and EG-010. See **EG-014 (Core, Critical)** in Evidence_Gap_Register.md. Do not treat RIDAGEYR == 80 as a normal data point without the flagging described there — this step must construct a dedicated indicator variable (e.g., `age_topcoded`) for all RIDAGEYR == 80 records before proceeding to Step F.
+**Governed age top-coding policy (D-011; EG-014 closed as an accepted limitation):** NHANES top-codes RIDAGEYR at 80 in both D-009 target cycles. Retain these records in the canonical sample, construct `age_topcoded = TRUE` for RIDAGEYR == 80, and never invent or impute an exact age above 80. Report the canonical full-sample result together with the prespecified no-topcode sensitivity. Exclude topcoded records from the no-topcode face-validity correlation, while retaining them in cross-implementation agreement checks. The top-coding limitation remains scientifically important but is not an open V1 blocker.
+
+**Governed creatinine training-scale policy (D-012; EG-004 closed as an accepted and quantified limitation):** Use observed modern harmonized creatinine in the canonical computation. Also compute the mandatory `+0.11`, `+0.17`, and `+0.23 mg/dL` creatinine-shift sensitivities. No compensating shift may become canonical without a superseding Decision.
 
 **Note:** LBXGLU is drawn from the dedicated fasting subsample (participants must meet the NHANES fasting-time criterion). This subsample is smaller than the full BIOPRO sample and requires its own NHANES fasting sample weights — a design constraint for the final analytic sample size and for correct variance estimation.
 
@@ -145,7 +156,7 @@ Extract, per Variable_Mapping_Table.xlsx (VM-001 through VM-014):
 
 **Note on CRP:** The mg/dL convention for CRP is unusual relative to modern hs-CRP reporting (typically mg/L), but is now confirmed as the paper's deliberate, consistent choice rather than an error — it appears identically in both the main text and the independently-typeset Supplementary Table S1. Apply the ÷10 conversion (LBXHSCRP in mg/L → mg/dL) before the log transform.
 
-**Note on formula constants — CORRECTED 2026-07-17 (previously mischaracterized as a rounding difference):** Supplementary Table S1 gives the PhenotypicAge conversion as `141.50225 + ln(-0.00553 × ln(1 - MortalityScore)) / 0.090165`. The official PLOS Medicine erratum (Liu et al., 2019, the direct correction notice, independently re-verified against PMC6388911) states the denominator as **0.09165** — one fewer digit, not a rounding variant. This is **not a negligible difference**: holding all else constant, a mortality score of 0.01 yields a Phenotypic Age of approximately 34.6 years using 0.09165, versus approximately 32.8 years using 0.090165 — a systematic ~1.8-year discrepancy across every computed score, depending entirely on which of the two values is used. Independent practitioner discussions (e.g., public forum threads maintained by researchers who built their own PhenoAge calculators) confirm this exact discrepancy has been separately noticed and remains disputed outside AgeLens. See **EG-010 (Core, Critical)** in Evidence_Gap_Register.md. D-001 retains **0.09165** (the value from the formally published, peer-reviewed erratum) as the working default, on the grounds that a journal-issued correction notice is the more authoritative source for the exact equation it was issued to fix — but this is a provisional choice pending empirical resolution via Validation_Protocol.md Check 2 (comparison against BioAge package output), which can adjudicate between the two values using real computed data rather than source-authority alone.
+**Governed formula constants (D-010; EG-010 closed):** Supplementary Table S1 gives the pair `141.50225 / 0.090165`, whereas the published erratum gives `141.50 / 0.09165`. Empirical comparison with the directly inspected BioAge implementation showed that the Supplement pair produced mean absolute differences of 0.049726–0.050348 years with Pearson and Spearman correlations effectively equal to 1.0; the Erratum pair differed by approximately 1.6 years. Therefore use `141.50225 / 0.090165` as the canonical pair, retain `141.50 / 0.09165` as a named sensitivity, and prohibit hybrid pairs.
 
 ---
 
@@ -215,7 +226,7 @@ Before accepting pipeline output as valid, per RQS (Protocol Section 7):
 2. **Cross-implementation check:** Compare a subsample of AgeLens-computed values against BioAge package output (`orig = TRUE` or the bundled `phenoage0` field) for the same NHANES records, per EG-002's residual concern.
 3. **Cross-cycle consistency check:** Compare score distributions before and after Step D bridging is applied, to confirm the bridging equations produce the expected effect (removal of the 2015–2016 vs. 2017+ discontinuity).
 
-These checks constitute the core of Validation_Protocol.md (see that document for full methodology and acceptance criteria); their results become the Validation Report once run.
+These checks constitute the core of Validation_Protocol.md. They were completed, documented, and accepted under D-013; the canonical rebuild passed all 29 prespecified regression checks.
 
 ---
 
@@ -230,13 +241,13 @@ Mandatory rules:
 - D-012: observed modern creatinine is canonical; +0.11/+0.17/+0.23 mg/dL shifts are mandatory sensitivities.
 - D-014: normalize only the exact XPT IBM-zero sentinel and audit replacements.
 
-Final release is still blocked until canonical Supplement-primary outputs are regenerated and regression-tested.
+The canonical Supplement-primary rebuild passed 29/29 checks, the authorized all-cause mortality analysis passed 22/22 release checks, and D-017 approved the final aggregate-only V1 package. No release gate remains open within the governed V1 scope.
 
-## 13. Next Steps
+## 13. Maintenance Rules
 
-1. Run `08_canonical_output_rebuild.ipynb`.
-2. Preserve all named sensitivities.
-3. Verify D-013 regression checks.
-4. Enable final V1 outputs only after the canonical rebuild gate passes.
+1. Preserve the canonical D-010/D-011/D-012 policies and all named sensitivities.
+2. Any change to constants, top-coding, creatinine handling, missingness, or harmonization requires a superseding Decision.
+3. Re-run the regression, reconciliation, and repository-safety checks after any implementation change.
+4. Cause-specific mortality remains unauthorized unless a future Decision explicitly expands scope.
 
 <!-- AGELENS GOVERNANCE RESOLUTION 2026-07-22 -->

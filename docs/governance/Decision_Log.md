@@ -7,8 +7,8 @@
 | Document Title    | AgeLens Decision Log           |
 | Project            | AgeLens                        |
 | Document ID        | AL-GOV-001                     |
-| Version            | 2.0|
-| Status              | Draft                          |
+| Version            | 2.1|
+| Status              | Approved — current through D-017 |
 | Author              | Project Team                   |
 | Reviewer            | —                               |
 | Last Updated        | 2026-07-22                     |
@@ -40,6 +40,9 @@
 | 1.8 | 2026-07-22 | Approved D-015: mortality cohort, all-cause outcome, MEC-based follow-up, acceleration exposure, survey Cox model scope, required sensitivities, and mortality release gate. |
 | 1.9 | 2026-07-22 | Approved D-016: mortality models completed, validated, reconciled, and released for reporting. |
 | 2.0 | 2026-07-22 | Approved D-017: final AgeLens V1 scientific report, aggregate-only release package, provenance manifest, and archive. |
+| 2.1 | 2026-07-22 | Synchronized D-001's current Notes and Evidence Gap references with D-010 through D-013; historical revision entries remain unchanged. |
+
+**Current-state interpretation:** Revision History records the status that applied at each earlier version and therefore may use terms such as *open*, *unresolved*, or *blocking*. Those historical entries do not override the current operative sections, the latest Review Status fields, or Decisions D-010 through D-017.
 
 *This file is a single authoritative document per DP-1 (Protocol Section 8.2) — never duplicated under a new filename. Update in place and bump the version above; prior states remain visible in this table and in each entry's Status field (e.g., Superseded), never deleted.*
 
@@ -71,13 +74,13 @@ This document records every officially adopted methodological Decision within th
 | Related Research Question   | RQ1, RQ2, RQ3, RQ5 |
 | Supporting Evidence          | Levine et al. (2018), *Aging* (E1, original but unresolvable equation); Liu et al. (2019) correction, *PLOS Medicine* (E1/E3); independent peer-reviewed replication using the BioAge package reproducing identical coefficients (E3); multiple independent third-party calculator implementations reproducing the same coefficients (E5) |
 | Evidence Level               | E1 (primary), corroborated by E3/E5 |
-| Confidence Rating            | Moderate — convergent indirect evidence (Category C per Protocol Section 7.4); not yet confirmed by direct source-code line inspection (see EG-002) |
+| Confidence Rating            | High for the governed V1 implementation after direct BioAge source inspection and D-013 cross-implementation checks |
 | Reviewer                     | — |
 | Status                        | Approved |
 | Date                          | 2026-07-16 |
 | Related Assumptions          | A-001 (resolved by this decision) |
-| Related Evidence Gaps        | EG-001 (closed — converted to this decision); EG-002 (opened — residual source-confirmation gap) |
-| Notes                         | See Paper_001_Levine2018.md and Paper_002_BioAge.md for full review detail. **UPDATE 2026-07-16:** A critical question was discovered and resolved regarding which measurement units these coefficients require — see EG-009 (closed) and **D-007** (unit conversions confirmed via two independent primary sources). **UPDATE 2026-07-17:** A second, still-unresolved critical question was identified regarding the exact value of the formula's final conversion constant — see **EG-010 (Core, Critical, open)**. The coefficient values (albumin, creatinine, etc.) remain correct; only the final denominator constant (0.09165 vs 0.090165) is disputed. **UPDATE 2026-07-19:** A third, still-unresolved and highest-magnitude issue was identified — NHANES top-codes chronological age at 80 in the D-009 target cycles, while this Decision's coefficients were trained on NHANES III data top-coded at 90. See **EG-014 (Core, Critical, open, ~6-9 year impact)**. All three open gaps (EG-004, EG-010, EG-014) must be resolved, or explicitly downgraded via a documented Decision, before final results are reported. |
+| Related Evidence Gaps        | EG-001 closed through D-001; EG-002 closed through direct source inspection/D-013; EG-010 closed through D-010; EG-014 closed through D-011; EG-004 closed through D-012 |
+| Notes                         | See Paper_001_Levine2018.md and Paper_002_BioAge.md for full review detail. D-007 governs the required biomarker units. D-010 governs the canonical final conversion pair (`141.50225 / 0.090165`) and the named Erratum sensitivity. D-011 governs retention, flagging, and no-topcode sensitivity for RIDAGEYR == 80. D-012 governs canonical observed modern creatinine and the three mandatory scale-shift sensitivities. Direct BioAge inspection and D-013 checks closed EG-002. No Core Evidence Gap remains open for D-001 within the approved V1 scope. |
 
 ---
 

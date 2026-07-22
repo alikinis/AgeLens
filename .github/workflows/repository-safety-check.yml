@@ -14,3 +14,6 @@ steps:
       python-version: "3.12"
   - name: Check for sensitive or forbidden files
     run: python scripts/preflight_repository.py .
+
+      - name: Check governance document consistency
+        run: python scripts/check_governance_consistency.py .

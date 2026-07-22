@@ -7,8 +7,8 @@
 | Document Title    | AgeLens Validation Protocol    |
 | Project             | AgeLens                        |
 | Document ID         | AL-METH-002                    |
-| Version              | 1.2|
-| Status               | Approved — V1 checks completed                          |
+| Version              | 1.3|
+| Status               | Approved — V1 checks completed and release criteria satisfied |
 | Author               | Project Team                   |
 | Reviewer             | —                               |
 | Last Updated          | 2026-07-22                     |
@@ -32,6 +32,9 @@
 | 1.0     | 2026-07-19 | MAJOR: D-009 narrowed scope to 2015-2016 + 2017-2018 only. Removed all 2017-March 2020 references; simplified pooled weight to standard WTSAF2YR/2 (2-cycle combination), replacing the fractional WTSAFPRP approach. |
 | 1.1     | 2026-07-19 | CRITICAL: EG-014 (age top-coding) added to Check 1 (dual correlation computation with/without top-coded participants) and Section 9 (three Core blockers now listed: EG-004, EG-010, EG-014). |
 | 1.2 | 2026-07-22 | Checks 1–4 completed; D-013 approved Check 1 tolerance and Check 2 baseline; Core gaps dispositioned. |
+| 1.3 | 2026-07-22 | Synchronized operative text with D-010 through D-017, replaced prospective criteria with approved thresholds, and recorded final release completion. |
+
+**Current-state interpretation:** Revision History records the status that applied at each earlier version and therefore may use terms such as *open*, *unresolved*, or *blocking*. Those historical entries do not override the current operative sections, the latest Review Status fields, or Decisions D-010 through D-017.
 
 *This file is a single authoritative document per DP-1 (Protocol Section 8.2) — never duplicated under a new filename. Update in place and bump the version above.*
 
@@ -39,7 +42,7 @@
 
 ## 1. Purpose
 
-This document specifies how AgeLens Version 1's implementation output will be verified against Replication_Protocol.md's specification, per Protocol Section 7.6 (Release Readiness: "Validation completed" is a mandatory gate). It defines four checks, their methodology, and the criteria for passing each — before any of these checks are run, this is a specification; the results become the (not yet written) Validation Report.
+This document records how AgeLens Version 1 implementation output was verified against Replication_Protocol.md, including the four completed checks, their approved acceptance criteria, and the final governed disposition of the associated Evidence Gaps.
 
 ---
 
@@ -57,7 +60,7 @@ Out of scope: mortality/morbidity outcome validation (the kind of external clini
 
 **Important framing note:** Phenotypic Age is *expected* to correlate strongly with chronological age partly because chronological age is itself one of the 10 formula inputs (Section 6 of Paper_001_Levine2018.md). A high correlation is a necessary sanity check, not evidence of correctness on its own — a coding error could still produce a plausible-looking correlation. This check catches gross implementation errors (e.g., a sign error, a misapplied unit) but does not substitute for Check 2.
 
-**CRITICAL — Age Top-Coding Distortion (added 2026-07-19, following user's detailed technical review):** RIDAGEYR is top-coded at 80 in both D-009 target cycles (see EG-014, Evidence_Gap_Register.md). Including RIDAGEYR == 80 participants in this correlation calculation creates a "vertical wall" artifact — a cluster of participants all recorded at chronological age 80 but with widely varying true Phenotypic Age (since their real ages span from 80 into the 90s+) — which distorts and understates the linear correlation coefficient in a way unrelated to implementation correctness. **Compute this check's correlation twice: once on the full sample, once excluding RIDAGEYR == 80 (using the `age_topcoded` indicator constructed in Replication_Protocol.md Step B).** A materially different result between the two strongly suggests the top-coding artifact — not an implementation error — explains any unexpectedly low correlation, and this must not be misdiagnosed as a coding bug.
+**Governed top-coding treatment (D-011; EG-014 closed as an accepted limitation):** Compute the correlation on both the full sample and the no-topcode sample using the `age_topcoded` indicator. Retain topcoded records for the canonical implementation and BioAge agreement checks, never invent exact ages above 80, and report the no-topcode result as a prespecified sensitivity. The vertical-wall artifact is a documented interpretation constraint, not an open validation blocker.
 
 **Acceptance criterion:** Rather than an absolute threshold (which risks false precision not grounded in a verified source), this check compares AgeLens's correlation coefficient against the corresponding value obtained by running BioAge (`orig = TRUE`) on the identical extracted sample. **Pass condition:** the two correlation coefficients agree within a pre-registered small tolerance (D-013 approved: |Δr| < 0.02), since no independently verified published r-value for the corrected-formula/D-009-cycle combination was located during this review.
 
@@ -72,7 +75,7 @@ Out of scope: mortality/morbidity outcome validation (the kind of external clini
 - Bland-Altman plot (difference vs. mean) to check for systematic bias across the age range, rather than relying on a single summary statistic.
 - Pearson/Spearman correlation between AgeLens and each BioAge output.
 
-**Acceptance criterion:** Mean absolute difference should be small relative to the biological signal of interest. A precise numeric threshold is deferred — recommend setting it once Check 2 is first run on real data (the first run establishes a baseline; deviations from that baseline in later runs, e.g. after a code change, are what should trigger investigation). This directly addresses **EG-002** (residual BioAge source-code confirmation gap) — if AgeLens and BioAge (`orig=TRUE`) agree closely, this is strong indirect confirmation that D-001's adopted coefficients match BioAge's implementation, even without line-by-line source inspection.
+**Acceptance criterion (D-013):** In each target cycle, the canonical Supplement-pair implementation passes when mean absolute difference versus BioAge `orig = TRUE` is below 0.10 years and both Pearson and Spearman correlations are at least 0.999999. Direct BioAge source inspection was completed and EG-002 was closed. The observed Supplement-pair mean absolute differences were 0.049726–0.050348 years, with correlations effectively equal to 1.0.
 
 **External benchmark available:** Liu et al. (2018/2019), reviewed in Paper_003_LiuEtAl2018.md, reports Phenotypic Age achieving AUC = 0.88 for all-cause mortality discrimination in NHANES IV (vs. 0.86 for chronological age alone). If AgeLens's own mortality-discrimination AUC (computable once linked mortality data is available for the D-009 cycles) falls far outside this range, that is a stronger signal of an implementation error than the correlation-based Check 1 alone — AUC is a different, complementary metric from Pearson r and is less sensitive to the chronological-age-is-a-formula-input circularity noted in Check 1.
 
@@ -108,7 +111,7 @@ Out of scope: mortality/morbidity outcome validation (the kind of external clini
 
 ## 7. Reporting
 
-All four checks were executed and documented in `docs/methodology/Validation_Report_Draft.md`.
+All four checks were executed and documented through the canonical rebuild report, governed regression tables, notebook inventory, and D-013.
 
 - Check 1: PASS.
 - Check 2: PASS — baseline established.
@@ -124,6 +127,6 @@ All four checks were executed and documented in `docs/methodology/Validation_Rep
 
 ## 9. Next Steps
 
-Regenerate canonical Supplement-primary outputs. Final release remains disabled until that rebuild and its D-013 regression checks pass.
+**Final status:** The canonical Supplement-primary rebuild passed 29/29 regression checks. The authorized all-cause mortality phase subsequently passed 22/22 release checks, and D-017 approved the final aggregate-only V1 package. No validation or release gate remains open within the governed V1 scope.
 
 <!-- AGELENS GOVERNANCE RESOLUTION 2026-07-22 -->

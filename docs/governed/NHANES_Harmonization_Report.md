@@ -7,11 +7,11 @@
 | Document Title    | AgeLens NHANES Harmonization Report |
 | Project             | AgeLens                        |
 | Document ID         | AL-HARM-001                    |
-| Version              | 0.9|
-| Status               | Draft                          |
+| Version              | 1.0|
+| Status               | Approved — final V1 harmonization report |
 | Author               | Project Team                   |
 | Reviewer             | —                               |
-| Last Updated          | 2026-07-16                     |
+| Last Updated          | 2026-07-22                     |
 | Related Documents  | Research Protocol (AL-RP-001), Decision_Log.md, Evidence_Gap_Register.md, Paper_001_Levine2018.md, Paper_004_SelvinEtAl2007.md, Variable_Mapping_Table.xlsx, Replication_Protocol.md, Validation_Protocol.md |
 
 ---
@@ -29,6 +29,9 @@
 | 0.7     | 2026-07-17 | Fixed EG-011: added the DxC 800-to-660i in-cycle instrument detail to Section 2 (Albumin), which Decision_Log.md and this report's own Section 4 had referenced as being here but was never actually written, per user's detailed technical review |
 | 0.8     | 2026-07-17 | Reverted EG-004 characterization from Peripheral back to Core throughout (Section 3, summary table, Section 9) following user's detailed technical review and confirming simulation |
 | 0.9     | 2026-07-19 | MAJOR: D-009 narrowed AgeLens V1 scope to 2015-2016 + 2017-2018 only, dropping the 2017-March 2020 pre-pandemic cycle (unequal-duration pooling complexity avoided). All 8 narrative sections updated; D-002 marked superseded throughout. |
+| 1.0 | 2026-07-22 | Synchronized creatinine and final-status sections with D-012 and D-017; EG-002 and EG-004 are closed and no V1 harmonization blocker remains. |
+
+**Current-state interpretation:** Revision History records the status that applied at each earlier version and therefore may use terms such as *open*, *unresolved*, or *blocking*. Those historical entries do not override the current operative sections, the latest Review Status fields, or Decisions D-010 through D-017.
 
 *This file is a single authoritative document per DP-1 (Protocol Section 8.2) — never duplicated under a new filename. Update in place and bump the version above.*
 
@@ -56,7 +59,7 @@ It follows the governance principles of Protocol Section 10 (NHANES Governance a
 
 ## 3. Creatinine
 
-**Finding:** Creatinine is also part of the BIOPRO panel, so the within-scope 2015-2016-to-2017+ instrument transition is covered by the same **D-004** bridging equations as albumin. A separate, older issue remains only partially addressed:
+**Finding:** Creatinine is part of the BIOPRO panel, so the within-scope 2015–2016-to-2017–2018 instrument transition is covered by the same **D-004** bridging equation as albumin. The separate NHANES-III training-scale issue was quantified and dispositioned under **D-012**:
 
 **Evidence (E1):** Selvin, E., Manzi, J., Stevens, L.A., Van Lente, F., Lacher, D.A., Levey, A.S., & Coresh, J. (2007). Calibration of serum creatinine in the National Health and Nutrition Examination Surveys (NHANES) 1988–1994, 1999–2004. *American Journal of Kidney Diseases, 50*(6), 918–926.
 
@@ -65,7 +68,7 @@ Key findings:
 - NHANES 2001–2002 and 2003–2004 showed **no significant bias**.
 - Bias magnitude in the affected cycles was large enough to produce **10–20% differences** in downstream kidney-function estimates.
 
-**Residual question (EG-004, REINSTATED as Core, 2026-07-17):** D-001's coefficients were derived from NHANES III creatinine values — i.e., from data on the *biased* side of the Selvin et al. finding (~0.11-0.23 mg/dL higher than modern enzymatic values). Applying D-001's coefficients to internally-consistent, bridged 2015–2020 creatinine values does **not** automatically correct for this training-era bias — D-004 only harmonizes modern cycles against each other, not against the NHANES III scale D-001 was fit on. An independent simulation (2026-07-17) applying the documented bias range directly to the D-001 formula produced a systematic Phenotypic Age shift of approximately 1.0–2.1 years. This is a Core, unresolved concern requiring an explicit methodological decision (apply a compensating adjustment, or document as an accepted limitation) before final results are reported — not a minor sensitivity check.
+**Final disposition (D-012; EG-004 closed as an accepted and quantified limitation):** D-001 coefficients were trained using NHANES III creatinine values that were approximately 0.11–0.23 mg/dL higher than a modern enzymatic reference. AgeLens V1 therefore uses observed modern harmonized creatinine in the canonical computation and requires `+0.11`, `+0.17`, and `+0.23 mg/dL` sensitivity scenarios. These shifts changed Phenotypic Age by 1.024544, 1.583386, and 2.142228 years, respectively. No compensating shift is canonical without a superseding Decision.
 
 ---
 
@@ -120,7 +123,7 @@ Both halves of this transition fall **within** the D-002-fixed AgeLens V1 scope.
 | Biomarker  | Cross-Cycle Status within D-009 scope | Resolution |
 | ---------- | ------------------------------- | ------------- |
 | Albumin    | BIOPRO panel; instrument change 2015-16 → 2017+ | Resolved — D-004 (bridging equations) |
-| Creatinine | Same BIOPRO transition, plus a REINSTATED Core NHANES-III-era question | Cross-cycle: resolved (D-004). NHANES-III training bias: unresolved (EG-004, Core) — see Section 3 |
+| Creatinine | BIOPRO transition plus NHANES-III training-scale difference | Cross-cycle resolved by D-004; training-scale issue quantified and closed under D-012, with observed modern values canonical and three mandatory sensitivities |
 | ALP        | Same BIOPRO transition | Resolved — D-004 |
 | CRP        | Separate panel; instrument/lab/site change 2015-16 → 2017+ | Resolved — D-003 (bridging equations) |
 | Glucose    | Same instrument (Cobas C311) throughout D-009 scope | Clean — no gap |
@@ -128,10 +131,10 @@ Both halves of this transition fall **within** the D-002-fixed AgeLens V1 scope.
 
 ---
 
-## 9. Remaining Open Items
+## 9. Final Governance Status
 
-1. **EG-002 (Peripheral):** Direct BioAge `phenoage_calc.R` source-code confirmation still pending (from Paper_002_BioAge.md). Still open as of this writing.
-2. **EG-004 (Core, REINSTATED 2026-07-17):** NHANES-III-trained coefficients applied to modern, bias-free creatinine data — independent simulation confirms ~1-2 year systematic impact. This is not a minor sensitivity check; it requires an explicit methodological decision before implementation is considered complete. See Evidence_Gap_Register.md EG-004 for the three candidate resolution paths.
-3. ~~Obtain and formally record the specific D-003/D-004 bridging equation coefficients into a Variable Mapping Table~~ — **Done.** See Variable_Mapping_Table.xlsx (VM-001 through VM-014).
-4. This report's own findings are complete for all 9 D-001 biomarkers within D-009 scope. Downstream documents building on this report: Variable_Mapping_Table.xlsx, Replication_Protocol.md, Validation_Protocol.md — all now exist.
-5. **Note (out of this report's direct scope but related):** A separate methodological finding — that the D-001 formula requires SI/metric unit conversion for albumin, creatinine, glucose, and CRP before evaluation — was identified and resolved as EG-009/D-007. This is a units-matching concern between NHANES and the source publication, distinct from the cross-cycle NHANES harmonization concerns this report addresses. See Replication_Protocol.md Section 7 for details.
+1. EG-002 was closed after direct BioAge source inspection and D-013 validation.
+2. EG-004 was closed through D-012 as an accepted and quantitatively characterized limitation.
+3. D-003 and D-004 bridging equations were verified against official NCHS analytic notes and are recorded in the governed implementation.
+4. EG-009 was closed through D-007; required unit conversions are specified in Replication_Protocol.md.
+5. All nine biomarkers are dispositioned for the D-009 scope. No Core harmonization Evidence Gap remains open, and D-017 approved the final aggregate-only V1 release.
