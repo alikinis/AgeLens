@@ -23,11 +23,11 @@ The machine-learning and AI categories must be selected only if V2 completes a g
 
 AgeLens addresses a core aging-research problem: whether a biomarker-derived age measure can be transported across laboratory eras and remain informative for survival, morbidity, and functional health in a nationally representative population.
 
-V1 established reproducible score construction and all-cause mortality validation. V2 will test broader health relevance, transportability, and incremental utility while preserving complex-survey inference and transparent governance.
+V1 established reproducible score construction and all-cause mortality validation. V2 has frozen serious difficulty walking or climbing stairs as its primary non-mortality outcome and will test functional-health relevance, transportability, and incremental utility while preserving complex-survey inference and transparent governance.
 
 ## Minimum ARISE-Ready V2 Package
 
-1. one frozen primary non-mortality aging outcome;
+1. the frozen `DLQ050` mobility-disability outcome;
 2. one conventional adjusted external-validation result;
 3. one incremental-performance comparison;
 4. a prespecified transportability analysis;

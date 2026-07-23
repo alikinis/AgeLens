@@ -1,0 +1,94 @@
+{
+  "document_id": "AL-V2-G0-001",
+  "version": "1.0",
+  "date": "2026-07-23",
+  "status": "frozen",
+  "decision_id": "D2-003",
+  "stage": "Gate 0",
+  "primary_outcome": {
+    "candidate": "mobility_disability",
+    "source_component": "DLQ",
+    "variable": "DLQ050",
+    "label": "Serious difficulty walking or climbing stairs",
+    "outcome_type": "binary",
+    "positive_codes": [
+      1
+    ],
+    "negative_codes": [
+      2
+    ],
+    "other_codes": "missing",
+    "minimum_age_years": 20,
+    "analysis_domain": "Canonical V1 participants age 20 years or older with positive WTSAF4YR and a valid DLQ050 response",
+    "governed_weight": "WTSAF4YR",
+    "survey_design": "cycle-unique strata and cycle-unique PSUs"
+  },
+  "corrected_empirical_feasibility": {
+    "2015_2016": {
+      "adult_canonical_n": 2181,
+      "valid_n": 2181,
+      "positive_n": 332,
+      "weighted_prevalence_percent": 11.628807,
+      "strata": 15,
+      "psus": 30
+    },
+    "2017_2018": {
+      "adult_canonical_n": 2186,
+      "valid_n": 2185,
+      "positive_n": 350,
+      "weighted_prevalence_percent": 11.904922,
+      "strata": 15,
+      "psus": 30
+    },
+    "pooled": {
+      "adult_canonical_n": 4367,
+      "valid_n": 4366,
+      "missing_n": 1,
+      "positive_n": 682,
+      "valid_fraction": 0.999771,
+      "weighted_prevalence_percent": 11.767896,
+      "strata": 30,
+      "psus": 60
+    }
+  },
+  "secondary_outcomes": [
+    {
+      "candidate": "any_disability_six",
+      "role": "secondary functional-health outcome",
+      "pooled_valid_n": 4358,
+      "pooled_positive_n": 1247,
+      "weighted_prevalence_percent": 24.470093
+    },
+    {
+      "candidate": "fair_poor_general_health",
+      "role": "secondary general-health outcome",
+      "pooled_valid_n": 4076,
+      "pooled_positive_n": 1025,
+      "weighted_prevalence_percent": 18.332982
+    },
+    {
+      "candidate": "phq9_ge10",
+      "role": "secondary neuropsychiatric outcome",
+      "pooled_valid_n": 4021,
+      "pooled_positive_n": 345,
+      "weighted_prevalence_percent": 7.452012
+    }
+  ],
+  "superseded_result": "The initial PHQ-9 feasibility rows produced before exact IBM XPORT zero normalization are invalid and must not be used.",
+  "closed_evidence_gaps": [
+    "V2-EG-001",
+    "V2-EG-002",
+    "V2-EG-003",
+    "V2-EG-004"
+  ],
+  "gate1_blockers": [
+    "V2-EG-005",
+    "V2-EG-006",
+    "V2-EG-007",
+    "V2-EG-008",
+    "V2-EG-009",
+    "V2-EG-010",
+    "V2-EG-014"
+  ],
+  "modeling_authorized": false
+}

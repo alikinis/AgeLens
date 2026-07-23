@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-EG-001 |
-| Version | 0.1 |
-| Status | Open |
+| Version | 0.4 |
+| Status | Active — Gate 0 closed; Stage 1 design freeze in progress |
 | Date | 2026-07-23 |
 
 ## Status Vocabulary
@@ -18,23 +18,25 @@
 
 ## Register
 
-| ID | Priority | Question | Why it matters | Required evidence or analysis | Status |
-| --- | --- | --- | --- | --- | --- |
-| V2-EG-001 | Core | Which non-mortality aging-related outcome family will be primary? | Defines the scientific claim and model family. | Official NHANES module documentation, cycle availability, construct validity, event/prevalence feasibility. | Open |
-| V2-EG-002 | Core | Which exact variables and coding rules define each candidate outcome? | Prevents post-hoc endpoint construction. | Data dictionaries, codebooks, prior validated definitions. | Open |
-| V2-EG-003 | Core | What is the eligible age range and analytic population? | Changes generalizability, sample size, and survey design. | Outcome-specific eligibility documentation and feasibility counts. | Open |
-| V2-EG-004 | Core | Which survey weights, strata, and PSUs apply to each outcome? | Incorrect weights invalidate population inference. | Official NHANES analytic guidance and module-specific documentation. | Open |
-| V2-EG-005 | Core | How will missing outcome and covariate data be handled? | Missingness can bias associations and prediction comparisons. | Missingness audit, complete-case feasibility, justified sensitivity strategy. | Open |
-| V2-EG-006 | Core | What is the primary estimand and adjustment set? | Distinguishes prognostic association from causal interpretation. | Directed scientific rationale and prespecified model formula. | Open |
-| V2-EG-007 | Core | How will multiple outcomes, subgroups, and interactions be controlled? | Prevents selective reporting and inflated false-positive risk. | Hierarchical testing or multiplicity plan. | Open |
-| V2-EG-008 | Core | Which baseline and comparison models are scientifically justified? | Required to support incremental-utility claims. | Prespecified chronological-age, demographic, and PhenoAge model definitions. | Open |
-| V2-EG-009 | Core | Which performance metrics and validation thresholds will be used? | Avoids choosing favorable metrics after seeing results. | Metric definitions for discrimination, calibration, and uncertainty. | Open |
-| V2-EG-010 | Core | How will resampling or data splitting respect survey structure and prevent leakage? | Standard random splitting may distort design-based inference. | Primary methodological sources and simulation/feasibility assessment. | Open |
-| V2-EG-011 | Important | Which subgroup analyses are sufficiently powered and ethically interpretable? | Sparse estimates can mislead and amplify disparity claims. | Weighted/unweighted support thresholds and reporting rules. | Open |
-| V2-EG-012 | Important | Which single explainable extension, if any, is justified? | Controls scope and prevents model shopping. | Clear target, baseline comparison, interpretability rationale. | Open |
-| V2-EG-013 | Important | Which Python and R tools will be used and reconciled? | Software choices affect reproducibility and survey methods. | Package documentation and independent reconciliation plan. | Open |
-| V2-EG-014 | Core | What exact V2 scope must be frozen for the ARISE submission? | Prevents deadline-driven scope expansion. | Approved minimum release specification and cutoff date. | Open |
+| ID | Priority | Question | Current resolution or required evidence | Status |
+| --- | --- | --- | --- | --- |
+| V2-EG-001 | Core | Which non-mortality aging-related outcome family will be primary? | Functional mobility disability is primary; `DLQ050` is frozen by D2-003 after documentary and corrected empirical feasibility review. | Closed |
+| V2-EG-002 | Core | Which exact variables and coding rules define each candidate outcome? | Primary and three secondary definitions are frozen in `config/v2_outcome_candidates.json` and `config/v2_gate0_freeze.json`. | Closed |
+| V2-EG-003 | Core | What is the eligible age range and analytic population? | Canonical V1 participants age ≥20 with positive `WTSAF4YR` and a valid primary response; 4,366 primary complete cases. | Closed |
+| V2-EG-004 | Core | Which survey weights, strata, and PSUs apply? | `WTSAF4YR` with cycle-unique strata and PSUs. | Closed |
+| V2-EG-005 | Core | How will missing outcome and covariate data be handled? | Primary-outcome missingness is negligible, but covariate missingness, complete-case rules, and sensitivity analyses must be frozen. | Under Review |
+| V2-EG-006 | Core | What is the primary estimand and adjustment set? | Define cross-sectional estimand, effect measure, covariates, and interpretation as prognostic association rather than causation. | Open |
+| V2-EG-007 | Core | How will multiple outcomes, subgroups, and interactions be controlled? | Freeze hierarchical testing and multiplicity rules before fitting. | Open |
+| V2-EG-008 | Core | Which baseline and comparison models are justified? | Freeze chronological-age, demographic, and PhenoAge-augmented conventional models. | Under Review |
+| V2-EG-009 | Core | Which performance metrics and thresholds will be used? | Define survey-aware discrimination, calibration, overall-error metrics, uncertainty, and success criteria. | Open |
+| V2-EG-010 | Core | How will resampling or data splitting respect survey structure and prevent leakage? | Review primary methods and freeze a survey-aware validation design. | Open |
+| V2-EG-011 | Important | Which subgroup analyses are sufficiently powered and ethically interpretable? | Define minimum positive/negative counts, design support, suppression rules, and interpretation limits. | Open |
+| V2-EG-012 | Important | Which single explainable extension, if any, is justified? | Select at most one extension only after conventional baselines and validation design are frozen. | Open |
+| V2-EG-013 | Important | Which Python and R tools will be used and reconciled? | Freeze packages, versions, and independent reconciliation checks. | Open |
+| V2-EG-014 | Core | What exact V2 scope must be frozen for ARISE? | One primary endpoint, governed secondaries, incremental comparison, transportability analysis, and at most one explainable extension; final deliverables and cutoff remain to be frozen. | Under Review |
 
-## Current Blocking Rule
+## Gate Rules
 
-No final outcome model may be fit until V2-EG-001 through V2-EG-010 and V2-EG-014 are closed or explicitly dispositioned.
+Gate 0 is closed.
+
+No final primary model may be fit until V2-EG-005 through V2-EG-010 and V2-EG-014 are closed or explicitly dispositioned. Subgroup claims additionally require V2-EG-011. Explainable modeling additionally requires V2-EG-012.

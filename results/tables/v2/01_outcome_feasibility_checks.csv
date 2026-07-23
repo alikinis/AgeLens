@@ -1,0 +1,7 @@
+check,pass,observed
+"Canonical V1 total remains 5,223",True,5223
+Canonical V1 cycle counts remain governed,True,"{'2015_2016': 2645, '2017_2018': 2578}"
+Derived outcomes are unique by cycle and SEQN,True,18472
+Only aggregate tables are exported,True,No SEQN or participant-level row is written to results.
+Governed fasting weight is used,True,WTSAF4YR
+Exact XPORT zero sentinel normalization audited,True,75723

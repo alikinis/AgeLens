@@ -1,122 +1,87 @@
 # AgeLens V2 Analysis Plan
 
-## Version 0.1 — Feasibility Only
+## Version 0.4 — Gate 0 Closed; Stage 1 Design Freeze
 
-This document is intentionally provisional. It defines what may be investigated during Stage 0 and identifies the analyses that must remain locked until protocol freeze.
+This document defines the frozen Stage 0 elements and the remaining decisions required before final modeling.
 
-## 1. V1 Baseline Inputs
+## 1. Frozen V1 Inputs
 
-V2 will consume the governed V1 canonical Phenotypic Age and cycle-specific survey-weighted Phenotypic Age acceleration definitions without modifying them.
+V2 consumes the governed V1 canonical Phenotypic Age and cycle-specific survey-weighted Phenotypic Age acceleration definitions without modification.
 
-The following V1 features remain fixed:
+## 2. Frozen Primary Outcome
 
-- target cycles: NHANES 2015–2016 and 2017–2018;
-- canonical Supplement conversion pair;
-- laboratory bridging and unit transformations;
-- exact XPORT zero-sentinel handling;
-- age-topcode flag;
-- V1 reproducibility and aggregate-release restrictions.
+The primary outcome is serious difficulty walking or climbing stairs (`DLQ050`):
 
-## 2. Stage 0 Candidate Outcome Inventory
+- Yes = 1;
+- No = 0;
+- refused, do-not-know, and missing = excluded.
 
-Candidate domains to investigate for availability and validity include:
+The primary domain is canonical V1 participants age ≥20 with positive `WTSAF4YR` and a valid outcome response.
 
-1. general health status;
-2. chronic-disease or multimorbidity burden;
-3. physical or functional limitation;
-4. disability or activities-of-daily-living measures;
-5. other aging-relevant health constructs supported in both target cycles.
+Corrected pooled feasibility:
 
-This list is not an authorization to analyze or combine these outcomes. Each candidate requires an official variable map, eligibility rule, survey-design rule, and construct justification.
+- eligible n = 4,367;
+- valid n = 4,366;
+- positive n = 682;
+- weighted prevalence = 11.77%;
+- 30 strata and 60 PSUs.
 
-## 3. Required Feasibility Table
+## 3. Frozen Secondary Outcomes
 
-For each candidate outcome, Stage 0 will record:
+1. any six-domain disability;
+2. fair/poor self-rated health;
+3. complete PHQ-9 score ≥10.
 
-- NHANES component and file;
-- variable names and labels;
-- availability by cycle;
-- eligible age range;
-- skip-pattern and missing codes;
-- unweighted eligible count;
-- weighted prevalence or distribution;
-- applicable weight;
-- strata and PSU compatibility;
-- overlap with the V1 canonical cohort;
-- scientific rationale;
-- known limitations;
-- recommendation: retain, secondary only, or exclude.
+The initial pre-correction PHQ-9 aggregate is invalid and superseded.
 
-Only aggregate counts and percentages may be exported.
+## 4. Frozen Survey Design
 
-## 4. Provisional Conventional Model Hierarchy
+All analyses retaining canonical V1 exposure shall use:
 
-The exact model family will depend on the selected outcome.
+- `WTSAF4YR`;
+- cycle-unique strata;
+- cycle-unique PSUs.
 
-A provisional nested hierarchy is:
+## 5. Provisional Conventional Model Hierarchy
+
+The current nested hierarchy remains provisional until Gate 1:
 
 - **Model A:** chronological age;
 - **Model B:** chronological age plus sex, race/ethnicity, and NHANES cycle;
 - **Model C:** Model B plus canonical Phenotypic Age acceleration.
 
-Additional covariates require explicit justification. Model C is intended to evaluate incremental prognostic information, not causal effects.
+Additional covariates require explicit scientific justification.
 
-## 5. Provisional Effect Scale
+## 6. Stage 1 Decisions Required
 
-The default exposure scale remains a 5-year higher canonical Phenotypic Age acceleration, with a weighted-standard-deviation scale considered secondary.
+Before final modeling, freeze:
 
-Effect measures must match the outcome type and may include:
+- the primary estimand;
+- prevalence ratio, odds ratio, or another justified effect measure;
+- covariate coding;
+- missing-data policy;
+- multiplicity hierarchy;
+- subgroup and interaction support thresholds;
+- incremental-performance metrics;
+- survey-aware internal validation or resampling;
+- success and failure thresholds;
+- software and reconciliation plan;
+- ARISE deliverable scope.
 
-- prevalence odds ratios for binary outcomes;
-- proportional-odds estimates for defensible ordinal outcomes;
-- mean differences for continuous outcomes;
-- count-model estimates for count outcomes.
+## 7. Transportability
 
-No model family is final until outcome coding and assumptions are approved.
-
-## 6. Transportability
-
-Potential prespecified dimensions are:
+Potential dimensions remain:
 
 - sex;
 - age group;
 - race/ethnicity;
 - NHANES cycle.
 
-Before analysis, the project must define:
-
-- minimum unweighted and survey-design support;
-- whether interaction tests or stratified estimates are primary;
-- multiplicity control;
-- rules for suppressing unstable estimates;
-- interpretation limits for health-disparity findings.
-
-## 7. Incremental Performance
-
-Any claim that PhenoAge adds predictive value must compare frozen models using prespecified metrics.
-
-Candidate metric families include:
-
-- discrimination;
-- calibration;
-- overall prediction error;
-- uncertainty intervals.
-
-The project must resolve how survey weights and clustered design enter validation and resampling before computing final performance claims.
+No subgroup model is authorized before support, multiplicity, and reporting rules are frozen.
 
 ## 8. Controlled Explainable Extension
 
-No extension is authorized in v0.1.
-
-A future amendment may approve one interpretable method, provided that:
-
-1. the endpoint and conventional baselines are frozen;
-2. data leakage is prevented;
-3. tuning is separated from final evaluation;
-4. performance improvement is evaluated with uncertainty;
-5. explanations are stability-checked;
-6. negative results are reported;
-7. the method does not generate causal or clinical-treatment claims.
+No extension is authorized. A future amendment may approve at most one interpretable method after the endpoint, estimand, conventional baselines, and validation design are frozen.
 
 ## 9. Release Checks
 
@@ -125,22 +90,11 @@ The final V2 pipeline must include:
 - deterministic cohort reconciliation;
 - survey-design reconciliation;
 - outcome coding checks;
+- missingness audit;
 - model convergence and finite covariance checks;
-- subgroup support checks;
 - multiplicity audit;
+- subgroup support checks;
 - performance-metric reproducibility;
-- Python/R or independent-software comparison where feasible;
+- independent software reconciliation where feasible;
 - aggregate-only release preflight;
-- manuscript/abstract consistency checks.
-
-## 10. Stage 0 Deliverable
-
-Stage 0 ends with:
-
-- a completed outcome-feasibility matrix;
-- a recommended primary outcome family;
-- one or more excluded candidates with documented reasons;
-- proposed final estimands and models;
-- updated Evidence Gap and Decision records.
-
-No scientific result from candidate-outcome screening will be promoted as a V2 finding.
+- manuscript and abstract consistency checks.

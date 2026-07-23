@@ -1,0 +1,105 @@
+{
+  "document_id": "AL-V2-OC-001",
+  "version": "0.2",
+  "date": "2026-07-23",
+  "adult_minimum_age_years": 20,
+  "cycles": {
+    "2015_2016": {
+      "suffix": "I",
+      "files": {
+        "DLQ": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/DLQ_I.xpt",
+        "HSQ": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/HSQ_I.xpt",
+        "DPQ": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/DPQ_I.xpt",
+        "PFQ": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/PFQ_I.xpt"
+      }
+    },
+    "2017_2018": {
+      "suffix": "J",
+      "files": {
+        "DLQ": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DLQ_J.xpt",
+        "HSQ": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/HSQ_J.xpt",
+        "DPQ": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DPQ_J.xpt",
+        "PFQ": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/PFQ_J.xpt"
+      }
+    }
+  },
+  "candidates": {
+    "mobility_disability": {
+      "source": "DLQ",
+      "variables": [
+        "DLQ050"
+      ],
+      "type": "binary",
+      "positive_codes": [
+        1
+      ],
+      "negative_codes": [
+        2
+      ],
+      "role": "primary"
+    },
+    "any_disability_six": {
+      "source": "DLQ",
+      "variables": [
+        "DLQ010",
+        "DLQ020",
+        "DLQ040",
+        "DLQ050",
+        "DLQ060",
+        "DLQ080"
+      ],
+      "type": "binary_any_complete",
+      "positive_codes": [
+        1
+      ],
+      "negative_codes": [
+        2
+      ],
+      "role": "secondary_functional"
+    },
+    "fair_poor_general_health": {
+      "source": "HSQ",
+      "variables": [
+        "HSD010"
+      ],
+      "type": "binary",
+      "positive_codes": [
+        4,
+        5
+      ],
+      "negative_codes": [
+        1,
+        2,
+        3
+      ],
+      "role": "secondary_general_health"
+    },
+    "phq9_ge10": {
+      "source": "DPQ",
+      "variables": [
+        "DPQ010",
+        "DPQ020",
+        "DPQ030",
+        "DPQ040",
+        "DPQ050",
+        "DPQ060",
+        "DPQ070",
+        "DPQ080",
+        "DPQ090"
+      ],
+      "type": "sum_threshold_complete",
+      "valid_item_codes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "threshold": 10,
+      "role": "secondary_neuropsychiatric"
+    }
+  },
+  "governed_weight": "WTSAF4YR",
+  "weight_rationale": "The canonical V1 exposure depends on the fasting laboratory subsample; NHANES requires use of the weight for the smallest subpopulation containing all variables.",
+  "gate0_status": "closed",
+  "primary_candidate": "mobility_disability"
+}
