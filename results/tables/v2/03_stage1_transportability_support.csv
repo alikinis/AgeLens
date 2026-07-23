@@ -1,0 +1,15 @@
+dimension,level,n,positive_n,negative_n,weighted_prevalence,weighted_prevalence_percent,represented_strata,represented_psus,n_pass,positive_pass,negative_pass,strata_pass,psu_pass,support_pass
+overall,All governed adults,4366,682,3684,0.11767896058946307,11.767896058946308,30,60,True,True,True,True,True,True
+sex,Female,2259,403,1856,0.1388358326962328,13.883583269623282,30,60,True,True,True,True,True,True
+sex,Male,2107,279,1828,0.09533927488816339,9.533927488816339,30,60,True,True,True,True,True,True
+age_group,20-49,2045,105,1940,0.04146644117802841,4.1466441178028415,30,60,True,True,True,True,True,True
+age_group,50-64,1223,249,974,0.17743042601190992,17.743042601190993,30,60,True,True,True,True,True,True
+age_group,65+,1098,328,770,0.2386048300483612,23.86048300483612,30,60,True,True,True,True,True,True
+race_ethnicity,Mexican American,691,94,597,0.09760211627302057,9.760211627302057,27,49,True,True,True,True,True,True
+race_ethnicity,Non-Hispanic Asian,578,35,543,0.05945905815487774,5.945905815487774,30,55,True,True,True,True,True,True
+race_ethnicity,Non-Hispanic Black,911,162,749,0.13701521171674141,13.701521171674141,30,54,True,True,True,True,True,True
+race_ethnicity,Non-Hispanic White,1470,253,1217,0.11655748060619975,11.655748060619974,30,59,True,True,True,True,True,True
+race_ethnicity,Other Hispanic,516,98,418,0.1314243263396497,13.14243263396497,30,56,True,True,True,True,True,True
+race_ethnicity,Other or multiracial,200,40,160,0.18118305689062913,18.118305689062915,30,56,True,True,True,True,True,True
+NHANES_cycle,2015_2016,2181,332,1849,0.11628807359751087,11.628807359751086,15,30,True,True,True,True,True,True
+NHANES_cycle,2017_2018,2185,350,1835,0.11904922375751129,11.904922375751129,15,30,True,True,True,True,True,True

@@ -1,0 +1,5 @@
+cycle,component,path,size_bytes,sha256,rows,xport_zero_replacements
+2015_2016,DEMO,data/raw/v2_outcomes/DEMO_I.xpt,3756480,c9297c6c37ae8f78f29be9568fa2a03cf3b112616a39afee04030fc775a66a0d,9971,19359
+2017_2018,DEMO,data/raw/v2_outcomes/DEMO_J.xpt,3412720,c0b46e0345ea19404928656277c8b0d10b0cca348a9b2fe4fc3c67e8b7ee73ec,9254,18308
+2015_2016,DLQ,data/raw/v2_outcomes/2015_2016/DLQ_I.xpt,998400,fd9516ea93030f79d3095447e679c0999082d0f9f9934dc77057ace607dfdc1a,9575,0
+2017_2018,DLQ,data/raw/v2_outcomes/2017_2018/DLQ_J.xpt,927920,bad01c9ea3801bc5d34faa46830daafab72827f2e490dfb516c73385dbd1f5bd,8897,0

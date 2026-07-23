@@ -5,7 +5,7 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 0.4 |
+| Version | 0.6 |
 | Status | Active — Gate 0 closed |
 | Date | 2026-07-23 |
 
@@ -83,3 +83,80 @@
 | Status | Approved |
 | Decision | V2-EG-001 through V2-EG-004 are closed. Stage 1 design work is authorized; final modeling is not. |
 | Validation | `scripts/v2/02_validate_gate0_freeze.py` must pass against the corrected aggregate outputs. |
+
+
+## D2-010 — Protect V1 during Stage 1
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Stage 1 may write only V2 configuration, documentation, scripts, aggregate tables, and aggregate logs. |
+| Consequence | Canonical V1, V1 mortality, and `main` release artifacts remain immutable. |
+
+## D2-011 — Draft the primary prevalence-ratio estimand
+
+| Field | Value |
+| --- | --- |
+| Status | Provisional pending support audit |
+| Decision | The primary effect measure is an adjusted prevalence ratio per 5-year higher canonical Phenotypic Age acceleration. |
+| Estimator | Survey-weighted quasi-Poisson log-link regression with design-based robust standard errors. |
+| Interpretation | Associational and population-descriptive; not causal. |
+
+## D2-012 — Draft the conventional model hierarchy
+
+| Field | Value |
+| --- | --- |
+| Status | Provisional pending support audit |
+| Decision | Model A uses a 4-df natural spline for age; Model B adds sex, race/ethnicity, and cycle; Model C adds acceleration per 5 years. |
+| Consequence | No additional covariate or alternate functional form may be introduced without a documented amendment. |
+
+## D2-013 — Authorize an aggregate-only Stage 1 support audit
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Covariate missingness and transportability support may be audited without fitting an outcome model. |
+| Outputs | Aggregate missingness, support, acceleration, source-manifest, and check tables only. |
+
+
+## D2-014 — Freeze the primary association design
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Use a survey-weighted quasi-Poisson log-link model to estimate the adjusted prevalence ratio per 5-year higher acceleration. |
+| Adjustment | Fixed natural spline for age with knots 35, 50, and 65; sex; race/ethnicity; cycle. |
+| Interpretation | Associational, not causal. |
+
+## D2-015 — Retain all prespecified transportability levels
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Retain all prespecified sex, age-group, race/ethnicity, and cycle levels. |
+| Evidence | Every level passed n, positive, negative, strata, and PSU support thresholds. |
+| Guardrail | Use global interaction tests; avoid unsupported pairwise rankings. |
+
+## D2-016 — Freeze the multiplicity hierarchy
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Primary alpha 0.05; Holm across three secondary outcomes; exploratory BH FDR 0.10 across four global interaction families. |
+
+## D2-017 — Freeze bidirectional cross-cycle prediction validation
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Train survey-weighted logistic Models B and C in one cycle and test in the other, then reverse. |
+| Primary metric | Pooled out-of-cycle weighted Brier-score difference, C minus B. |
+| Uncertainty | 500 stratified PSU bootstrap replicate weights, seed 20260723. |
+
+## D2-018 — Close Gate 1
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Stage 1 is complete and Stage 2 conventional modeling is authorized. |
+| Restriction | Explainable modeling remains unauthorized until conventional and cross-cycle validation gates pass. |

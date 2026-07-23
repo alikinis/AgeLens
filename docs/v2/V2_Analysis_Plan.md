@@ -1,6 +1,6 @@
 # AgeLens V2 Analysis Plan
 
-## Version 0.4 — Gate 0 Closed; Stage 1 Design Freeze
+## Version 1.0 — Gate 1 Frozen Analysis Design
 
 This document defines the frozen Stage 0 elements and the remaining decisions required before final modeling.
 
@@ -42,17 +42,25 @@ All analyses retaining canonical V1 exposure shall use:
 - cycle-unique strata;
 - cycle-unique PSUs.
 
-## 5. Provisional Conventional Model Hierarchy
+## 5. Provisional Primary Estimand and Estimator
 
-The current nested hierarchy remains provisional until Gate 1:
+The frozen primary estimand is the adjusted prevalence ratio associated with a
+5-year higher canonical Phenotypic Age acceleration.
 
-- **Model A:** chronological age;
-- **Model B:** chronological age plus sex, race/ethnicity, and NHANES cycle;
-- **Model C:** Model B plus canonical Phenotypic Age acceleration.
+The frozen estimator is `survey::svyglm` with a quasi-Poisson family and log
+link, design-based robust standard errors, `WTSAF4YR`, cycle-unique strata and
+PSUs, survey-domain analysis, and design degrees of freedom.
 
-Additional covariates require explicit scientific justification.
+## 6. Provisional Conventional Model Hierarchy
 
-## 6. Stage 1 Decisions Required
+- **Model A:** natural spline of chronological age with 4 degrees of freedom;
+- **Model B:** Model A plus sex, race/ethnicity, and NHANES cycle;
+- **Model C:** Model B plus canonical Phenotypic Age acceleration per 5 years.
+
+Model C is the draft primary inference model. Additional covariates require
+explicit scientific justification.
+
+## 7. Stage 1 Decisions Required
 
 Before final modeling, freeze:
 
@@ -68,7 +76,7 @@ Before final modeling, freeze:
 - software and reconciliation plan;
 - ARISE deliverable scope.
 
-## 7. Transportability
+## 8. Transportability
 
 Potential dimensions remain:
 
@@ -79,11 +87,11 @@ Potential dimensions remain:
 
 No subgroup model is authorized before support, multiplicity, and reporting rules are frozen.
 
-## 8. Controlled Explainable Extension
+## 9. Controlled Explainable Extension
 
 No extension is authorized. A future amendment may approve at most one interpretable method after the endpoint, estimand, conventional baselines, and validation design are frozen.
 
-## 9. Release Checks
+## 10. Release Checks
 
 The final V2 pipeline must include:
 
@@ -98,3 +106,32 @@ The final V2 pipeline must include:
 - independent software reconciliation where feasible;
 - aggregate-only release preflight;
 - manuscript and abstract consistency checks.
+
+
+## 11. Stage 1 Support Audit
+
+Before Gate 1 closes, `scripts/v2/03_stage1_support_audit.py` must:
+
+- reproduce the 4,366-person primary domain and 682 positive outcomes;
+- reconstruct cycle-specific weighted acceleration with mean-zero checks;
+- audit demographic covariate missingness;
+- enumerate sex, age-group, race/ethnicity, and cycle support;
+- apply provisional support thresholds;
+- export aggregate tables only;
+- fit no outcome model.
+
+
+## 12. Frozen Cross-Cycle Prediction Design
+
+Prediction uses survey-weighted logistic Models B and C with the same fixed
+age spline. Models are trained in one cycle and tested in the other, then
+reversed. Pooled out-of-cycle predictions are evaluated using weighted
+Brier score, weighted AUC, calibration-in-the-large, and calibration slope.
+
+Uncertainty uses 500 stratified PSU bootstrap replicate weights with seed
+`20260723`.
+
+## 13. Stage 2 Authorization
+
+Gate 1 is closed. The frozen conventional association models may now be
+implemented. The explainable extension remains blocked.

@@ -1,0 +1,54 @@
+{
+  "document_id": "AL-V2-S1A-001",
+  "version": "0.1",
+  "date": "2026-07-23",
+  "primary_outcome": "mobility_disability",
+  "demographic_files": {
+    "2015_2016": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/DEMO_I.xpt",
+    "2017_2018": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DEMO_J.xpt"
+  },
+  "required_demographic_columns": [
+    "SEQN",
+    "RIAGENDR",
+    "RIDRETH3"
+  ],
+  "sex_labels": {
+    "1": "Male",
+    "2": "Female"
+  },
+  "race_ethnicity_labels": {
+    "1": "Mexican American",
+    "2": "Other Hispanic",
+    "3": "Non-Hispanic White",
+    "4": "Non-Hispanic Black",
+    "6": "Non-Hispanic Asian",
+    "7": "Other or multiracial"
+  },
+  "age_groups": [
+    {
+      "label": "20-49",
+      "minimum": 20,
+      "maximum": 49
+    },
+    {
+      "label": "50-64",
+      "minimum": 50,
+      "maximum": 64
+    },
+    {
+      "label": "65+",
+      "minimum": 65,
+      "maximum": null
+    }
+  ],
+  "support_thresholds": {
+    "unweighted_n": 100,
+    "positive_n": 30,
+    "negative_n": 30,
+    "represented_strata": 8,
+    "represented_psus": 16
+  },
+  "expected_primary_valid_n": 4366,
+  "expected_primary_positive_n": 682,
+  "governed_weight": "WTSAF4YR"
+}

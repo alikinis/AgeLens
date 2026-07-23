@@ -1,0 +1,132 @@
+{
+  "document_id": "AL-V2-S1D-001",
+  "version": "0.1",
+  "date": "2026-07-23",
+  "status": "design_draft_support_audit_required",
+  "relationship_to_v1": {
+    "v1_immutable": true,
+    "v1_formula_changed": false,
+    "v1_results_changed": false,
+    "v1_mortality_analysis_changed": false,
+    "v1_participant_outputs_changed": false
+  },
+  "primary_outcome": {
+    "candidate": "mobility_disability",
+    "variable": "DLQ050",
+    "label": "Serious difficulty walking or climbing stairs",
+    "positive_codes": [
+      1
+    ],
+    "negative_codes": [
+      2
+    ],
+    "analysis_domain": "Canonical V1 participants age 20 years or older with positive WTSAF4YR and a valid DLQ050 response"
+  },
+  "primary_exposure": {
+    "name": "canonical_phenoage_acceleration",
+    "construction": "Cycle-specific WTSAF4YR-weighted residual from linear regression of canonical Supplement Phenotypic Age on chronological age",
+    "primary_scale": "per_5_years",
+    "secondary_scale": "per_weighted_standard_deviation",
+    "linearity_assumption": "to_be_checked_before_gate1_close"
+  },
+  "primary_estimand_draft": {
+    "measure": "adjusted_prevalence_ratio",
+    "contrast": "Ratio of predicted prevalence associated with a 5-year higher canonical Phenotypic Age acceleration, conditional on the frozen adjustment set",
+    "population": "U.S. civilian noninstitutionalized adults represented by the pooled 2015-2018 NHANES fasting subsample and governed domain",
+    "causal_interpretation": false,
+    "confirmatory_alpha": 0.05,
+    "confidence_level": 0.95
+  },
+  "primary_estimator_draft": {
+    "software": "R",
+    "package": "survey",
+    "function": "svyglm",
+    "family": "quasipoisson",
+    "link": "log",
+    "variance": "design_based_model_robust",
+    "degrees_of_freedom": "degf(design)",
+    "domain_analysis": true,
+    "lonely_psu": "fail"
+  },
+  "model_hierarchy_draft": {
+    "model_a": [
+      "natural_spline_chronological_age_df4"
+    ],
+    "model_b": [
+      "natural_spline_chronological_age_df4",
+      "RIAGENDR",
+      "RIDRETH3",
+      "NHANES_CYCLE"
+    ],
+    "model_c": [
+      "natural_spline_chronological_age_df4",
+      "RIAGENDR",
+      "RIDRETH3",
+      "NHANES_CYCLE",
+      "phenoage_acceleration_per_5_years"
+    ],
+    "primary_inference_model": "model_c"
+  },
+  "missing_data_draft": {
+    "primary_outcome": "exclude_invalid_or_missing_response",
+    "primary_covariates": "complete_case",
+    "outcome_imputation": false,
+    "covariate_imputation": false,
+    "secondary_outcomes": "outcome_specific_complete_case",
+    "reconsideration_trigger": "Any primary covariate missingness greater than 1 percent or material differential missingness by primary outcome"
+  },
+  "multiplicity_draft": {
+    "primary_test": "two_sided_alpha_0_05",
+    "secondary_outcome_family": "holm_adjustment_across_three_outcomes",
+    "transportability_family": "benjamini_hochberg_q_0_10_exploratory",
+    "model_sensitivity_tests": "supportive_not_confirmatory"
+  },
+  "transportability_draft": {
+    "dimensions": [
+      "sex",
+      "age_group",
+      "race_ethnicity",
+      "NHANES_cycle"
+    ],
+    "age_groups": [
+      {
+        "label": "20-49",
+        "minimum": 20,
+        "maximum": 49
+      },
+      {
+        "label": "50-64",
+        "minimum": 50,
+        "maximum": 64
+      },
+      {
+        "label": "65+",
+        "minimum": 65,
+        "maximum": null
+      }
+    ],
+    "minimum_support": {
+      "unweighted_n": 100,
+      "positive_n": 30,
+      "negative_n": 30,
+      "represented_strata": 8,
+      "represented_psus": 16
+    },
+    "unsupported_level_rule": "No level-specific effect estimate or interpretation; consider scientifically defensible collapsing before Gate 1 closes"
+  },
+  "incremental_performance": {
+    "status": "not_frozen",
+    "candidate_metrics": [
+      "survey_weighted_brier_score",
+      "survey_weighted_auc",
+      "calibration_in_the_large",
+      "calibration_slope"
+    ],
+    "validation_design": "methodological_review_pending"
+  },
+  "explainable_extension": {
+    "status": "not_authorized",
+    "maximum_methods": 1
+  },
+  "modeling_authorized": false
+}

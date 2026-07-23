@@ -6,8 +6,8 @@
 | --- | --- |
 | Document title | AgeLens V2 Research Protocol |
 | Document ID | AL-V2-RP-001 |
-| Version | 0.2 |
-| Status | Gate 0 complete — Stage 1 design freeze authorized |
+| Version | 0.4 |
+| Status | Gate 1 complete — Stage 2 conventional modeling authorized |
 | Date | 2026-07-23 |
 | Relationship to V1 | V1 remains frozen as the canonical replication and mortality-validation baseline |
 
@@ -119,4 +119,31 @@ This v0.2 protocol authorizes only Stage 1 design work:
 - performance-metric and validation design;
 - governance-document updates.
 
-It does not authorize final outcome modeling, subgroup testing, predictive-performance claims, machine learning, or public V2 scientific claims.
+Gate 1 is now closed. This protocol authorizes Stage 2 conventional association modeling under the frozen design. It does not authorize an explainable extension, post-hoc endpoint changes, or public V2 claims before validation checks pass.
+
+
+## 10. Stage 1 Design Draft
+
+The current design draft specifies an adjusted prevalence ratio per
+5-year higher canonical Phenotypic Age acceleration, estimated using a
+survey-weighted quasi-Poisson log-link model.
+
+The draft conventional hierarchy is:
+
+1. flexible chronological age;
+2. flexible chronological age plus sex, race/ethnicity, and cycle;
+3. the demographic model plus canonical acceleration.
+
+These elements remain provisional until the aggregate covariate and
+transportability support audit is reviewed. No outcome model is authorized.
+
+
+## 11. Gate 1 Freeze
+
+The frozen primary estimand, models, multiplicity hierarchy,
+transportability plan, cross-cycle validation design, and software roles
+are recorded in `config/v2_stage1_freeze.json` and
+`docs/v2/V2_Stage1_Freeze_Report.md`.
+
+Stage 2 may fit only the frozen conventional association models. Any
+departure requires a documented amendment before results are inspected.

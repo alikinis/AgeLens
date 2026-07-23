@@ -1,0 +1,6 @@
+variable,n,missing_n,missing_percent,missing_positive_n,missing_negative_n
+chronological_age_years,4366,0,0.0,0,0
+RIAGENDR,4366,0,0.0,0,0
+RIDRETH3,4366,0,0.0,0,0
+NHANES_CYCLE,4366,0,0.0,0,0
+phenoage_acceleration_per_5_years,4366,0,0.0,0,0

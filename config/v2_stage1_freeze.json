@@ -1,0 +1,336 @@
+{
+  "document_id": "AL-V2-S1F-001",
+  "version": "1.0",
+  "date": "2026-07-23",
+  "status": "frozen",
+  "gate": "Gate 1",
+  "relationship_to_v1": {
+    "v1_immutable": true,
+    "v1_formula_changed": false,
+    "v1_harmonization_changed": false,
+    "v1_mortality_changed": false,
+    "v1_results_changed": false,
+    "main_branch_merge_authorized": false
+  },
+  "primary_outcome": {
+    "variable": "DLQ050",
+    "label": "Serious difficulty walking or climbing stairs",
+    "coding": {
+      "1": 1,
+      "2": 0,
+      "other": "missing"
+    },
+    "domain": "Canonical V1 participants age 20 years or older with positive WTSAF4YR and a valid DLQ050 response",
+    "valid_n": 4366,
+    "positive_n": 682
+  },
+  "primary_exposure": {
+    "name": "canonical_phenoage_acceleration",
+    "definition": "Within-cycle WTSAF4YR-weighted residual from canonical Supplement Phenotypic Age regressed linearly on chronological age",
+    "primary_scale": "per_5_years",
+    "secondary_scale": "per_cycle_weighted_standard_deviation",
+    "linearity_check": {
+      "method": "restricted_comparison_against_fixed_natural_spline",
+      "spline_knots_years": [
+        -10,
+        0,
+        10
+      ],
+      "boundary_knots_years": [
+        -30,
+        40
+      ],
+      "decision_rule": "Linear exposure remains primary; spline fit is a governed sensitivity and may not replace the primary estimand."
+    }
+  },
+  "primary_association_estimand": {
+    "measure": "adjusted_prevalence_ratio",
+    "contrast": "per_5_year_higher_acceleration",
+    "interpretation": "associational_population_descriptive",
+    "causal_interpretation": false,
+    "confidence_level": 0.95,
+    "two_sided_alpha": 0.05
+  },
+  "primary_association_estimator": {
+    "language": "R",
+    "package": "survey",
+    "function": "svyglm",
+    "family": "quasipoisson",
+    "link": "log",
+    "weight": "WTSAF4YR",
+    "strata": "cycle_unique_SDMVSTRA",
+    "psu": "cycle_unique_SDMVPSU",
+    "domain_analysis": true,
+    "variance": "design_based_robust",
+    "reference_degrees_of_freedom": "degf(design)",
+    "lonely_psu_policy": "fail"
+  },
+  "fixed_age_basis": {
+    "function": "splines::ns",
+    "internal_knots_years": [
+      35,
+      50,
+      65
+    ],
+    "boundary_knots_years": [
+      20,
+      80
+    ],
+    "intercept": false
+  },
+  "association_model_hierarchy": {
+    "model_a": [
+      "fixed_natural_spline_chronological_age"
+    ],
+    "model_b": [
+      "fixed_natural_spline_chronological_age",
+      "sex",
+      "race_ethnicity",
+      "NHANES_cycle"
+    ],
+    "model_c": [
+      "fixed_natural_spline_chronological_age",
+      "sex",
+      "race_ethnicity",
+      "NHANES_cycle",
+      "phenoage_acceleration_per_5_years"
+    ],
+    "primary_inference_model": "model_c"
+  },
+  "missing_data": {
+    "primary_analysis": "complete_case",
+    "outcome_imputation": false,
+    "covariate_imputation": false,
+    "primary_covariate_missing_n": 0,
+    "secondary_outcomes": "outcome_specific_complete_case",
+    "sensitivity_trigger": "No primary missing-data sensitivity is required unless a later implementation changes the governed row count."
+  },
+  "secondary_outcomes": {
+    "family": [
+      "any_disability_six",
+      "fair_poor_general_health",
+      "phq9_ge10"
+    ],
+    "estimator": "same_model_c_structure",
+    "multiplicity": "Holm",
+    "familywise_alpha": 0.05,
+    "role": "secondary"
+  },
+  "transportability": {
+    "dimensions": [
+      "sex",
+      "age_group",
+      "race_ethnicity",
+      "NHANES_cycle"
+    ],
+    "age_groups": [
+      "20-49",
+      "50-64",
+      "65+"
+    ],
+    "test": "one global design-based interaction test per dimension using the primary association estimator",
+    "multiplicity": "Benjamini-Hochberg",
+    "false_discovery_rate": 0.1,
+    "role": "exploratory",
+    "level_specific_estimates": "Report after a supported global interaction or as clearly labeled descriptive estimates with uncertainty.",
+    "all_prespecified_levels_supported": true,
+    "support_results": {
+      "overall": {
+        "n": 4366,
+        "positive_n": 682,
+        "negative_n": 3684,
+        "weighted_prevalence_percent": 11.767896,
+        "represented_strata": 30,
+        "represented_psus": 60
+      },
+      "sex": {
+        "Female": [
+          2259,
+          403,
+          1856,
+          13.883583,
+          30,
+          60
+        ],
+        "Male": [
+          2107,
+          279,
+          1828,
+          9.533927,
+          30,
+          60
+        ]
+      },
+      "age_group": {
+        "20-49": [
+          2045,
+          105,
+          1940,
+          4.146644,
+          30,
+          60
+        ],
+        "50-64": [
+          1223,
+          249,
+          974,
+          17.743043,
+          30,
+          60
+        ],
+        "65+": [
+          1098,
+          328,
+          770,
+          23.860483,
+          30,
+          60
+        ]
+      },
+      "race_ethnicity": {
+        "Mexican American": [
+          691,
+          94,
+          597,
+          9.760212,
+          27,
+          49
+        ],
+        "Non-Hispanic Asian": [
+          578,
+          35,
+          543,
+          5.945906,
+          30,
+          55
+        ],
+        "Non-Hispanic Black": [
+          911,
+          162,
+          749,
+          13.701521,
+          30,
+          54
+        ],
+        "Non-Hispanic White": [
+          1470,
+          253,
+          1217,
+          11.655748,
+          30,
+          59
+        ],
+        "Other Hispanic": [
+          516,
+          98,
+          418,
+          13.142433,
+          30,
+          56
+        ],
+        "Other or multiracial": [
+          200,
+          40,
+          160,
+          18.118306,
+          30,
+          56
+        ]
+      },
+      "NHANES_cycle": {
+        "2015_2016": [
+          2181,
+          332,
+          1849,
+          11.628807,
+          15,
+          30
+        ],
+        "2017_2018": [
+          2185,
+          350,
+          1835,
+          11.904922,
+          15,
+          30
+        ]
+      }
+    }
+  },
+  "incremental_prediction": {
+    "question": "Does canonical Phenotypic Age acceleration improve cross-cycle prediction beyond age, sex, and race/ethnicity?",
+    "model_family": "survey_weighted_logistic",
+    "estimator": {
+      "function": "survey::svyglm",
+      "family": "quasibinomial",
+      "link": "logit"
+    },
+    "prediction_model_b": [
+      "fixed_natural_spline_chronological_age",
+      "sex",
+      "race_ethnicity"
+    ],
+    "prediction_model_c": [
+      "fixed_natural_spline_chronological_age",
+      "sex",
+      "race_ethnicity",
+      "phenoage_acceleration_per_5_years"
+    ],
+    "validation": {
+      "design": "bidirectional_cross_cycle_validation",
+      "directions": [
+        "train_2015_2016_test_2017_2018",
+        "train_2017_2018_test_2015_2016"
+      ],
+      "cycle_term_in_prediction_models": false,
+      "participant_random_split": false,
+      "cluster_leakage": false,
+      "pooled_out_of_cycle_predictions": true
+    },
+    "metrics": {
+      "primary": "survey_weighted_Brier_score_difference_C_minus_B",
+      "secondary": [
+        "survey_weighted_AUC_difference_C_minus_B",
+        "calibration_in_the_large",
+        "calibration_slope"
+      ]
+    },
+    "uncertainty": {
+      "method": "stratified_PSU_bootstrap_replicate_weights",
+      "package": "survey",
+      "replicates": 500,
+      "mse": true,
+      "seed": 20260723,
+      "predictions_refit_each_cross_cycle_direction": true
+    },
+    "incremental_utility_claim_rule": "A positive incremental-utility claim requires a favorable pooled Brier-score difference whose 95% interval excludes zero, directionally non-worse AUC, and no material calibration failure. Otherwise report the continuous estimates without a positive claim."
+  },
+  "software_roles": {
+    "R": "Authoritative complex-survey association, interaction, prediction, calibration, and replicate-weight inference",
+    "Python": "Authoritative data audit, cohort reconciliation, outcome coding, exposure reconstruction, and aggregate validation",
+    "cross_language_reconciliation": [
+      "canonical row counts",
+      "outcome counts",
+      "weighted prevalence",
+      "cycle-specific acceleration coefficients",
+      "cycle-specific weighted acceleration means",
+      "model input row counts"
+    ],
+    "runtime_versions": "recorded_automatically_in_release_logs"
+  },
+  "arise_minimum_scope": [
+    "primary DLQ050 survey-weighted association",
+    "three governed secondary outcome associations",
+    "four prespecified transportability interaction families",
+    "bidirectional cross-cycle incremental prediction comparison",
+    "aggregate reproducibility and validation report",
+    "one primary scientific figure and one transportability figure",
+    "5-to-10-minute English presentation"
+  ],
+  "explainable_extension": {
+    "authorized": false,
+    "maximum_methods": 1,
+    "authorization_gate": "Only after Stage 2 conventional and Stage 3 cross-cycle validation checks pass"
+  },
+  "stage2_conventional_modeling_authorized": true
+}

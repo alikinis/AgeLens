@@ -1,0 +1,8 @@
+check,pass,observed
+"V1 canonical total remains 5,223",True,5223
+"Primary valid n remains 4,366",True,4366
+Primary positive n remains 682,True,682
+Primary modeling remains unauthorized,True,This script fits no outcome model.
+Participant-level output is not written,True,Only aggregate CSV and JSON files are written.
+No absolute personal path in outputs,True,True
+Acceleration weighted means are zero,True,1.3988759859638085e-14
