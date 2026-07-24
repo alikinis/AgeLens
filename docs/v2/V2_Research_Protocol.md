@@ -267,3 +267,9 @@ Stage 5 may not introduce new fitted models or post-result optimization.
 Local explanations, participant-level risk outputs, clinical-utility claims,
 merge to `main`, and final manuscript release remain unauthorized pending a
 separate final gate.
+
+<!-- AGELENS_STAGE5_BEGIN -->
+## Stage 5 Reviewed Release
+
+The aggregate Stage 5 synthesis and ARISE working materials passed review after corrective revision and are released for commit to `v2-development`. The release fits no model, opens no participant-level data, changes no V1 artifact, and retains all null, negative, nonlinear, and transportability restrictions. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain separate unauthorized gates.
+<!-- AGELENS_STAGE5_END -->

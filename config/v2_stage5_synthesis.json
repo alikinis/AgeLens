@@ -1,0 +1,68 @@
+{
+  "document_id": "AL-V2-S5I-001",
+  "version": "1.0",
+  "date": "2026-07-24",
+  "status": "implementation_authorized",
+  "build": "AgeLens-V2-Stage5-20260724b",
+  "purpose": "Aggregate scientific synthesis, validation report, ARISE working materials, and release-candidate preparation without fitting a new model.",
+  "authoritative_sources": [
+    "config/v2_stage2_release.json",
+    "config/v2_stage3_release.json",
+    "config/v2_stage4_release.json",
+    "results/tables/v2/11_stage2_release_summary.csv",
+    "results/tables/v2/09_stage2_nonlinearity_review.csv",
+    "results/tables/v2/15_stage3_release_summary.csv",
+    "results/tables/v2/13_stage3_transportability_global_tests.csv",
+    "results/tables/v2/13_stage3_prediction_bootstrap_summary.csv",
+    "results/tables/v2/20_stage4_release_summary.csv",
+    "results/tables/v2/18_stage4_bootstrap_summary.csv",
+    "results/tables/v2/18_stage4_shape_stability.csv",
+    "docs/v2/V2_Stage2_Release_Report.md",
+    "docs/v2/V2_Stage3_Release_Report.md",
+    "docs/v2/V2_Stage4_Release_Report.md"
+  ],
+  "required_source_status": "released_for_v2_development",
+  "scientific_rules": {
+    "v1_immutable": true,
+    "fit_new_model": false,
+    "refit_prior_model": false,
+    "feature_or_interaction_search": false,
+    "hyperparameter_search": false,
+    "participant_level_output": false,
+    "local_explanations": false,
+    "clinical_thresholds": false,
+    "causal_claims": false,
+    "biological_subgroup_claims": false,
+    "model_c_remains_preferred": true,
+    "retain_null_and_negative_findings": true
+  },
+  "required_outputs": {
+    "tables": [
+      "results/tables/v2/21_stage5_scientific_summary.csv",
+      "results/tables/v2/21_stage5_validation_summary.csv",
+      "results/tables/v2/21_stage5_claims_matrix.csv",
+      "results/tables/v2/21_stage5_source_manifest.csv",
+      "results/tables/v2/21_stage5_release_checks.csv",
+      "results/tables/v2/21_stage5_runtime_versions.csv"
+    ],
+    "figures": [
+      "results/figures/v2/21_stage5_v1_to_v2_progression.png",
+      "results/figures/v2/21_stage5_evidence_synthesis.png"
+    ],
+    "documents": [
+      "docs/v2/V2_Stage5_Synthesis.md",
+      "docs/v2/V2_Aggregate_Validation_Report.md",
+      "docs/v2/V2_ARISE_Abstract.md",
+      "docs/v2/V2_ARISE_Presentation.md",
+      "docs/v2/V2_Stage5_Release_Candidate.md",
+      "docs/v2/V2_Stage5_Human_Review.md"
+    ]
+  },
+  "numeric_reconciliation_absolute_tolerance": 1e-10,
+  "release_controls": {
+    "human_review_required": true,
+    "final_v2_release_authorized": false,
+    "merge_to_main_authorized": false,
+    "arise_final_submission_authorized": false
+  }
+}

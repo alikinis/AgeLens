@@ -1,0 +1,50 @@
+{
+  "document_id": "AL-V2-S5R-001",
+  "version": "1.0",
+  "date": "2026-07-24",
+  "status": "released_for_v2_development",
+  "source_candidate": "AL-V2-S5RC-001",
+  "source_build": "AgeLens-V2-Stage5-20260724b",
+  "human_review_decision": "pass_with_guardrails_after_corrective_revision",
+  "review_scope": {
+    "scientific_numeric_reconciliation": "pass",
+    "claim_language_and_guardrails": "pass",
+    "arise_working_abstract": "pass",
+    "arise_working_presentation": "pass",
+    "figures": "pass",
+    "aggregate_only_disclosure": "pass",
+    "v1_immutability": "pass"
+  },
+  "corrective_revisions": {
+    "independent_validator_expanded_to_row_level_numeric_reconciliation": true,
+    "scientific_summary_and_claims_matrix_row_or_field_locators_added": true,
+    "abstract_race_ethnicity_social_classification_guardrail_added": true,
+    "progression_figure_transportability_wording_restricted": true
+  },
+  "scientific_decision": {
+    "preferred_prediction_model": "Stage3_Model_C",
+    "model_d_incremental_benefit_supported": false,
+    "model_d_role": "negative_incremental_result_and_descriptive_global_shape_sensitivity_only",
+    "stage2_nonlinearity_retained": true,
+    "stage3_transportability_restricted": true,
+    "null_and_negative_findings_retained": true
+  },
+  "relationship_to_v1": {
+    "v1_immutable": true,
+    "v1_formula_changed": false,
+    "v1_harmonization_changed": false,
+    "v1_mortality_changed": false,
+    "v1_results_changed": false
+  },
+  "permissions": {
+    "commit_to_v2_development_authorized": true,
+    "stage5_aggregate_synthesis_release_authorized": true,
+    "arise_working_materials_release_authorized": true,
+    "final_v2_release_authorized": false,
+    "arise_final_submission_authorized": false,
+    "final_manuscript_claims_authorized": false,
+    "merge_to_main_authorized": false,
+    "new_model_feature_interaction_or_tuning_search_authorized": false
+  },
+  "next_gate": "Project-owner final-release review and verification of current ARISE submission requirements."
+}

@@ -1,0 +1,32 @@
+{
+  "document_id": "AL-V2-S5RC-001",
+  "version": "1.0",
+  "date": "2026-07-24",
+  "status": "release_candidate_pending_human_review",
+  "source_implementation": "AL-V2-S5I-001",
+  "build": "AgeLens-V2-Stage5-20260724b",
+  "stage5_synthesis_implementation": "complete",
+  "aggregate_validation": "pass",
+  "human_review": "pending",
+  "final_v2_release_authorized": false,
+  "merge_to_main_authorized": false,
+  "final_manuscript_claims_authorized": false,
+  "arise_final_submission_authorized": false,
+  "preferred_prediction_model": "Stage3_Model_C",
+  "model_d_role": "descriptive_global_shape_sensitivity_only",
+  "generated_metadata": {
+    "build": "AgeLens-V2-Stage5-20260724b",
+    "source_manifest_sha256": "9809603011357a07d6348d6beca19af6c127c90698319e655ea01ac144266bb2",
+    "abstract_word_count": 312,
+    "generated_utc": "2026-07-24T13:48:36+00:00"
+  },
+  "released_results": {
+    "stage2_primary_prevalence_ratio_per_5_years": 1.1475644343644,
+    "stage2_quasipoisson_nonlinearity_p": 0.000176974908863395,
+    "stage3_brier_delta_c_minus_b": -0.0030339161930044,
+    "stage3_auc_delta_c_minus_b": 0.0340510458845171,
+    "stage4_brier_delta_d_minus_c": -0.0009703249310347,
+    "stage4_auc_delta_d_minus_c": -0.0001606680664727,
+    "stage4_acceleration_shape_spearman": 0.9806971522079938
+  }
+}

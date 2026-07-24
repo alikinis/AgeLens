@@ -1,0 +1,10 @@
+validation_domain,pass,observed,requirement
+source_release_status,True,"Stage 2, Stage 3, and Stage 4 released_for_v2_development",All source stages released
+stage2_numeric_reconciliation,True,"Primary, secondary, and nonlinearity values reconcile",Absolute tolerance 1e-10
+stage3_numeric_reconciliation,True,Transportability and Model C prediction values reconcile,Absolute tolerance 1e-10
+stage4_numeric_reconciliation,True,Model D comparison and shape stability values reconcile,Absolute tolerance 1e-10
+model_role,True,Stage3_Model_C preferred; Model D not promoted,Model C remains preferred
+negative_findings,True,Stage 4 failed positive extension retained,Null and negative results retained
+analysis_boundary,True,"No model fit, refit, search, tuning, threshold, or local explanation",Synthesis only
+disclosure,True,"Aggregate tables, figures, and documents only",No participant-level output
+release_boundary,True,Human review pending; final release and main merge unauthorized,No fabricated approval

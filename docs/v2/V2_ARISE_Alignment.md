@@ -46,3 +46,9 @@ The ARISE deadline shall not justify:
 - labeling conventional regression as AI;
 - hiding null or negative findings;
 - weakening V1 or V2 validation gates.
+
+<!-- AGELENS_STAGE5_BEGIN -->
+## Stage 5 Reviewed ARISE Working Alignment
+
+The reviewed working package presents the governed progression from reproducible replication to nonlinear functional-health association, restricted transportability, modest pooled out-of-cycle prediction, and a negative controlled explainable extension. Race/ethnicity is treated strictly as a social classification. Conventional regression is not labeled AI. Final ARISE submission remains unauthorized pending verification of current application requirements and a separate project-owner final gate.
+<!-- AGELENS_STAGE5_END -->

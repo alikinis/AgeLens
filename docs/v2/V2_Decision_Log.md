@@ -264,3 +264,9 @@
 | Stage 5 consequence | Aggregate synthesis, validation-report, abstract, and ARISE-package preparation are authorized. |
 | Repository consequence | Commit to `v2-development` authorized; merge to `main` remains unauthorized. |
 | V1 consequence | None; V1 remains immutable. |
+
+<!-- AGELENS_STAGE5_BEGIN -->
+## Stage 5 Decision — Pass with Guardrails After Corrective Revision
+
+**Decision:** Release the corrected aggregate Stage 5 synthesis and ARISE working package for commit to `v2-development`. Retain Model C as preferred; retain Model D only as a negative incremental result and restricted descriptive global-shape sensitivity. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain unauthorized.
+<!-- AGELENS_STAGE5_END -->

@@ -326,3 +326,9 @@ validation report, abstract, figures, and ARISE presentation materials.
 Merge to `main`, final manuscript claims, local explanations, individual risk
 outputs, and clinical-utility claims remain subject to a separate final
 release decision.
+
+<!-- AGELENS_STAGE5_BEGIN -->
+## Stage 5 Reviewed Synthesis
+
+Stage 5 completed deterministic extraction, row-level reconciliation, source hashing, aggregate tables, non-comparative evidence figures, and ARISE working materials. The corrected independent validator checks all scientific-summary values and document guardrails. No new estimand, model, threshold, subgroup search, interaction search, or optimization was introduced.
+<!-- AGELENS_STAGE5_END -->

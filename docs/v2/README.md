@@ -257,3 +257,17 @@ functions may be reported only as aggregate descriptive global shapes.
 Stage 5 synthesis and ARISE-package preparation are authorized. No local
 explanation, new model or feature search, clinical claim, merge to `main`, or
 final manuscript release is authorized.
+
+<!-- AGELENS_STAGE5_BEGIN -->
+## Stage 5 Reviewed Aggregate Release
+
+Stage 5 aggregate synthesis and ARISE working materials passed review after corrective revision and may be committed to `v2-development`. Model C remains preferred; Model D remains only a negative incremental result and restricted descriptive global-shape sensitivity. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain unauthorized.
+
+Run:
+
+```powershell
+python .\scripts\v2\21_build_stage5_synthesis.py --project-root .
+python .\scripts\v2\22_validate_stage5_release_candidate.py --project-root .
+python .\scripts\v2\23_validate_stage5_release.py --project-root .
+```
+<!-- AGELENS_STAGE5_END -->

@@ -66,3 +66,9 @@ Gate 1 is closed. Stage 2, restricted Stage 3, and aggregate Stage 4 results are
 | ID | Priority | Gap | Disposition | Status |
 | --- | --- | --- | --- | --- |
 | V2-EG-020 | Important | Which prediction model anchors Stage 5 synthesis after the explainable-extension test? | Retain Stage 3 Model C. Model D did not pass the frozen incremental-benefit gate and remains a descriptive global shape sensitivity only. | Closed |
+
+<!-- AGELENS_STAGE5_BEGIN -->
+## Stage 5 Reviewed Evidence-gap Disposition
+
+Stage 5 review does not close scientific limits by inference. Observational design, internal NHANES cross-cycle validation, restricted transportability, absence of independent external-cohort validation, and absence of clinical utility remain explicit limitations. They do not block the reviewed working package but continue to block unsupported final claims.
+<!-- AGELENS_STAGE5_END -->

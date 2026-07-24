@@ -1,0 +1,10 @@
+component,decision,authorized_interpretation
+stage5_aggregate_synthesis,released_for_v2_development,Released aggregate Stage 2–4 synthesis after corrected independent validation.
+arise_working_abstract,released_with_guardrails,Working abstract only; final submission and current requirement verification remain separate gates.
+arise_working_presentation,released_with_guardrails,Eight-slide working outline; no final presentation or submission authorization.
+preferred_prediction_model,Stage3_Model_C,Model C remains preferred.
+model_d_incremental_claim,not_supported,No incremental predictive improvement beyond Model C was established.
+model_d_global_shape,restricted_descriptive_only,Aggregate rank-shape sensitivity only.
+final_v2_release,not_authorized,Separate project-owner final-release gate required.
+arise_final_submission,not_authorized,Current ARISE requirements must be verified before submission.
+merge_to_main,not_authorized,V2 remains on v2-development.

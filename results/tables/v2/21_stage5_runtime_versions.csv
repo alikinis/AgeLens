@@ -1,0 +1,7 @@
+component,version
+stage5_build,AgeLens-V2-Stage5-20260724b
+python,3.13.14
+implementation,CPython
+platform,Windows-11-10.0.26200-SP0
+matplotlib,3.11.1
+generated_utc,2026-07-24T13:48:36+00:00

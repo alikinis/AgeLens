@@ -1,0 +1,12 @@
+check,pass,observed
+Released Stage 2–4 source validators pass,True,"11, 15, and 20 validators completed"
+All source values reconcile,True,absolute tolerance 1e-10
+Stage 2 nonlinearity is retained,True,quasi-Poisson and bounded logistic-spline results included
+Stage 3 restricted transportability is retained,True,race/ethnicity family only; social-classification guardrails
+Stage 3 Model C incremental result is retained,True,Brier and AUC C−B reported
+Stage 4 negative EBM result is retained,True,positive extension not supported
+Model C remains preferred,True,Stage3_Model_C
+No new model or optimization,True,aggregate synthesis only
+Aggregate-only public outputs,True,no participant-level field
+Human review remains pending,True,no final approval
+Merge to main remains unauthorized,True,false
