@@ -1,0 +1,2 @@
+"outcome","outcome_label","model","effect_scale","n","positive_n","design_df","log_prevalence_ratio","standard_error","t_statistic","prevalence_ratio","ci_low_95","ci_high_95","p_value","interpretation","result_status"
+"mobility_disability","Serious difficulty walking or climbing stairs","model_c","per 5-year higher Phenotypic Age acceleration",4366,682,30,0.137641813327645,0.0207971343206317,6.61830669579788,1.1475644343644,1.09984405187883,1.19735532393747,2.51174370794198e-07,"associational_not_causal","provisional_pending_stage2_review"

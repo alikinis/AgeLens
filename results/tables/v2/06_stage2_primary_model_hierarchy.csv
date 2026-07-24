@@ -1,0 +1,4 @@
+"outcome","model","formula","n","positive_n","design_df","coefficient_n","predicted_mean","predicted_min","predicted_max"
+"mobility_disability","model_a","mobility_disability ~ splines::ns(chronological_age_years, knots = c(35,      50, 65), Boundary.knots = c(20, 80), intercept = FALSE)",4366,682,30,5,0.11767896059055,0.0159037004192607,0.357660191758977
+"mobility_disability","model_b","mobility_disability ~ splines::ns(chronological_age_years, knots = c(35,      50, 65), Boundary.knots = c(20, 80), intercept = FALSE) +      sex + race_ethnicity + NHANES_CYCLE",4366,682,30,12,0.117678960591293,0.00738835780122605,0.76784242526575
+"mobility_disability","model_c","mobility_disability ~ splines::ns(chronological_age_years, knots = c(35,      50, 65), Boundary.knots = c(20, 80), intercept = FALSE) +      sex + race_ethnicity + NHANES_CYCLE + phenoage_acceleration_per_5_years",4366,682,30,13,0.117678960591802,0.00748922235765791,11.9282932562171

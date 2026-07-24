@@ -6,8 +6,8 @@
 | --- | --- |
 | Document title | AgeLens V2 Research Protocol |
 | Document ID | AL-V2-RP-001 |
-| Version | 0.4 |
-| Status | Gate 1 complete — Stage 2 conventional modeling authorized |
+| Version | 0.6 |
+| Status | Stage 2 conventional modeling implementation authorized — results pending |
 | Date | 2026-07-23 |
 | Relationship to V1 | V1 remains frozen as the canonical replication and mortality-validation baseline |
 
@@ -110,7 +110,7 @@ Create aggregate outputs, validation report, abstract, and a 5–10 minute prese
 
 ## 9. Immediate Authorization
 
-This v0.2 protocol authorizes only Stage 1 design work:
+The protocol previously authorized Stage 1 design work:
 
 - methodological source review;
 - missingness and covariate feasibility audits;
@@ -147,3 +147,25 @@ are recorded in `config/v2_stage1_freeze.json` and
 
 Stage 2 may fit only the frozen conventional association models. Any
 departure requires a documented amendment before results are inspected.
+
+
+## 12. Stage 2 Implementation Authorization
+
+The governed Stage 2 implementation is recorded in `config/v2_stage2_implementation.json` and `docs/v2/V2_Stage2_Implementation.md`.
+
+Stage 2 may reconstruct private model input, fit Models A–C for the primary outcome, fit governed Model C secondary analyses, and run the frozen acceleration-linearity sensitivity. Only aggregate outputs may enter the public repository.
+
+Stage 2 results are not automatically released by a successful software run. Human review and a separate decision are required. Transportability, cross-cycle prediction, and explainable modeling remain outside this implementation step.
+
+
+## 13. Stage 2 Release Decision
+
+Stage 2 conventional association results passed implementation, diagnostic,
+and release validation.
+
+The primary linear prevalence ratio is retained as a prespecified global
+summary. Scientific interpretation must acknowledge strong nonlinearity and
+use the bounded adjusted-prevalence curve to describe shape.
+
+Stage 3 transportability and cross-cycle validation implementation is
+authorized. Explainable modeling remains blocked.

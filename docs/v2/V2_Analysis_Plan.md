@@ -1,6 +1,6 @@
 # AgeLens V2 Analysis Plan
 
-## Version 1.0 — Gate 1 Frozen Analysis Design
+## Version 1.1 — Stage 2 Conventional Model Implementation
 
 This document defines the frozen Stage 0 elements and the remaining decisions required before final modeling.
 
@@ -135,3 +135,36 @@ Uncertainty uses 500 stratified PSU bootstrap replicate weights with seed
 
 Gate 1 is closed. The frozen conventional association models may now be
 implemented. The explainable extension remains blocked.
+
+
+## 14. Stage 2 Conventional Outputs
+
+The governed Stage 2 run must produce aggregate-only files for:
+
+- the primary Model C prevalence ratio;
+- the primary Model A–C hierarchy;
+- the three secondary Model C estimates with Holm adjustment;
+- model convergence and fitted-value diagnostics;
+- the fixed nonlinear acceleration sensitivity;
+- runtime versions and release checks.
+
+The participant-level CSV used by R is private and must remain outside the Git repository. Statistical significance is not a software acceptance criterion.
+
+
+## 16. Stage 2 Interpretation Rule
+
+The prespecified quasi-Poisson prevalence ratio is reported as the global
+linear summary.
+
+Because both governed spline tests detect nonlinearity, the adjusted
+prevalence curve and fixed local five-year ratios accompany the primary
+coefficient. These diagnostics do not replace the frozen primary estimand.
+
+The slight low-tail dip is not interpreted as protective. Modified-Poisson
+fitted values are not interpreted as individual probabilities.
+
+## 17. Stage 3 Authorization
+
+Transportability interaction models and bidirectional cross-cycle prediction
+validation may now be implemented under the frozen Gate 1 design. Their
+scientific claims remain blocked until separate validation and release.

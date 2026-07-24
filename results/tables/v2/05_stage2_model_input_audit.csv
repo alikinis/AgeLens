@@ -1,0 +1,5 @@
+outcome,valid_n,positive_n,negative_n,weighted_prevalence_percent,represented_strata,represented_psus
+mobility_disability,4366,682,3684,11.767896058946308,30,60
+any_disability_six,4358,1247,3111,24.470093272325443,30,60
+fair_poor_general_health,4076,1025,3051,18.332982174327473,30,60
+phq9_ge10,4021,345,3676,7.452011610458902,30,60

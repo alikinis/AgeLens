@@ -1,0 +1,5 @@
+role,outcome,n,positive_n,prevalence_ratio,ci_low_95,ci_high_95,p_value,multiplicity,interpretation
+primary,mobility_disability,4366,682,1.1475644343644,1.09984405187883,1.19735532393747,2.51174370794198e-07,primary_unadjusted,prespecified_global_linear_summary_with_nonlinearity
+secondary,any_disability_six,4358,1247,1.11175768051483,1.07313632544011,1.15176898860152,1.99805939253673e-06,holm_adjusted,supportive_association
+secondary,fair_poor_general_health,4076,1025,1.16412825764386,1.12929810066504,1.20003265696351,8.296006020772289e-11,holm_adjusted,supportive_association
+secondary,phq9_ge10,4021,345,1.15955044738036,1.10191745564465,1.22019778626104,1.99805939253673e-06,holm_adjusted,supportive_association

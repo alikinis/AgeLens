@@ -1,0 +1,48 @@
+{
+  "document_id": "AL-V2-S2I-001",
+  "version": "0.1",
+  "date": "2026-07-23",
+  "status": "implementation_authorized_results_pending",
+  "relationship_to_v1": {
+    "v1_immutable": true,
+    "v1_formula_changed": false,
+    "v1_harmonization_changed": false,
+    "v1_mortality_changed": false,
+    "v1_results_changed": false,
+    "main_branch_merge_authorized": false
+  },
+  "private_model_input": "data/processed/v2/agelens_v2_stage2_model_input.csv",
+  "primary_outcome": "mobility_disability",
+  "secondary_outcomes": [
+    "any_disability_six",
+    "fair_poor_general_health",
+    "phq9_ge10"
+  ],
+  "expected_counts": {
+    "mobility_disability": {"valid_n": 4366, "positive_n": 682},
+    "any_disability_six": {"valid_n": 4358, "positive_n": 1247},
+    "fair_poor_general_health": {"valid_n": 4076, "positive_n": 1025},
+    "phq9_ge10": {"valid_n": 4021, "positive_n": 345}
+  },
+  "authoritative_modeling_language": "R",
+  "r_package": "survey",
+  "association_models": {
+    "model_a": "outcome ~ fixed natural spline of age",
+    "model_b": "model_a + sex + race_ethnicity + NHANES_cycle",
+    "model_c": "model_b + acceleration_per_5_years",
+    "primary_inference_model": "model_c",
+    "family": "quasipoisson",
+    "link": "log"
+  },
+  "linearity_sensitivity": {
+    "basis": "restricted cubic spline",
+    "all_knots_years": [-30, -10, 0, 10, 40],
+    "test": "design-based Wald test of three nonlinear basis terms",
+    "primary_linear_model_replaced": false
+  },
+  "secondary_multiplicity": "Holm",
+  "public_outputs_aggregate_only": true,
+  "participant_level_public_output_allowed": false,
+  "stage2_results_release_authorized": false,
+  "explainable_extension_authorized": false
+}

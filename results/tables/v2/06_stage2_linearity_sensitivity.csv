@@ -1,0 +1,2 @@
+"outcome","sensitivity","all_knots_years","nonlinear_df","wald_statistic","numerator_df","denominator_df","p_value_nonlinearity","primary_linear_model_replaced","warning_n","warnings"
+"mobility_disability","fixed restricted cubic spline acceleration","-30|-10|0|10|40",3,13.1672088713185,3,15,0.000176974908863395,FALSE,0,""

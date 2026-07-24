@@ -5,7 +5,7 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 0.6 |
+| Version | 0.9 |
 | Status | Active — Gate 0 closed |
 | Date | 2026-07-23 |
 
@@ -160,3 +160,46 @@
 | Status | Approved |
 | Decision | Stage 1 is complete and Stage 2 conventional modeling is authorized. |
 | Restriction | Explainable modeling remains unauthorized until conventional and cross-cycle validation gates pass. |
+
+
+## D2-019 — Authorize the Stage 2 conventional implementation
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Implement the frozen primary and secondary conventional association models using a private participant-level input and aggregate-only public outputs. |
+| Primary implementation | Python reconstructs and reconciles the governed input; R `survey::svyglm` performs authoritative survey inference; Python validates aggregate outputs. |
+| Restriction | A successful run does not itself authorize scientific release, transportability claims, prediction claims, or explainable modeling. |
+
+## D2-020 — Freeze the acceleration-linearity sensitivity implementation
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Retain the linear acceleration Model C as primary and test three nonlinear restricted-cubic-spline basis terms jointly using knots -30, -10, 0, 10, and 40 years. |
+| Consequence | The sensitivity may identify nonlinearity but may not replace the primary estimand after results are inspected. |
+
+
+## D2-021 — Hold Stage 2 release for diagnostic review
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Trigger | Primary nonlinearity p = 0.00017697 and six primary fitted values above one, with a maximum of 11.93. |
+| Decision | Retain the prespecified linear prevalence ratio as provisional and authorize a bounded nonlinear diagnostic review before release. |
+| Guardrail | The review may characterize shape and robustness but may not silently replace the frozen primary estimand. |
+| V1 consequence | None; V1 remains immutable. |
+
+
+## D2-022 — Release Stage 2 conventional results for V2 development
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Primary result | Adjusted PR 1.1476 per 5-year higher acceleration, 95% CI 1.0998–1.1974, p = 2.51e-07. |
+| Nonlinearity | Retain the prespecified linear PR as a global summary; use the bounded spline curve to describe shape. |
+| Fitted-value diagnostic | Six primary fitted values above one, representing 0.050% weighted and restricted beyond the weighted 99th percentile. |
+| Secondary evidence | All three outcomes positive and significant after Holm correction. |
+| Scope | Commit to `v2-development` authorized; merge to `main` and final public claims remain unauthorized. |
+| Next step | Stage 3 transportability and cross-cycle validation implementation authorized. |
+| V1 consequence | None; V1 remains immutable. |

@@ -1,0 +1,5 @@
+"outcome","outcome_label","n","predicted_above_one_n","predicted_above_one_weighted_percent","predicted_max","flagged_acceleration_min","flagged_acceleration_median","flagged_acceleration_max","warning_n","warnings"
+"mobility_disability","Serious mobility disability",4366,6,0.0496138819392451,11.9282932562171,38.2865540289739,94.157777351217,119.651571733433,0,""
+"any_disability_six","Any six-domain disability",4358,20,0.166593198975508,9.22898826760954,16.3314942768806,43.1474237728939,119.651571733433,0,""
+"fair_poor_general_health","Fair or poor general health",4076,12,0.147671150644966,4.40407144606042,38.3561959832683,52.2873774439544,99.7793586105756,0,""
+"phq9_ge10","PHQ-9 score at least 10",4021,2,0.0285694599785328,1.36217144007411,93.6897371181814,96.7345478643785,99.7793586105756,0,""

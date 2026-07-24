@@ -1,0 +1,8 @@
+check,pass,observed
+"V1 canonical input remains 5,223 rows",True,5223
+"Primary model input remains 4,366 rows",True,4366
+Primary positive count remains 682,True,682
+Frozen acceleration coefficients reconciled,True,two cycles
+Private participant input is outside repository,True,True
+No participant-level public output written,True,True
+V1 artifacts remain unmodified,True,True

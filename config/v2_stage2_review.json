@@ -1,0 +1,65 @@
+{
+  "document_id": "AL-V2-S2R-001",
+  "version": "0.1",
+  "date": "2026-07-24",
+  "status": "diagnostic_review_authorized",
+  "trigger": {
+    "primary_nonlinearity_p": 0.000176974908863395,
+    "primary_modified_poisson_fitted_above_one_n": 6,
+    "primary_modified_poisson_fitted_max": 11.9282932562171
+  },
+  "governance": {
+    "prespecified_linear_primary_result_retained": true,
+    "prespecified_linear_primary_result_released": false,
+    "diagnostic_review_may_replace_primary_estimand": false,
+    "v1_immutable": true,
+    "explainable_extension_authorized": false
+  },
+  "analyses": {
+    "modified_poisson_prediction_bound_audit": {
+      "outcomes": [
+        "mobility_disability",
+        "any_disability_six",
+        "fair_poor_general_health",
+        "phq9_ge10"
+      ],
+      "public_output": "aggregate_only"
+    },
+    "exposure_distribution": {
+      "weighted_quantiles": [
+        0.01,
+        0.025,
+        0.05,
+        0.1,
+        0.25,
+        0.5,
+        0.75,
+        0.9,
+        0.95,
+        0.975,
+        0.99
+      ]
+    },
+    "trimmed_linear_sensitivity": {
+      "ranges": [
+        "full",
+        "weighted_1_to_99_percent",
+        "weighted_2.5_to_97.5_percent"
+      ],
+      "role": "supportive_diagnostic"
+    },
+    "bounded_nonlinear_curve": {
+      "model": "survey_weighted_quasibinomial_logit",
+      "acceleration_basis": "same_fixed_restricted_cubic_spline_as_stage2",
+      "standardization": "weighted_average_over_observed_primary_covariate_distribution",
+      "interval": "delta_method_using_design_robust_coefficient_covariance",
+      "grid": "weighted_1st_to_99th_percentile",
+      "role": "diagnostic_visualization"
+    },
+    "local_five_year_ratios": {
+      "anchors": "weighted_acceleration_percentiles_10_25_50_75_90",
+      "role": "supportive_diagnostic"
+    }
+  },
+  "stage2_release_authorized": false
+}

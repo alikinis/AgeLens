@@ -1,0 +1,121 @@
+{
+  "document_id": "AL-V2-S2REL-001",
+  "version": "1.0",
+  "date": "2026-07-24",
+  "status": "released_for_v2_development",
+  "scope": {
+    "commit_to_v2_development_authorized": true,
+    "merge_to_main_authorized": false,
+    "manuscript_final_claim_authorized": false,
+    "arise_final_submission_authorized": false
+  },
+  "v1_protection": {
+    "v1_immutable": true,
+    "v1_formula_changed": false,
+    "v1_harmonization_changed": false,
+    "v1_mortality_changed": false,
+    "v1_results_changed": false
+  },
+  "primary_result": {
+    "outcome": "mobility_disability",
+    "n": 4366,
+    "positive_n": 682,
+    "prespecified_global_linear_summary": {
+      "prevalence_ratio_per_5_years": 1.1475644343644,
+      "ci_low_95": 1.09984405187883,
+      "ci_high_95": 1.19735532393747,
+      "p_value": 2.51174370794198e-07
+    },
+    "interpretation": "Higher canonical Phenotypic Age acceleration was associated with higher prevalence of serious mobility disability after adjustment. The prevalence ratio is a prespecified global linear summary and not a uniform effect over the entire acceleration range.",
+    "causal_interpretation": false
+  },
+  "nonlinearity": {
+    "prespecified_quasipoisson_p": 0.000176974908863395,
+    "bounded_logistic_spline_p": 0.000916263045884809,
+    "conclusion": "strong_evidence_of_nonlinearity",
+    "shape_summary": "Adjusted prevalence rises most steeply from lower-to-middle acceleration values and the relative increase attenuates at higher positive acceleration.",
+    "low_tail_rule": "The slight low-tail dip is not interpreted as a protective effect because data are sparse and uncertainty is wide."
+  },
+  "local_five_year_ratios": [
+    {
+      "anchor_percentile": 10,
+      "start_acceleration_years": -7.45678378034195,
+      "ratio": 1.61754431906336,
+      "ci_low_95": 1.20196720365654,
+      "ci_high_95": 2.17680616923206
+    },
+    {
+      "anchor_percentile": 25,
+      "start_acceleration_years": -4.47320527923718,
+      "ratio": 1.81220405762853,
+      "ci_low_95": 1.38882415333691,
+      "ci_high_95": 2.36465036887116
+    },
+    {
+      "anchor_percentile": 50,
+      "start_acceleration_years": -1.20185889508423,
+      "ratio": 1.58183543292791,
+      "ci_low_95": 1.37095650382358,
+      "ci_high_95": 1.82515151274866
+    },
+    {
+      "anchor_percentile": 75,
+      "start_acceleration_years": 3.15970225618818,
+      "ratio": 1.28952354784501,
+      "ci_low_95": 1.15248424243328,
+      "ci_high_95": 1.44285788839585
+    },
+    {
+      "anchor_percentile": 90,
+      "start_acceleration_years": 7.80687988285761,
+      "ratio": 1.16213276623718,
+      "ci_low_95": 1.04957333136318,
+      "ci_high_95": 1.28676341710015
+    }
+  ],
+  "modified_poisson_bound_diagnostic": {
+    "primary_fitted_above_one_n": 6,
+    "primary_fitted_above_one_weighted_percent": 0.0496138819392451,
+    "primary_flagged_acceleration_min": 38.2865540289739,
+    "weighted_acceleration_p99": 25.761430620625,
+    "interpretation": "Probability-bound violations are restricted to an extremely small weighted tail beyond the weighted 99th percentile. Modified-Poisson fitted values are not interpreted as individual probabilities."
+  },
+  "secondary_results": [
+    {
+      "outcome": "any_disability_six",
+      "prevalence_ratio": 1.11175768051483,
+      "ci_low_95": 1.07313632544011,
+      "ci_high_95": 1.15176898860152,
+      "holm_p_value": 1.99805939253673e-06
+    },
+    {
+      "outcome": "fair_poor_general_health",
+      "prevalence_ratio": 1.16412825764386,
+      "ci_low_95": 1.12929810066504,
+      "ci_high_95": 1.20003265696351,
+      "holm_p_value": 8.29600602077229e-11
+    },
+    {
+      "outcome": "phq9_ge10",
+      "prevalence_ratio": 1.15955044738036,
+      "ci_low_95": 1.10191745564465,
+      "ci_high_95": 1.22019778626104,
+      "holm_p_value": 1.99805939253673e-06
+    }
+  ],
+  "release_language": {
+    "approved": "Higher Phenotypic Age acceleration was associated with a higher prevalence of serious mobility disability. The prespecified linear model estimated an adjusted prevalence ratio of 1.148 per 5-year higher acceleration (95% CI 1.100-1.197), while spline analyses showed that the association was nonlinear and strongest in the lower-to-middle acceleration range.",
+    "prohibited": [
+      "Each 5-year increase causes a 14.8% increase.",
+      "The effect is constant across the acceleration range.",
+      "Very low acceleration is protective.",
+      "A clinical threshold has been identified."
+    ]
+  },
+  "next_authorized_stage": {
+    "name": "Stage 3 transportability and cross-cycle validation",
+    "transportability_claims_currently_authorized": false,
+    "prediction_claims_currently_authorized": false,
+    "explainable_extension_authorized": false
+  }
+}

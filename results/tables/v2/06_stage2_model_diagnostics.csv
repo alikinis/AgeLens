@@ -1,0 +1,7 @@
+"model","outcome","n","positive_n","negative_n","design_df","model_residual_df","converged","finite_coefficients","finite_covariance","predicted_min","predicted_max","predicted_above_one_n","warning_n","warnings"
+"model_a","mobility_disability",4366,682,3684,30,26,TRUE,TRUE,TRUE,0.0159037004192607,0.357660191758977,0,0,""
+"model_b","mobility_disability",4366,682,3684,30,19,TRUE,TRUE,TRUE,0.00738835780122605,0.76784242526575,0,0,""
+"model_c","mobility_disability",4366,682,3684,30,18,TRUE,TRUE,TRUE,0.00748922235765791,11.9282932562171,6,0,""
+"model_c","any_disability_six",4358,1247,3111,30,18,TRUE,TRUE,TRUE,0.0535502775550749,9.22898826760954,20,0,""
+"model_c","fair_poor_general_health",4076,1025,3051,30,18,TRUE,TRUE,TRUE,0.0607381892062935,4.40407144606042,12,0,""
+"model_c","phq9_ge10",4021,345,3676,30,18,TRUE,TRUE,TRUE,0.0146736333826612,1.36217144007411,2,0,""

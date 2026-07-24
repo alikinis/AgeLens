@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-EG-001 |
-| Version | 0.6 |
-| Status | Active — Gate 1 closed; Stage 2 authorized |
+| Version | 0.9 |
+| Status | Active — Stage 2 released for V2 development; Stage 3 authorized |
 | Date | 2026-07-23 |
 
 ## Status Vocabulary
@@ -39,4 +39,11 @@
 
 Gate 0 is closed.
 
-Gate 1 is closed. Stage 2 conventional association modeling is authorized. Explainable modeling remains blocked by V2-EG-012 until the conventional and cross-cycle validation gates pass.
+Gate 1 is closed. Stage 2 conventional association results are released for V2 development. Stage 3 transportability and cross-cycle validation implementation is authorized. Explainable modeling remains blocked by V2-EG-012 until cross-cycle validation passes.
+
+
+## Stage 2 Result-Review Gap
+
+| ID | Priority | Question | Current resolution or required evidence | Status |
+| --- | --- | --- | --- | --- |
+| V2-EG-015 | Core | Is the prespecified linear acceleration summary adequate for scientific release given significant nonlinearity and fitted values above one? | Retain the prespecified PR as a global linear summary; report strong nonlinearity with a bounded curve; bound violations are restricted to 0.050% weighted beyond p99. | Closed |
