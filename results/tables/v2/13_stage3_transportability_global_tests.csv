@@ -1,0 +1,5 @@
+"dimension","interaction_df","design_df","p_value_raw","warning_n","warnings","converged","finite_coefficients","finite_covariance","q_value_bh","supported_at_q_0_10"
+"sex",1,30,0.158774913369534,0,"",TRUE,TRUE,TRUE,0.264238412058941,FALSE
+"age_group",2,30,0.198178809044206,0,"",TRUE,TRUE,TRUE,0.264238412058941,FALSE
+"race_ethnicity",5,30,0.000255872749735952,0,"",TRUE,TRUE,TRUE,0.00102349099894381,TRUE
+"NHANES_cycle",1,30,0.435892984996182,0,"",TRUE,TRUE,TRUE,0.435892984996182,FALSE

@@ -1,0 +1,5 @@
+"dimension","coefficient_n","predicted_min","predicted_max","predicted_above_one_n","warning_n"
+"sex",14,0.0071130768177369,9.35663265449793,10,0
+"age_group",17,0.00503070469267777,7.99106290844733,8,0
+"race_ethnicity",18,0.00534845337610312,6.18391367504319,14,0
+"NHANES_cycle",14,0.00729315088464545,9.0626123331358,6,0

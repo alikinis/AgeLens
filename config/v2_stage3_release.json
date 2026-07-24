@@ -1,0 +1,76 @@
+{
+  "document_id": "AL-V2-S3R-001",
+  "version": "1.0",
+  "date": "2026-07-24",
+  "status": "released_for_v2_development",
+  "source_implementation": "AL-V2-S3I-001",
+  "source_script_build": "AgeLens-V2-Stage3-20260724e",
+  "human_review_decision": "pass_with_guardrails",
+  "relationship_to_v1": {
+    "v1_immutable": true,
+    "v1_formula_changed": false,
+    "v1_harmonization_changed": false,
+    "v1_mortality_changed": false,
+    "v1_results_changed": false
+  },
+  "transportability_release": {
+    "claims_authorized": true,
+    "authorized_scope": "Prespecified global linear acceleration-summary interaction tests only.",
+    "multiplicity": "Benjamini-Hochberg q=0.10 across four families",
+    "supported_dimension": "race_ethnicity",
+    "race_ethnicity_global_p_raw": 0.0002558727497359,
+    "race_ethnicity_global_q_bh": 0.0010234909989438,
+    "unsupported_dimensions": [
+      "sex",
+      "age_group",
+      "NHANES_cycle"
+    ],
+    "level_estimates_role": "Context within the supported family; no pairwise ranking, causal, biological, or threshold claim.",
+    "guardrails": [
+      "Stage 2 established strong acceleration nonlinearity; Stage 3 interactions concern only the frozen global linear summary.",
+      "Modified-Poisson fitted values above one are not probabilities.",
+      "Race/ethnicity is a social classification and must not be framed as innate biological difference.",
+      "Subgroup estimates must not be used to rank individuals or groups."
+    ]
+  },
+  "prediction_release": {
+    "claims_authorized": true,
+    "authorized_wording": "Adding canonical Phenotypic Age acceleration produced a modest improvement in pooled out-of-cycle prediction within NHANES 2015-2018 beyond age, sex, and race/ethnicity.",
+    "brier_delta_c_minus_b": {
+      "estimate": -0.0030339161930044,
+      "ci_low_95": -0.005222375868507,
+      "ci_high_95": -0.0008454565175018
+    },
+    "auc_delta_c_minus_b": {
+      "estimate": 0.0340510458845171,
+      "ci_low_95": 0.0164744275891323,
+      "ci_high_95": 0.051627664179902
+    },
+    "model_c_calibration": {
+      "intercept": -0.0006927548713144,
+      "intercept_ci_low_95": -0.0295433180681836,
+      "intercept_ci_high_95": 0.0281578083255547,
+      "slope": 0.95449416772445,
+      "slope_ci_low_95": 0.818916909675399,
+      "slope_ci_high_95": 1.0900714257735
+    },
+    "bootstrap_replicates": 500,
+    "failed_replicates": 0,
+    "both_directions_improved_brier": true,
+    "both_directions_improved_auc": true,
+    "positive_incremental_utility_rule_passed": true,
+    "guardrails": [
+      "This is bidirectional cross-cycle validation within NHANES, not independent external-cohort validation.",
+      "The governed cycle-specific acceleration definition is assumed available in each evaluation cycle.",
+      "No decision-curve, treatment-threshold, or clinical-utility claim is authorized.",
+      "No participant-level prediction or individual risk tool is released."
+    ]
+  },
+  "permissions": {
+    "commit_to_v2_development_authorized": true,
+    "stage4_method_selection_authorized": true,
+    "explainable_model_implementation_authorized": false,
+    "merge_to_main_authorized": false,
+    "final_manuscript_claims_authorized": false
+  }
+}

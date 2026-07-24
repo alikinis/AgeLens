@@ -5,9 +5,9 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 0.9 |
+| Version | 1.1 |
 | Status | Active — Gate 0 closed |
-| Date | 2026-07-23 |
+| Date | 2026-07-24 |
 
 ## D2-001 — Preserve V1 as the immutable baseline
 
@@ -202,4 +202,31 @@
 | Secondary evidence | All three outcomes positive and significant after Holm correction. |
 | Scope | Commit to `v2-development` authorized; merge to `main` and final public claims remain unauthorized. |
 | Next step | Stage 3 transportability and cross-cycle validation implementation authorized. |
+| V1 consequence | None; V1 remains immutable. |
+
+
+## D2-023 — Implement Stage 3 transportability and cross-cycle validation
+
+| Field | Value |
+| --- | --- |
+| Status | Approved for implementation; results pending |
+| Transportability | Four global design-based interaction tests with BH q=0.10; supported or descriptive level estimates according to the global result. |
+| Prediction | Bidirectional cycle holdout comparing frozen Models B and C. |
+| Uncertainty | 500 stratified-PSU bootstrap replicates, seed 20260723, both directions refit in every replicate. |
+| Positive claim rule | Favorable Brier interval, non-worse AUC direction, and acceptable Model C calibration are jointly required. |
+| Guardrail | Stage 2 nonlinearity remains explicit; interactions concern the global linear summary only. |
+| V1 consequence | None; V1 remains immutable. |
+| Release consequence | No Stage 3 claim, explainable extension, or main merge is authorized by implementation alone. |
+
+## D2-024 — Release Stage 3 with restricted claims
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Stage 3 passes human review with guardrails and may be committed to `v2-development`. |
+| Transportability | Race/ethnicity global interaction supported after BH control (q = 0.001023); sex, age group, and cycle not supported. |
+| Prediction | Model C improved pooled Brier by 0.003034 and AUC by 0.034051; the frozen joint rule passed. |
+| Guardrail | Global linear summary under known nonlinearity; no causal, biological, pairwise-ranking, clinical-threshold, or individual-risk claim. |
+| Stage 4 consequence | Method selection authorized; explainable-model implementation remains blocked pending a separate freeze. |
+| Repository consequence | Commit to `v2-development` authorized; merge to `main` remains unauthorized. |
 | V1 consequence | None; V1 remains immutable. |

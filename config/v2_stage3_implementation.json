@@ -1,0 +1,96 @@
+{
+  "document_id": "AL-V2-S3I-001",
+  "version": "0.1",
+  "date": "2026-07-24",
+  "status": "implementation_authorized_results_pending",
+  "relationship_to_v1": {
+    "v1_immutable": true,
+    "v1_formula_changed": false,
+    "v1_harmonization_changed": false,
+    "v1_mortality_changed": false,
+    "v1_results_changed": false
+  },
+  "required_stage2_release_status": "released_for_v2_development",
+  "primary_domain": {
+    "outcome": "mobility_disability",
+    "n": 4366,
+    "positive_n": 682,
+    "weight": "WTSAF4YR",
+    "strata": "cycle_unique_SDMVSTRA",
+    "psu": "cycle_unique_SDMVPSU"
+  },
+  "transportability": {
+    "dimensions": [
+      "sex",
+      "age_group",
+      "race_ethnicity",
+      "NHANES_cycle"
+    ],
+    "age_groups": [
+      "20-49",
+      "50-64",
+      "65+"
+    ],
+    "estimator": "survey_weighted_quasipoisson_log",
+    "effect_scale": "prevalence_ratio_per_5_year_higher_acceleration",
+    "global_test": "design_based_Wald_interaction_test",
+    "multiplicity": "Benjamini-Hochberg",
+    "false_discovery_rate": 0.1,
+    "level_estimates_role": "descriptive_unless_global_interaction_supported",
+    "nonlinearity_guardrail": "Interactions evaluate transportability of the prespecified global linear summary; they do not assert a constant effect over the full acceleration range."
+  },
+  "cross_cycle_prediction": {
+    "directions": [
+      "train_2015_2016_test_2017_2018",
+      "train_2017_2018_test_2015_2016"
+    ],
+    "model_b": [
+      "fixed_age_spline",
+      "sex",
+      "race_ethnicity"
+    ],
+    "model_c": [
+      "fixed_age_spline",
+      "sex",
+      "race_ethnicity",
+      "phenoage_acceleration_per_5_years"
+    ],
+    "estimator": "survey_weighted_quasibinomial_logit",
+    "cycle_term": false,
+    "participant_random_split": false,
+    "primary_metric": "pooled_out_of_cycle_weighted_Brier_delta_C_minus_B",
+    "secondary_metrics": [
+      "pooled_out_of_cycle_weighted_AUC_delta_C_minus_B",
+      "calibration_in_the_large",
+      "calibration_slope"
+    ],
+    "uncertainty": {
+      "method": "survey_stratified_PSU_bootstrap",
+      "replicates": 500,
+      "mse": true,
+      "seed": 20260723,
+      "refit_each_direction_each_replicate": true,
+      "confidence_level": 0.95,
+      "reference_degrees_of_freedom": 30
+    },
+    "positive_incremental_utility_rule": {
+      "Brier_delta_C_minus_B_ci_high_below_zero": true,
+      "AUC_delta_C_minus_B_point_nonnegative": true,
+      "model_c_calibration_intercept_ci_contains_zero": true,
+      "model_c_calibration_slope_ci_contains_one": true
+    }
+  },
+  "outputs": {
+    "participant_level_public_output": false,
+    "aggregate_tables_only": true,
+    "figures": [
+      "transportability_forest",
+      "incremental_performance"
+    ]
+  },
+  "stage3_results_release_authorized": false,
+  "transportability_claims_authorized": false,
+  "prediction_claims_authorized": false,
+  "explainable_extension_authorized": false,
+  "merge_to_main_authorized": false
+}

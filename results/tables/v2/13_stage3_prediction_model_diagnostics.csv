@@ -1,0 +1,5 @@
+"direction","model","converged","finite_coefficients","warning_n","warnings"
+"train_2015_2016_test_2017_2018","model_b",TRUE,TRUE,0,""
+"train_2015_2016_test_2017_2018","model_c",TRUE,TRUE,0,""
+"train_2017_2018_test_2015_2016","model_b",TRUE,TRUE,0,""
+"train_2017_2018_test_2015_2016","model_c",TRUE,TRUE,0,""

@@ -2,11 +2,11 @@
 
 This directory contains the controlled transition from the completed V1 replication and mortality release to V2 external health validation and limited explainable innovation.
 
-Current status: **Stage 2 conventional results released for V2 development — Stage 3 authorized**.
+Current status: **Stage 3 released for V2 development — Stage 4 method selection pending**.
 
 Gate 0 is closed. The governed primary non-mortality outcome is serious difficulty walking or climbing stairs (`DLQ050`) among canonical V1 participants age 20 years or older with positive `WTSAF4YR` and a valid outcome response.
 
-Stage 2 conventional association models are authorized. Transportability, predictive-performance, subgroup-claim release, and machine-learning models remain unauthorized in this step.
+Stage 2 conventional association results and restricted Stage 3 transportability and cross-cycle prediction results are released for V2 development. Explainable-model implementation and merge to `main` remain unauthorized.
 
 ## Documents
 
@@ -20,6 +20,9 @@ Stage 2 conventional association models are authorized. Transportability, predic
 - `V2_Stage1_Design_Rationale.md`
 - `V2_Stage1_Freeze_Report.md`
 - `V2_Stage2_Implementation.md`
+- `V2_Stage3_Implementation.md`
+- `V2_Stage3_Human_Review.md`
+- `V2_Stage3_Release_Report.md`
 
 ## Governed Configurations
 
@@ -27,6 +30,8 @@ Stage 2 conventional association models are authorized. Transportability, predic
 - `config/v2_gate0_freeze.json`
 - `config/v2_stage1_freeze.json`
 - `config/v2_stage2_implementation.json`
+- `config/v2_stage3_implementation.json`
+- `config/v2_stage3_release.json`
 
 ## Validation Scripts
 
@@ -37,6 +42,10 @@ Stage 2 conventional association models are authorized. Transportability, predic
 - `scripts/v2/05_run_stage2_conventional_models.py`
 - `scripts/v2/06_stage2_conventional_models.R`
 - `scripts/v2/07_validate_stage2_results.py`
+- `scripts/v2/12_run_stage3_transportability_prediction.py`
+- `scripts/v2/13_stage3_transportability_prediction.R`
+- `scripts/v2/14_validate_stage3_results.py`
+- `scripts/v2/15_validate_stage3_release.py`
 
 ## Gate 0 Result
 
@@ -52,7 +61,7 @@ The six-domain disability composite, fair/poor general health, and PHQ-9 score �
 
 ## Immediate Next Step
 
-Stage 2 conventional association results and diagnostic review have passed. Validate the release record before commit to `v2-development`.
+Stage 3 passed result validation and human review. Validate the Stage 3 release record, commit aggregate artifacts to `v2-development`, and begin governed Stage 4 method selection.
 
 ## Private Data Separation
 
@@ -99,11 +108,17 @@ This validator fits no model. Gate 1 has passed and the Stage 2 implementation i
 
 The Stage 2 implementation adds:
 
-- `config/v2_stage2_implementation.json`;
+- `config/v2_stage2_implementation.json`
+- `config/v2_stage3_implementation.json`
+- `config/v2_stage3_release.json`;
 - `docs/v2/V2_Stage2_Implementation.md`;
 - `scripts/v2/05_run_stage2_conventional_models.py`;
 - `scripts/v2/06_stage2_conventional_models.R`;
-- `scripts/v2/07_validate_stage2_results.py`.
+- `scripts/v2/07_validate_stage2_results.py`
+- `scripts/v2/12_run_stage3_transportability_prediction.py`
+- `scripts/v2/13_stage3_transportability_prediction.R`
+- `scripts/v2/14_validate_stage3_results.py`
+- `scripts/v2/15_validate_stage3_release.py`.
 
 Run from the repository root:
 
@@ -147,3 +162,35 @@ python .\scripts\v2\11_validate_stage2_release.py --project-root .
 After validation passes, the aggregate Stage 2 implementation, results,
 diagnostics, figure, and release record may be committed to
 `v2-development`. Merge to `main` remains unauthorized.
+
+
+## Stage 3 Implementation
+
+Stage 3 adds four governed global transportability tests and bidirectional
+cross-cycle prediction validation with 500 stratified-PSU bootstrap
+replicates.
+
+Run:
+
+```powershell
+python .\scripts\v2\12_run_stage3_transportability_prediction.py --project-root .
+```
+
+The command writes aggregate tables and figures only. Results remain
+provisional until a separate Stage 3 review and release gate.
+
+## Stage 3 Release
+
+The governed decision is recorded in `config/v2_stage3_release.json`,
+`docs/v2/V2_Stage3_Human_Review.md`, and
+`docs/v2/V2_Stage3_Release_Report.md`.
+
+Validate with:
+
+```powershell
+python .\scripts\v2\15_validate_stage3_release.py --project-root .
+```
+
+The release does not authorize biological subgroup interpretation, clinical
+utility, participant-level risk prediction, explainable-model implementation,
+or merge to `main`.

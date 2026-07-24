@@ -1,0 +1,6 @@
+component,decision,estimate,ci_low_95,ci_high_95,multiplicity_value,authorized_interpretation
+transportability_race_ethnicity,released_with_guardrails,0.0002558727497359,,,0.0010234909989438,"Heterogeneity in the prespecified global linear summary; no causal, biological, or pairwise-ranking claim."
+prediction_brier_delta_c_minus_b,supported,-0.0030339161930044,-0.005222375868507,-0.0008454565175018,,Modest lower pooled out-of-cycle prediction error within NHANES.
+prediction_auc_delta_c_minus_b,supported,0.0340510458845171,0.0164744275891323,0.051627664179902,,Modest higher pooled out-of-cycle discrimination within NHANES.
+stage4_method_selection,authorized,,,,,Protocol and method selection only; model implementation blocked.
+merge_to_main,not_authorized,,,,,V2 remains on v2-development.

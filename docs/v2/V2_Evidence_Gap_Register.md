@@ -5,9 +5,9 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-EG-001 |
-| Version | 0.9 |
-| Status | Active — Stage 2 released for V2 development; Stage 3 authorized |
-| Date | 2026-07-23 |
+| Version | 1.1 |
+| Status | Active — Stage 3 released; Stage 4 method selection pending |
+| Date | 2026-07-24 |
 
 ## Status Vocabulary
 
@@ -31,7 +31,7 @@
 | V2-EG-009 | Core | Which performance metrics and thresholds will be used? | Weighted Brier difference primary; weighted AUC and calibration secondary; positive-claim rule frozen. | Closed |
 | V2-EG-010 | Core | How will resampling or data splitting respect survey structure and prevent leakage? | Bidirectional cross-cycle validation with no random participant split; 500 stratified PSU bootstrap replicates for uncertainty. | Closed |
 | V2-EG-011 | Important | Which subgroup analyses are sufficiently powered and ethically interpretable? | All prespecified levels pass support thresholds; global interaction tests and cautious level-specific interpretation frozen. | Closed |
-| V2-EG-012 | Important | Which single explainable extension, if any, is justified? | Select at most one extension only after conventional baselines and validation design are frozen. | Open |
+| V2-EG-012 | Important | Which single explainable extension, if any, is justified? | Stage 3 passed; method selection and protocol drafting may begin, but implementation requires a separate freeze. | Under Review |
 | V2-EG-013 | Important | Which Python and R tools will be used and reconciled? | R authoritative for survey inference; Python authoritative for audit; defined cross-language reconciliation targets and runtime version capture. | Closed |
 | V2-EG-014 | Core | What exact V2 scope must be frozen for ARISE? | Primary association, three secondaries, four transportability families, cross-cycle incremental prediction, validation report, figures, and presentation are frozen. | Closed |
 
@@ -39,7 +39,7 @@
 
 Gate 0 is closed.
 
-Gate 1 is closed. Stage 2 conventional association results are released for V2 development. Stage 3 transportability and cross-cycle validation implementation is authorized. Explainable modeling remains blocked by V2-EG-012 until cross-cycle validation passes.
+Gate 1 is closed. Stage 2 and restricted Stage 3 results are released for V2 development. Stage 4 method selection may begin, but explainable-model implementation remains blocked by V2-EG-012 pending a separate freeze.
 
 
 ## Stage 2 Result-Review Gap
@@ -47,3 +47,11 @@ Gate 1 is closed. Stage 2 conventional association results are released for V2 d
 | ID | Priority | Question | Current resolution or required evidence | Status |
 | --- | --- | --- | --- | --- |
 | V2-EG-015 | Core | Is the prespecified linear acceleration summary adequate for scientific release given significant nonlinearity and fitted values above one? | Retain the prespecified PR as a global linear summary; report strong nonlinearity with a bounded curve; bound violations are restricted to 0.050% weighted beyond p99. | Closed |
+
+
+## Stage 3 Result-Review Gaps
+
+| ID | Priority | Question | Current resolution or required evidence | Status |
+| --- | --- | --- | --- | --- |
+| V2-EG-016 | Core | Does the global linear acceleration summary vary across prespecified demographic or cycle dimensions? | Race/ethnicity passed BH control (q = 0.001023); sex, age group, and cycle did not. Release is restricted to the global linear summary under known nonlinearity. | Closed |
+| V2-EG-017 | Core | Does acceleration improve prediction beyond age, sex, and race/ethnicity in an unseen NHANES cycle? | The frozen rule passed: Brier delta -0.003034 (95% CI -0.005222 to -0.000845), AUC delta 0.034051; 500/500 replicates completed. | Closed |

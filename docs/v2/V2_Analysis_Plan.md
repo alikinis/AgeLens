@@ -1,6 +1,6 @@
 # AgeLens V2 Analysis Plan
 
-## Version 1.1 — Stage 2 Conventional Model Implementation
+## Version 1.4 — Stage 3 Release and Stage 4 Method Selection
 
 This document defines the frozen Stage 0 elements and the remaining decisions required before final modeling.
 
@@ -168,3 +168,43 @@ fitted values are not interpreted as individual probabilities.
 Transportability interaction models and bidirectional cross-cycle prediction
 validation may now be implemented under the frozen Gate 1 design. Their
 scientific claims remain blocked until separate validation and release.
+
+
+## 18. Stage 3 Implementation
+
+Transportability uses four global design-based acceleration-interaction tests
+with BH q=0.10. Level estimates are descriptive unless the corresponding
+global test is supported.
+
+Cross-cycle prediction evaluates frozen Models B and C in both cycle
+directions. Pooled out-of-cycle Brier difference is primary; AUC and
+calibration are secondary. Five hundred stratified-PSU bootstrap replicates
+refit both directions and propagate training and testing uncertainty.
+
+Stage 3 claims require result validation, human review, and the restricted wording in the Stage 3 release record.
+
+## 19. Stage 3 Release Decision
+
+Only race/ethnicity passed the four-family BH interaction rule
+(q = 0.001023). This finding concerns the frozen global linear summary;
+sex, age group, and NHANES cycle interactions were not supported.
+
+Model C improved pooled out-of-cycle Brier score
+(delta C−B = -0.003034, 95% CI -0.005222 to -0.000845)
+and AUC (delta C−B = 0.034051, 95% CI 0.016474 to
+0.051628). Calibration met the frozen rule and 500/500 replicates
+completed.
+
+## 20. Stage 3 Interpretation Restrictions
+
+Transportability remains a global-linear-summary analysis under known
+nonlinearity. Cross-cycle prediction is within NHANES 2015–2018 under the
+governed cycle-specific acceleration definition. No causal, biological,
+independent-cohort, individual-risk, threshold-benefit, or clinical-utility
+claim is authorized.
+
+## 21. Stage 4 Authorization Boundary
+
+Stage 4 method selection and protocol drafting are authorized. No explainable
+model may be implemented until one method, comparator, leakage controls,
+metrics, and failure criteria are frozen separately.

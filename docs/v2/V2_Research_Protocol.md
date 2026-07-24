@@ -6,9 +6,9 @@
 | --- | --- |
 | Document title | AgeLens V2 Research Protocol |
 | Document ID | AL-V2-RP-001 |
-| Version | 0.6 |
-| Status | Stage 2 conventional modeling implementation authorized — results pending |
-| Date | 2026-07-23 |
+| Version | 0.8 |
+| Status | Stage 3 released for V2 development |
+| Date | 2026-07-24 |
 | Relationship to V1 | V1 remains frozen as the canonical replication and mortality-validation baseline |
 
 ## 1. Purpose
@@ -119,7 +119,7 @@ The protocol previously authorized Stage 1 design work:
 - performance-metric and validation design;
 - governance-document updates.
 
-Gate 1 is now closed. This protocol authorizes Stage 2 conventional association modeling under the frozen design. It does not authorize an explainable extension, post-hoc endpoint changes, or public V2 claims before validation checks pass.
+Gate 1 is closed. Stage 2 and restricted Stage 3 results are released for V2 development. Stage 4 method selection and protocol drafting may begin, but no explainable model is authorized before a separate freeze.
 
 
 ## 10. Stage 1 Design Draft
@@ -169,3 +169,32 @@ use the bounded adjusted-prevalence curve to describe shape.
 
 Stage 3 transportability and cross-cycle validation implementation is
 authorized. Explainable modeling remains blocked.
+
+
+## 14. Stage 3 Implementation Authorization
+
+The four prespecified transportability dimensions and bidirectional
+cross-cycle Model B versus Model C comparison may now be implemented.
+
+The cross-cycle uncertainty analysis uses 500 survey bootstrap replicates and
+refits both training directions in every replicate. Participant-level
+predictions remain private and are not exported.
+
+Stage 3 results remain provisional. Transportability claims, incremental
+prediction claims, explainable modeling, and merge to `main` require separate
+release decisions.
+
+## 15. Stage 3 Release Decision
+
+Race/ethnicity was supported after BH control (q = 0.001023); sex,
+age-group, and cycle interaction families were not. This is a global-linear
+summary under known nonlinearity, not a causal or biological subgroup claim.
+
+Model C showed modest incremental out-of-cycle performance within NHANES:
+Brier delta C−B = -0.003034 (95% CI -0.005222 to
+-0.000845) and AUC delta C−B = 0.034051 (95% CI
+0.016474 to 0.051628). Calibration met the frozen rule and all 500
+replicates completed.
+
+Stage 4 method selection is authorized. Explainable-model implementation,
+merge to `main`, and final manuscript release remain unauthorized.

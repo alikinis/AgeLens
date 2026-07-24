@@ -1,0 +1,2 @@
+"brier_delta_estimate","brier_delta_ci_low_95","brier_delta_ci_high_95","brier_improvement_supported","auc_delta_estimate","auc_directionally_nonworse","model_c_calibration_intercept","model_c_calibration_intercept_ci_contains_zero","model_c_calibration_slope","model_c_calibration_slope_ci_contains_one","positive_incremental_utility_claim","result_status"
+-0.00303391619300444,-0.00522237586850702,-0.000845456517501867,TRUE,0.0340510458845171,TRUE,-0.000692754871314469,TRUE,0.95449416772445,TRUE,TRUE,"provisional_pending_stage3_review"
