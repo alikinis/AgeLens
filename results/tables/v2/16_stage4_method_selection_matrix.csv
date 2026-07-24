@@ -1,0 +1,6 @@
+candidate,intrinsic_or_posthoc,same_stage3_model_c_features,automatic_interactions,survey_sample_weight_support,selected,decision_reason
+Explainable Boosting Machine main effects only,intrinsic,true,false,true,true,Flexible univariate shapes with additive glassbox structure; directly addresses Stage 2 nonlinearity without feature expansion.
+Traditional generalized additive logistic model,intrinsic,true,false,true,false,"Scientifically defensible but less distinct from the governed spline diagnostics; retained as rationale comparator, not a second method."
+Gradient-boosted trees plus SHAP,posthoc,possible,true,true,false,Black-box prediction plus post-hoc attribution exceeds the limited glassbox scope and complicates correlated-feature interpretation.
+Random forest plus SHAP,posthoc,possible,true,true,false,Black-box and post-hoc; less direct control of learned shape complexity.
+Single decision tree or rule list,intrinsic,true,implicit,true,false,Highly interpretable but unstable and too coarse for the known nonlinear acceleration pattern.

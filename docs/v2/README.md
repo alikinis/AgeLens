@@ -2,11 +2,11 @@
 
 This directory contains the controlled transition from the completed V1 replication and mortality release to V2 external health validation and limited explainable innovation.
 
-Current status: **Stage 3 released for V2 development — Stage 4 method selection pending**.
+Current status: **Stage 4 method frozen — EBM implementation authorized, results pending**.
 
 Gate 0 is closed. The governed primary non-mortality outcome is serious difficulty walking or climbing stairs (`DLQ050`) among canonical V1 participants age 20 years or older with positive `WTSAF4YR` and a valid outcome response.
 
-Stage 2 conventional association results and restricted Stage 3 transportability and cross-cycle prediction results are released for V2 development. Explainable-model implementation and merge to `main` remain unauthorized.
+Stage 2 and restricted Stage 3 results are released. Stage 4 has frozen one main-effects-only Explainable Boosting Machine using the same information set as Model C. Stage 4 results and merge to `main` remain unauthorized.
 
 ## Documents
 
@@ -23,6 +23,8 @@ Stage 2 conventional association results and restricted Stage 3 transportability
 - `V2_Stage3_Implementation.md`
 - `V2_Stage3_Human_Review.md`
 - `V2_Stage3_Release_Report.md`
+- `V2_Stage4_Method_Selection.md`
+- `V2_Stage4_Method_Freeze_Report.md`
 
 ## Governed Configurations
 
@@ -32,6 +34,7 @@ Stage 2 conventional association results and restricted Stage 3 transportability
 - `config/v2_stage2_implementation.json`
 - `config/v2_stage3_implementation.json`
 - `config/v2_stage3_release.json`
+- `config/v2_stage4_method_freeze.json`
 
 ## Validation Scripts
 
@@ -46,6 +49,7 @@ Stage 2 conventional association results and restricted Stage 3 transportability
 - `scripts/v2/13_stage3_transportability_prediction.R`
 - `scripts/v2/14_validate_stage3_results.py`
 - `scripts/v2/15_validate_stage3_release.py`
+- `scripts/v2/16_validate_stage4_method_freeze.py`
 
 ## Gate 0 Result
 
@@ -61,7 +65,7 @@ The six-domain disability composite, fair/poor general health, and PHQ-9 score �
 
 ## Immediate Next Step
 
-Stage 3 passed result validation and human review. Validate the Stage 3 release record, commit aggregate artifacts to `v2-development`, and begin governed Stage 4 method selection.
+Validate and commit the Stage 4 method freeze. After that, implement only the frozen main-effects EBM in a separate package.
 
 ## Private Data Separation
 
@@ -110,7 +114,8 @@ The Stage 2 implementation adds:
 
 - `config/v2_stage2_implementation.json`
 - `config/v2_stage3_implementation.json`
-- `config/v2_stage3_release.json`;
+- `config/v2_stage3_release.json`
+- `config/v2_stage4_method_freeze.json`;
 - `docs/v2/V2_Stage2_Implementation.md`;
 - `scripts/v2/05_run_stage2_conventional_models.py`;
 - `scripts/v2/06_stage2_conventional_models.R`;
@@ -118,7 +123,8 @@ The Stage 2 implementation adds:
 - `scripts/v2/12_run_stage3_transportability_prediction.py`
 - `scripts/v2/13_stage3_transportability_prediction.R`
 - `scripts/v2/14_validate_stage3_results.py`
-- `scripts/v2/15_validate_stage3_release.py`.
+- `scripts/v2/15_validate_stage3_release.py`
+- `scripts/v2/16_validate_stage4_method_freeze.py`.
 
 Run from the repository root:
 
@@ -194,3 +200,26 @@ python .\scripts\v2\15_validate_stage3_release.py --project-root .
 The release does not authorize biological subgroup interpretation, clinical
 utility, participant-level risk prediction, explainable-model implementation,
 or merge to `main`.
+
+
+## Stage 4 Method Freeze
+
+Stage 4 freezes exactly one explainable extension:
+
+- `interpret.glassbox.ExplainableBoostingClassifier`;
+- the same four predictors as Stage 3 Model C;
+- main effects only (`interactions=0`);
+- no hyperparameter search;
+- primary comparison against Model C;
+- bidirectional cycle holdout and 500 PSU-bootstrap replicates;
+- global explanations only.
+
+Validate with:
+
+```powershell
+python .\scripts\v2\16_validate_stage4_method_freeze.py --project-root .
+```
+
+After validation and commit to `v2-development`, implementation of this one
+frozen model is authorized. No Stage 4 scientific claim, local explanation,
+feature expansion, merge to `main`, or final manuscript claim is authorized.

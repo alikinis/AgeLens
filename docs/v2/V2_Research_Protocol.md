@@ -6,8 +6,8 @@
 | --- | --- |
 | Document title | AgeLens V2 Research Protocol |
 | Document ID | AL-V2-RP-001 |
-| Version | 0.8 |
-| Status | Stage 3 released for V2 development |
+| Version | 0.9 |
+| Status | Stage 4 method frozen — implementation authorized |
 | Date | 2026-07-24 |
 | Relationship to V1 | V1 remains frozen as the canonical replication and mortality-validation baseline |
 
@@ -196,5 +196,32 @@ Brier delta C−B = -0.003034 (95% CI -0.005222 to
 0.016474 to 0.051628). Calibration met the frozen rule and all 500
 replicates completed.
 
-Stage 4 method selection is authorized. Explainable-model implementation,
-merge to `main`, and final manuscript release remain unauthorized.
+Stage 4 method selection is complete. Implementation of the one frozen
+main-effects EBM is authorized after freeze validation and commit; Stage 4
+result claims, merge to `main`, and final manuscript release remain unauthorized.
+
+
+## 16. Stage 4 Explainable Method Freeze
+
+The sole explainable extension is Model D, a main-effects-only
+`ExplainableBoostingClassifier` pinned to `interpret==0.7.8`.
+
+Model D uses the same information set as Stage 3 Model C. It adds no new
+biomarker and no interaction term. The primary question is whether flexible
+additive age and acceleration functions improve out-of-cycle prediction beyond
+the released conventional Model C.
+
+Validation retains both cycle directions and 500 stratified-PSU bootstrap
+replicates. A positive claim requires a favorable Brier interval, non-worse
+AUC, acceptable calibration, no Brier deterioration in either direction,
+stable acceleration functions across cycle-trained models, and complete
+bootstrap execution.
+
+Only global explanations are authorized. Local explanations, individual risk
+scores, causal feature effects, clinical thresholds, biological subgroup
+interpretation, black-box explainers, feature expansion, and hyperparameter
+search remain prohibited.
+
+Implementation of the frozen Model D is authorized after validation and commit
+of this freeze. Scientific release requires a separate Stage 4 human review
+and release gate.

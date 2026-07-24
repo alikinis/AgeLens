@@ -1,0 +1,219 @@
+{
+  "document_id": "AL-V2-S4F-001",
+  "version": "1.0",
+  "date": "2026-07-24",
+  "status": "frozen_implementation_authorized",
+  "source_stage3_release": "AL-V2-S3R-001",
+  "relationship_to_v1": {
+    "v1_immutable": true,
+    "v1_formula_changed": false,
+    "v1_harmonization_changed": false,
+    "v1_mortality_changed": false,
+    "v1_results_changed": false
+  },
+  "scientific_role": {
+    "type": "limited_explainable_predictive_extension",
+    "primary_outcome": "mobility_disability",
+    "association_inference_role": false,
+    "causal_role": false,
+    "clinical_decision_role": false,
+    "maximum_methods": 1
+  },
+  "selected_method": {
+    "name": "Explainable Boosting Machine",
+    "python_class": "interpret.glassbox.ExplainableBoostingClassifier",
+    "package": "interpret",
+    "package_version_pin": "0.7.8",
+    "model_label": "Model D",
+    "objective": "log_loss",
+    "link": "logit",
+    "intrinsic_explainability": true,
+    "post_hoc_explainer": false,
+    "interactions": 0,
+    "automatic_interaction_selection": false,
+    "reason": "Learn flexible univariate age and acceleration shapes while retaining an additive glassbox structure and isolating method flexibility from feature expansion."
+  },
+  "frozen_predictors": {
+    "same_information_set_as_stage3_model_c": true,
+    "features_in_order": [
+      "chronological_age_years",
+      "sex",
+      "race_ethnicity",
+      "phenoage_acceleration_per_5_years"
+    ],
+    "feature_types_in_order": [
+      "continuous",
+      "nominal",
+      "nominal",
+      "continuous"
+    ],
+    "new_biomarkers_authorized": false,
+    "NHANES_cycle_predictor_authorized": false,
+    "participant_identifier_predictor_authorized": false,
+    "outcome_derived_predictor_authorized": false,
+    "missing_feature_values_allowed": false,
+    "sex_levels": [
+      "Male",
+      "Female"
+    ],
+    "race_ethnicity_levels": [
+      "Non-Hispanic White",
+      "Mexican American",
+      "Other Hispanic",
+      "Non-Hispanic Black",
+      "Non-Hispanic Asian",
+      "Other or multiracial"
+    ]
+  },
+  "frozen_hyperparameters": {
+    "max_bins": 32,
+    "max_interaction_bins": 16,
+    "interactions": 0,
+    "exclude": null,
+    "validation_size": 0.15,
+    "outer_bags": 8,
+    "inner_bags": 0,
+    "learning_rate": 0.015,
+    "greedy_ratio": 0.0,
+    "cyclic_progress": false,
+    "smoothing_rounds": 75,
+    "interaction_smoothing_rounds": 0,
+    "max_rounds": 10000,
+    "early_stopping_rounds": 100,
+    "early_stopping_tolerance": 1e-05,
+    "min_samples_leaf": 20,
+    "min_hessian": 0.0001,
+    "reg_alpha": 0.0,
+    "reg_lambda": 0.0,
+    "max_delta_step": 0.0,
+    "gain_scale": 1.0,
+    "min_cat_samples": 20,
+    "cat_smooth": 20.0,
+    "missing": "separate",
+    "max_leaves": 2,
+    "monotone_constraints": null,
+    "objective": "log_loss",
+    "n_jobs": 1,
+    "random_state": 20260724,
+    "hyperparameter_search_authorized": false
+  },
+  "training_weights": {
+    "variable": "WTSAF4YR",
+    "positive_only": true,
+    "rescale_within_training_cycle_to_sum_n": true,
+    "unweighted_fit_authorized": false
+  },
+  "validation": {
+    "design": "bidirectional_cross_cycle_validation",
+    "directions": [
+      "train_2015_2016_test_2017_2018",
+      "train_2017_2018_test_2015_2016"
+    ],
+    "participant_random_split_for_performance": false,
+    "test_cycle_used_for_training_or_binning": false,
+    "cycle_term": false,
+    "primary_comparator": "Stage3_Model_C",
+    "secondary_comparator": "Stage3_Model_B",
+    "primary_metric": "pooled_weighted_Brier_delta_D_minus_C",
+    "secondary_metrics": [
+      "pooled_weighted_AUC_delta_D_minus_C",
+      "model_d_calibration_intercept",
+      "model_d_calibration_slope",
+      "direction_specific_Brier_delta_D_minus_C",
+      "direction_specific_AUC_delta_D_minus_C"
+    ],
+    "uncertainty": {
+      "method": "stratified_PSU_bootstrap_replicate_weights",
+      "replicates": 500,
+      "mse": true,
+      "seed": 20260724,
+      "refit_model_c_and_model_d_each_direction_each_replicate": true,
+      "failed_replicate_policy": "stop_release",
+      "confidence_level": 0.95,
+      "reference_degrees_of_freedom": 30
+    }
+  },
+  "positive_extension_claim_rule": {
+    "all_conditions_required": true,
+    "pooled_Brier_delta_D_minus_C_ci_high_below_zero": true,
+    "pooled_AUC_delta_D_minus_C_point_nonnegative": true,
+    "model_d_calibration_intercept_ci_contains_zero": true,
+    "model_d_calibration_slope_ci_contains_one": true,
+    "both_direction_specific_Brier_delta_D_minus_C_nonpositive": true,
+    "acceleration_shape_stability_spearman_at_least": 0.7,
+    "all_500_bootstrap_replicates_complete": true,
+    "no_positive_claim_if_rule_fails": true
+  },
+  "explanation_governance": {
+    "global_explanations_authorized": true,
+    "local_explanations_authorized": false,
+    "participant_level_contributions_public": false,
+    "main_effect_terms_only": true,
+    "term_score_scale": "centered_log_odds_contribution",
+    "acceleration_display_range": "intersection of cycle-specific survey-weighted 1st to 99th percentile support",
+    "display_grid_points": 101,
+    "display_bin_min_unweighted_n": 30,
+    "shape_stability": {
+      "target_term": "phenoage_acceleration_per_5_years",
+      "comparison": "Spearman correlation between the two cycle-trained term functions on the common governed display grid",
+      "minimum_for_stable_shape_claim": 0.7
+    },
+    "no_threshold_claim": true,
+    "no_causal_feature_claim": true,
+    "no_biological_race_claim": true,
+    "no_feature_importance_rank_as_scientific_effect": true
+  },
+  "software_roles": {
+    "R": "Authoritative survey design, replicate-weight generation, and conventional Model C reconciliation.",
+    "Python": "Authoritative EBM fitting, prediction, global term extraction, and aggregate validation.",
+    "required_reconciliation": [
+      "primary domain n=4366 and positive n=682",
+      "both cross-cycle directions",
+      "Model C point metrics reproduce Stage 3",
+      "training-weight rescaling",
+      "finite Model D probabilities",
+      "exactly four Model D main-effect terms and zero interactions"
+    ]
+  },
+  "public_outputs": {
+    "aggregate_only": true,
+    "participant_level_predictions": false,
+    "participant_level_explanations": false,
+    "allowed_tables": [
+      "method_input_audit",
+      "direction_metrics",
+      "bootstrap_summary",
+      "positive_extension_decision",
+      "term_importance",
+      "age_shape",
+      "acceleration_shape",
+      "shape_stability",
+      "runtime_versions",
+      "release_checks"
+    ],
+    "allowed_figures": [
+      "model_d_incremental_performance",
+      "cycle_specific_acceleration_shapes"
+    ]
+  },
+  "failure_conditions": [
+    "primary domain or outcome count changes",
+    "a test cycle is used for EBM training, binning, or early stopping",
+    "any interaction term appears",
+    "a predictor outside the frozen four-feature set appears",
+    "a bootstrap replicate fails",
+    "Model C does not reconcile to Stage 3 point metrics",
+    "non-finite or out-of-range Model D probabilities appear",
+    "participant-level prediction or explanation is written publicly",
+    "the interpret package version differs from the exact pin"
+  ],
+  "permissions": {
+    "stage4_implementation_authorized": true,
+    "stage4_results_claims_authorized": false,
+    "local_explanation_release_authorized": false,
+    "new_feature_expansion_authorized": false,
+    "hyperparameter_search_authorized": false,
+    "merge_to_main_authorized": false,
+    "final_manuscript_claims_authorized": false
+  }
+}

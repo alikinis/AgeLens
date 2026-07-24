@@ -1,6 +1,6 @@
 # AgeLens V2 Analysis Plan
 
-## Version 1.4 — Stage 3 Release and Stage 4 Method Selection
+## Version 1.5 — Stage 4 Explainable Method Freeze
 
 This document defines the frozen Stage 0 elements and the remaining decisions required before final modeling.
 
@@ -208,3 +208,64 @@ claim is authorized.
 Stage 4 method selection and protocol drafting are authorized. No explainable
 model may be implemented until one method, comparator, leakage controls,
 metrics, and failure criteria are frozen separately.
+
+
+## 22. Stage 4 Selected Method
+
+Stage 4 selects one intrinsically interpretable method:
+`interpret.glassbox.ExplainableBoostingClassifier`, pinned to
+`interpret==0.7.8`.
+
+Model D is a main-effects-only additive classifier. Automatic and manual
+interaction expansion are not authorized.
+
+## 23. Frozen Model D Information Set
+
+Model D uses the same four predictors as Stage 3 Model C:
+
+- chronological age;
+- sex;
+- race/ethnicity;
+- canonical Phenotypic Age acceleration per five years.
+
+No new biomarker, cycle term, participant identifier, or outcome-derived
+feature is authorized. This isolates flexible functional form from feature
+expansion.
+
+## 24. Frozen Model D Validation
+
+The two Stage 3 cycle-holdout directions remain primary. The test cycle is not
+used for EBM fitting, binning, validation, or early stopping.
+
+The primary contrast is pooled weighted Brier delta D−C. Secondary metrics are
+AUC delta D−C and Model D calibration. Five hundred stratified-PSU bootstrap
+replicates refit Models C and D in both directions.
+
+## 25. Frozen Positive-Claim Rule
+
+A positive Stage 4 claim requires a favorable pooled Brier interval against
+Model C, nonnegative pooled AUC difference, acceptable calibration,
+nonpositive direction-specific Brier differences in both directions, stable
+acceleration functions across the two cycle-trained models, and 500 completed
+bootstrap replicates.
+
+Failure of any condition blocks a positive explainable-extension claim.
+
+## 26. Explanation Restrictions
+
+Only global additive-term summaries are authorized. Term scores are centered
+log-odds contributions, not prevalence ratios or causal effects.
+
+No local explanation, individual prediction, clinical threshold, biological
+race interpretation, post-hoc SHAP/LIME, or feature-importance ranking as a
+scientific effect is authorized.
+
+## 27. Stage 4 Implementation Boundary
+
+The method, comparator, predictors, hyperparameters, leakage controls,
+metrics, bootstrap, and failure conditions are frozen. Implementation of the
+single Model D is authorized after this freeze is validated and committed to
+`v2-development`.
+
+Stage 4 results and merge to `main` remain unauthorized pending separate
+review and release.

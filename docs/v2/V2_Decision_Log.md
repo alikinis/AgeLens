@@ -5,7 +5,7 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 1.1 |
+| Version | 1.2 |
 | Status | Active — Gate 0 closed |
 | Date | 2026-07-24 |
 
@@ -229,4 +229,21 @@
 | Guardrail | Global linear summary under known nonlinearity; no causal, biological, pairwise-ranking, clinical-threshold, or individual-risk claim. |
 | Stage 4 consequence | Method selection authorized; explainable-model implementation remains blocked pending a separate freeze. |
 | Repository consequence | Commit to `v2-development` authorized; merge to `main` remains unauthorized. |
+| V1 consequence | None; V1 remains immutable. |
+
+
+## D2-025 — Select one main-effects Explainable Boosting Machine
+
+| Field | Value |
+| --- | --- |
+| Status | Approved and frozen |
+| Method | `interpret.glassbox.ExplainableBoostingClassifier`, pinned to `interpret==0.7.8`. |
+| Predictors | Same four predictors as Stage 3 Model C: age, sex, race/ethnicity, and acceleration. |
+| Complexity | Main effects only; `interactions=0`; no hyperparameter search or feature expansion. |
+| Primary comparator | Released conventional Model C. |
+| Validation | Bidirectional cycle holdout; 500 stratified-PSU bootstrap replicates; Models C and D refit in both directions. |
+| Explainability | Global age and acceleration functions only; no local explanations or participant-level contributions. |
+| Positive claim | Joint performance, calibration, direction, shape-stability, and bootstrap-completion rule. |
+| Implementation consequence | The single frozen Model D may be implemented after freeze validation and commit. |
+| Release consequence | No Stage 4 scientific claim or merge to `main` is authorized. |
 | V1 consequence | None; V1 remains immutable. |
