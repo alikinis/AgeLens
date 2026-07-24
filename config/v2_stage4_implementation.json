@@ -1,0 +1,90 @@
+{
+  "document_id": "AL-V2-S4I-001",
+  "version": "1.0.3",
+  "date": "2026-07-24",
+  "status": "implementation_ready_results_pending",
+  "source_method_freeze": "AL-V2-S4F-001",
+  "python_build": "AgeLens-V2-Stage4-Python-20260724c",
+  "r_build": "AgeLens-V2-Stage4-R-20260724b",
+  "environment": {
+    "venv_location": "<project-parent>/.venv-stage4",
+    "interpret_exact_version": "0.7.8",
+    "python_supported_range": "3.10-3.14",
+    "dependency_install_command": "python -m pip install interpret==0.7.8",
+    "global_python_environment_modified": false
+  },
+  "scripts": {
+    "r_reference_and_bootstrap": "scripts/v2/17_prepare_stage4_reference.R",
+    "python_ebm_runner": "scripts/v2/18_run_stage4_ebm.py",
+    "result_validator": "scripts/v2/19_validate_stage4_results.py"
+  },
+  "private_work": {
+    "location": "<private-input-parent>/stage4_private",
+    "contains_participant_level_replicate_weights": true,
+    "inside_public_repository": false,
+    "public_release_authorized": false,
+    "resume_checkpoint": true
+  },
+  "authoritative_roles": {
+    "R": [
+      "survey design construction",
+      "500 bootstrap replicate-weight generation",
+      "Model C point and replicate fitting",
+      "Model C reconciliation to Stage 3",
+      "aggregate figure rendering"
+    ],
+    "Python": [
+      "exact-version EBM fitting",
+      "Model D point and replicate prediction",
+      "global term extraction",
+      "bootstrap covariance calculation from R scale/rscales",
+      "aggregate output assembly and validation"
+    ]
+  },
+  "public_outputs": {
+    "tables_prefix": "18_stage4_",
+    "figures_prefix": "18_stage4_",
+    "aggregate_only": true,
+    "participant_level_predictions": false,
+    "participant_level_explanations": false,
+    "status_until_review": "provisional_pending_stage4_review"
+  },
+  "execution": {
+    "point_models_per_direction": 1,
+    "bootstrap_replicates": 500,
+    "model_c_fits_per_replicate": 2,
+    "model_d_fits_per_replicate": 2,
+    "resume_after_interruption": true,
+    "progress_interval": 10
+  },
+  "permissions": {
+    "run_frozen_stage4_analysis": true,
+    "commit_results_before_human_review": false,
+    "stage4_scientific_claims_authorized": false,
+    "local_explanation_release_authorized": false,
+    "merge_to_main_authorized": false
+  },
+  "self_test_correction": {
+    "issue": "The synthetic design assigned one PSU per stratum because the stratum and PSU repetition periods were aliased.",
+    "fix": "The synthetic grid now explicitly crosses cycle, six strata, and two PSUs and verifies two PSUs per stratum before conversion.",
+    "production_analysis_changed": false
+  },
+  "quantile_extraction_correction": {
+    "issue": "Current survey::svyquantile returns a newsvyquantile list, which cannot be coerced directly with as.numeric().",
+    "fix": "Extract point quantiles with coef(), validate the four support rows, and test this path in the R installation self-test.",
+    "production_model_c_reference_changed": false
+  },
+  "reference_recovery": {
+    "preserve_completed_500_replicates": true,
+    "repair_only_missing_support_quantiles": true,
+    "validate_core_reference_bundle_before_manifest": true,
+    "rerun_500_model_c_replicates_required": false
+  },
+  "interaction_validator_correction": {
+    "issue": "The public validator treated any comma in str(term_features_) as evidence of an interaction. Python singleton tuples such as (0,) contain a grammatical comma even though they contain one feature.",
+    "fix": "Public term output now records explicit feature names, pipe-delimited indices, and term_feature_count. Interaction validation requires term_feature_count == 1 and exact index/name mapping.",
+    "ebm_model_structure_changed": false,
+    "bootstrap_results_changed": false,
+    "completed_500_ebm_replicates_preserved": true
+  }
+}

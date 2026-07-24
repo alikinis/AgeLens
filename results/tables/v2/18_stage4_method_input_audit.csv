@@ -1,0 +1,10 @@
+check,observed,expected,pass
+canonical_input_n,5223,5223,True
+primary_domain_n,4366,4366,True
+primary_positive_n,682,682,True
+design_df,30,30,True
+r_reference_replicate_n,500,500,True
+model_c_max_abs_reconciliation,1.620820144765389e-11,<=1e-7,True
+interpret_exact_version,0.7.8,0.7.8,True
+point_model_d_interaction_term_max,0,0,True
+point_model_d_term_n_min,4,4,True

@@ -1,0 +1,2 @@
+term,comparison,common_grid_n,spearman_correlation,minimum_required,stable_shape_supported
+phenoage_acceleration_per_5_years,train_2015_2016_test_2017_2018_vs_train_2017_2018_test_2015_2016,101,0.9806971522079938,0.7,True

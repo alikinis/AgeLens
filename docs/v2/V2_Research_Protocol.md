@@ -6,8 +6,8 @@
 | --- | --- |
 | Document title | AgeLens V2 Research Protocol |
 | Document ID | AL-V2-RP-001 |
-| Version | 0.9 |
-| Status | Stage 4 method frozen — implementation authorized |
+| Version | 1.0 |
+| Status | Stage 4 released — Stage 5 synthesis authorized |
 | Date | 2026-07-24 |
 | Relationship to V1 | V1 remains frozen as the canonical replication and mortality-validation baseline |
 
@@ -119,7 +119,7 @@ The protocol previously authorized Stage 1 design work:
 - performance-metric and validation design;
 - governance-document updates.
 
-Gate 1 is closed. Stage 2 and restricted Stage 3 results are released for V2 development. Stage 4 method selection and protocol drafting may begin, but no explainable model is authorized before a separate freeze.
+Gate 1 is closed. Stage 2, restricted Stage 3, and aggregate Stage 4 results are released for V2 development. The frozen EBM did not pass the positive incremental-extension rule. Model C remains the preferred prediction model, and Stage 5 synthesis is authorized.
 
 
 ## 10. Stage 1 Design Draft
@@ -225,3 +225,45 @@ search remain prohibited.
 Implementation of the frozen Model D is authorized after validation and commit
 of this freeze. Scientific release requires a separate Stage 4 human review
 and release gate.
+
+
+## 17. Stage 4 Release Decision
+
+The frozen main-effects EBM completed both cross-cycle directions and 500/500
+survey-bootstrap replicates.
+
+Model D minus Model C:
+
+- Brier delta = -0.000970
+  (95% CI -0.003093 to 0.001152);
+- AUC delta = -0.000161
+  (95% CI -0.014073 to 0.013751).
+
+The primary interval crossed zero and pooled AUC delta was negative. The
+frozen joint positive-extension rule failed. Model D is not promoted as the
+primary prediction model, and no positive incremental-benefit claim is
+authorized.
+
+The cycle-trained acceleration functions passed the frozen rank-stability rule
+(Spearman 0.980697). They may be reported only
+as aggregate descriptive global functions. Rank similarity is not exact curve
+agreement and does not authorize causal, threshold, biological, clinical, or
+individual interpretation.
+
+Model C remains the preferred prediction model. No additional model, feature,
+interaction, or tuning search is authorized.
+
+## 18. Stage 5 Authorization
+
+Stage 5 may:
+
+- synthesize released Stage 2–4 findings;
+- prepare aggregate validation tables and figures;
+- prepare the abstract and ARISE presentation;
+- document null and negative findings without suppression;
+- prepare a final release candidate for separate review.
+
+Stage 5 may not introduce new fitted models or post-result optimization.
+Local explanations, participant-level risk outputs, clinical-utility claims,
+merge to `main`, and final manuscript release remain unauthorized pending a
+separate final gate.

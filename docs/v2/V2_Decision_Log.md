@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 1.2 |
-| Status | Active — Gate 0 closed |
+| Version | 1.3 |
+| Status | Active — Stage 4 released |
 | Date | 2026-07-24 |
 
 ## D2-001 — Preserve V1 as the immutable baseline
@@ -39,9 +39,9 @@
 
 | Field | Value |
 | --- | --- |
-| Status | Pending |
-| Decision | At most one extension may be approved after conventional baselines are frozen. |
-| Required closure | Resolve V2-EG-008 through V2-EG-012. |
+| Status | Approved and completed |
+| Decision | Exactly one main-effects EBM was frozen, implemented, and evaluated; no additional explainable method, feature set, interaction search, or tuning exercise is authorized. |
+| Closure | Resolved by D2-025 and D2-026. |
 
 ## D2-005 — Govern the V2 survey weight
 
@@ -246,4 +246,21 @@
 | Positive claim | Joint performance, calibration, direction, shape-stability, and bootstrap-completion rule. |
 | Implementation consequence | The single frozen Model D may be implemented after freeze validation and commit. |
 | Release consequence | No Stage 4 scientific claim or merge to `main` is authorized. |
+| V1 consequence | None; V1 remains immutable. |
+
+
+## D2-026 — Release Stage 4 without a positive EBM extension claim
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Human-review decision | Pass for aggregate release; no positive explainable extension. |
+| Primary metric | Brier delta D−C = -0.000970, 95% CI -0.003093 to 0.001152; improvement not supported. |
+| Secondary metric | AUC delta D−C = -0.000161, 95% CI -0.014073 to 0.013751; frozen non-worse direction condition failed. |
+| Calibration | Model D intercept and slope intervals contained zero and one, respectively. |
+| Shape result | Acceleration-function Spearman correlation = 0.980697; descriptive global rank stability supported. |
+| Model consequence | Model C remains the preferred prediction model; Model D is retained only as a descriptive global shape sensitivity. |
+| Search consequence | No new model, feature, interaction, or hyperparameter search is authorized. |
+| Stage 5 consequence | Aggregate synthesis, validation-report, abstract, and ARISE-package preparation are authorized. |
+| Repository consequence | Commit to `v2-development` authorized; merge to `main` remains unauthorized. |
 | V1 consequence | None; V1 remains immutable. |

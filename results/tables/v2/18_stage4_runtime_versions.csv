@@ -1,0 +1,12 @@
+component,version
+python_build,AgeLens-V2-Stage4-Python-20260724c
+r_build,AgeLens-V2-Stage4-R-20260724b
+python,3.13.14
+interpret,0.7.8
+interpret-core,0.7.8
+numpy,2.4.6
+pandas,3.0.5
+scipy,1.18.0
+scikit-learn,1.9.0
+platform,Windows-11-10.0.26200-SP0
+Rscript,Rscript (R) version 4.5.1 (2025-06-13)

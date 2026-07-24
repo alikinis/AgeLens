@@ -1,0 +1,10 @@
+component,estimate,ci_low_95,ci_high_95,decision,reporting_role
+brier_delta_d_minus_c,-0.0009703249310347,-0.0030928097750904,0.0011521599130209,improvement_not_supported,primary_incremental_metric
+auc_delta_d_minus_c,-0.0001606680664727,-0.0140726788023686,0.0137513426694231,directionally_nonworse_condition_failed,secondary_incremental_metric
+calibration_intercept_d,0.0024704243324506,-0.0362642906577202,0.0412051393226215,acceptable,secondary_calibration
+calibration_slope_d,1.0412311250013755,0.806892759218198,1.275569490784553,acceptable,secondary_calibration
+acceleration_shape_spearman,0.9806971522079938,,,stable_rank_shape_supported,global_descriptive_shape_only
+positive_explainable_extension_claim,0,,,not_authorized,joint_frozen_gate
+preferred_prediction_model,,,,Stage3_Model_C,stage5_prediction_anchor
+stage5_synthesis_and_arise,,,,authorized,next_stage
+merge_to_main,,,,not_authorized,repository_gate

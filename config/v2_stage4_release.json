@@ -1,0 +1,104 @@
+{
+  "document_id": "AL-V2-S4R-001",
+  "version": "1.0",
+  "date": "2026-07-24",
+  "status": "released_for_v2_development",
+  "source_method_freeze": "AL-V2-S4F-001",
+  "source_implementation_config": "AL-V2-S4I-001",
+  "source_implementation_document": "AL-V2-S4I-002",
+  "source_python_build": "AgeLens-V2-Stage4-Python-20260724c",
+  "source_r_build": "AgeLens-V2-Stage4-R-20260724b",
+  "human_review_decision": "pass_no_positive_extension",
+  "relationship_to_v1": {
+    "v1_immutable": true,
+    "v1_formula_changed": false,
+    "v1_harmonization_changed": false,
+    "v1_mortality_changed": false,
+    "v1_results_changed": false
+  },
+  "method_integrity": {
+    "method": "ExplainableBoostingClassifier",
+    "interpret_exact_version": "0.7.8",
+    "same_information_set_as_model_c": true,
+    "main_effect_term_n_per_direction": 4,
+    "interaction_term_n": 0,
+    "hyperparameter_search_performed": false,
+    "cross_cycle_directions": 2,
+    "bootstrap_replicates": 500,
+    "failed_replicates": 0,
+    "model_c_max_abs_reconciliation": 1.620820144765389e-11,
+    "aggregate_global_outputs_only": true
+  },
+  "incremental_prediction_release": {
+    "aggregate_results_authorized": true,
+    "positive_extension_claim_authorized": false,
+    "authorized_wording": "Under the frozen bidirectional cross-cycle rule, the main-effects Explainable Boosting Machine did not demonstrate incremental predictive improvement beyond Model C within NHANES 2015-2018.",
+    "brier_delta_d_minus_c": {
+      "estimate": -0.0009703249310347,
+      "ci_low_95": -0.0030928097750904,
+      "ci_high_95": 0.0011521599130209,
+      "improvement_supported": false
+    },
+    "auc_delta_d_minus_c": {
+      "estimate": -0.0001606680664727,
+      "ci_low_95": -0.0140726788023686,
+      "ci_high_95": 0.0137513426694231,
+      "directionally_nonworse": false
+    },
+    "model_d_calibration": {
+      "intercept": 0.0024704243324506,
+      "intercept_ci_low_95": -0.0362642906577202,
+      "intercept_ci_high_95": 0.0412051393226215,
+      "slope": 1.0412311250013755,
+      "slope_ci_low_95": 0.806892759218198,
+      "slope_ci_high_95": 1.275569490784553
+    },
+    "both_directions_brier_point_nonpositive": true,
+    "direction_specific_auc_pattern": "mixed",
+    "joint_positive_rule_passed": false,
+    "preferred_prediction_model": "Stage3_Model_C",
+    "model_d_prediction_role": "not_promoted",
+    "guardrails": [
+      "Failure of the positive rule is absence of supported incremental benefit, not evidence that Model D is harmful.",
+      "Confidence intervals are compatible with small benefit or small harm relative to Model C.",
+      "Cross-cycle validation is internal to NHANES 2015-2018 and is not independent external-cohort validation.",
+      "No clinical utility, treatment threshold, individual risk, or decision-product claim is authorized."
+    ]
+  },
+  "global_explanation_release": {
+    "aggregate_global_shapes_authorized": true,
+    "local_explanations_authorized": false,
+    "acceleration_shape_rank_stability_supported": true,
+    "acceleration_shape_spearman": 0.9806971522079938,
+    "common_grid_n": 101,
+    "minimum_required": 0.7,
+    "authorized_wording": "The two cycle-trained acceleration term functions were highly rank-correlated over the governed common support.",
+    "model_d_explanation_role": "descriptive_global_shape_sensitivity",
+    "guardrails": [
+      "Spearman correlation assesses rank similarity and does not establish exact agreement of the two term functions.",
+      "Centered EBM term scores are log-odds contributions, not prevalence ratios, causal effects, or clinical thresholds.",
+      "Term importance is a model diagnostic and must not be presented as a scientific effect-size ranking.",
+      "No participant-level prediction, contribution, or local explanation is released.",
+      "Race/ethnicity remains a social classification and is not given biological interpretation."
+    ]
+  },
+  "correction_review": {
+    "synthetic_survey_fixture_fix_changed_production_analysis": false,
+    "support_quantile_extractor_fix_changed_model_c_replicates": false,
+    "interaction_validator_fix_changed_ebm_fits_or_estimates": false,
+    "completed_model_c_replicates_preserved": 500,
+    "completed_model_d_replicates_preserved": 500
+  },
+  "permissions": {
+    "commit_to_v2_development_authorized": true,
+    "stage4_aggregate_results_release_authorized": true,
+    "stage4_positive_extension_claim_authorized": false,
+    "model_d_primary_prediction_role_authorized": false,
+    "global_shape_reporting_authorized": true,
+    "local_explanation_release_authorized": false,
+    "new_model_or_feature_search_authorized": false,
+    "stage5_synthesis_and_arise_authorized": true,
+    "merge_to_main_authorized": false,
+    "final_manuscript_claims_authorized": false
+  }
+}

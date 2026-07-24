@@ -1,6 +1,6 @@
 # AgeLens V2 Analysis Plan
 
-## Version 1.5 — Stage 4 Explainable Method Freeze
+## Version 1.6 — Stage 4 Result Release and Stage 5 Authorization
 
 This document defines the frozen Stage 0 elements and the remaining decisions required before final modeling.
 
@@ -269,3 +269,60 @@ single Model D is authorized after this freeze is validated and committed to
 
 Stage 4 results and merge to `main` remain unauthorized pending separate
 review and release.
+
+
+## 28. Stage 4 Result
+
+The frozen main-effects EBM completed both cycle directions and all 500
+stratified-PSU bootstrap replicates.
+
+Pooled Model D minus Model C:
+
+- Brier delta = -0.000970
+  (95% CI -0.003093 to 0.001152);
+- AUC delta = -0.000161
+  (95% CI -0.014073 to 0.013751).
+
+Model D calibration intervals contained the frozen targets. Both
+direction-specific Brier point differences were nonpositive; AUC differences
+were mixed.
+
+## 29. Stage 4 Joint Decision
+
+The Brier confidence interval crossed zero and pooled AUC delta was negative.
+The frozen joint positive-extension rule therefore failed.
+
+No positive incremental-prediction claim is authorized for Model D. Model C
+remains the preferred prediction model for Stage 5 synthesis. The result is
+not interpreted as evidence of Model D harm.
+
+## 30. Global Shape Result
+
+The two cycle-trained acceleration functions had Spearman correlation
+0.980697 over
+101 governed common-support points, passing the
+0.70 stable-rank-shape rule.
+
+This authorizes only a descriptive global shape statement. Rank similarity is
+not exact curve agreement. Term scores are centered log-odds contributions,
+and no causal, threshold, individual, biological, or feature-importance effect
+interpretation is authorized.
+
+## 31. Model Role After Stage 4
+
+Model D is retained as a descriptive global shape sensitivity and is not
+promoted as the primary prediction model. Model C anchors predictive reporting
+because Stage 3 established incremental utility over Model B and Stage 4 did
+not establish added utility from EBM flexibility.
+
+No additional model, interaction, feature, or hyperparameter search may be
+opened after inspection of these results.
+
+## 32. Stage 5 Authorization
+
+Stage 5 may synthesize the released Stage 2–4 evidence, prepare an aggregate
+validation report, abstract, figures, and ARISE presentation materials.
+
+Merge to `main`, final manuscript claims, local explanations, individual risk
+outputs, and clinical-utility claims remain subject to a separate final
+release decision.

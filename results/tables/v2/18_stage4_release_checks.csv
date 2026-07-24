@@ -1,0 +1,13 @@
+check,pass
+All method input audits pass,True
+Both cross-cycle directions are present,True
+All direction metrics are finite,True
+Bootstrap has 500 successful replicates,True
+Bootstrap estimates and intervals are finite,True
+Exactly four Model D main effects per direction,True
+No Model D interaction term is released,True
+Age shape is aggregate and finite,True
+Acceleration shape is aggregate and finite,True
+Acceleration shape comparison is finite,True
+Result status remains provisional,True
+No participant identifier appears in public tables,True

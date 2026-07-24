@@ -2,11 +2,11 @@
 
 This directory contains the controlled transition from the completed V1 replication and mortality release to V2 external health validation and limited explainable innovation.
 
-Current status: **Stage 4 method frozen — EBM implementation authorized, results pending**.
+Current status: **Stage 4 released — no positive EBM extension; Stage 5 synthesis authorized**.
 
 Gate 0 is closed. The governed primary non-mortality outcome is serious difficulty walking or climbing stairs (`DLQ050`) among canonical V1 participants age 20 years or older with positive `WTSAF4YR` and a valid outcome response.
 
-Stage 2 and restricted Stage 3 results are released. Stage 4 has frozen one main-effects-only Explainable Boosting Machine using the same information set as Model C. Stage 4 results and merge to `main` remain unauthorized.
+Stage 2, restricted Stage 3, and aggregate Stage 4 results are released for V2 development. The frozen EBM did not demonstrate incremental predictive benefit beyond Model C; Model C remains the preferred prediction model. Merge to `main` remains unauthorized.
 
 ## Documents
 
@@ -25,6 +25,9 @@ Stage 2 and restricted Stage 3 results are released. Stage 4 has frozen one main
 - `V2_Stage3_Release_Report.md`
 - `V2_Stage4_Method_Selection.md`
 - `V2_Stage4_Method_Freeze_Report.md`
+- `V2_Stage4_Implementation.md`
+- `V2_Stage4_Human_Review.md`
+- `V2_Stage4_Release_Report.md`
 
 ## Governed Configurations
 
@@ -35,6 +38,8 @@ Stage 2 and restricted Stage 3 results are released. Stage 4 has frozen one main
 - `config/v2_stage3_implementation.json`
 - `config/v2_stage3_release.json`
 - `config/v2_stage4_method_freeze.json`
+- `config/v2_stage4_implementation.json`
+- `config/v2_stage4_release.json`
 
 ## Validation Scripts
 
@@ -65,7 +70,7 @@ The six-domain disability composite, fair/poor general health, and PHQ-9 score �
 
 ## Immediate Next Step
 
-Validate and commit the Stage 4 method freeze. After that, implement only the frozen main-effects EBM in a separate package.
+Validate and commit the Stage 4 release, then begin Stage 5 aggregate synthesis, validation-report, and ARISE-package work. No further model or feature search is authorized.
 
 ## Private Data Separation
 
@@ -115,7 +120,9 @@ The Stage 2 implementation adds:
 - `config/v2_stage2_implementation.json`
 - `config/v2_stage3_implementation.json`
 - `config/v2_stage3_release.json`
-- `config/v2_stage4_method_freeze.json`;
+- `config/v2_stage4_method_freeze.json`
+- `config/v2_stage4_implementation.json`
+- `config/v2_stage4_release.json`;
 - `docs/v2/V2_Stage2_Implementation.md`;
 - `scripts/v2/05_run_stage2_conventional_models.py`;
 - `scripts/v2/06_stage2_conventional_models.R`;
@@ -124,7 +131,11 @@ The Stage 2 implementation adds:
 - `scripts/v2/13_stage3_transportability_prediction.R`
 - `scripts/v2/14_validate_stage3_results.py`
 - `scripts/v2/15_validate_stage3_release.py`
-- `scripts/v2/16_validate_stage4_method_freeze.py`.
+- `scripts/v2/16_validate_stage4_method_freeze.py`
+- `scripts/v2/17_prepare_stage4_reference.R`
+- `scripts/v2/18_run_stage4_ebm.py`
+- `scripts/v2/19_validate_stage4_results.py`
+- `scripts/v2/20_validate_stage4_release.py`.
 
 Run from the repository root:
 
@@ -223,3 +234,26 @@ python .\scripts\v2\16_validate_stage4_method_freeze.py --project-root .
 After validation and commit to `v2-development`, implementation of this one
 frozen model is authorized. No Stage 4 scientific claim, local explanation,
 feature expansion, merge to `main`, or final manuscript claim is authorized.
+
+
+## Stage 4 Release
+
+The governed Stage 4 decision is recorded in:
+
+- `config/v2_stage4_release.json`;
+- `docs/v2/V2_Stage4_Human_Review.md`;
+- `docs/v2/V2_Stage4_Release_Report.md`.
+
+Validate with:
+
+```powershell
+python .\scripts\v2\20_validate_stage4_release.py --project-root .
+```
+
+The frozen EBM did not pass the positive incremental-extension rule. Model C
+remains the preferred prediction model. The cycle-trained acceleration
+functions may be reported only as aggregate descriptive global shapes.
+
+Stage 5 synthesis and ARISE-package preparation are authorized. No local
+explanation, new model or feature search, clinical claim, merge to `main`, or
+final manuscript release is authorized.

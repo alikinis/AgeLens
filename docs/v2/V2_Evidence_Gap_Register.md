@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-EG-001 |
-| Version | 1.2 |
-| Status | Active — Stage 4 method frozen; implementation pending |
+| Version | 1.3 |
+| Status | Active — Stage 4 released; Stage 5 synthesis pending |
 | Date | 2026-07-24 |
 
 ## Status Vocabulary
@@ -39,7 +39,7 @@
 
 Gate 0 is closed.
 
-Gate 1 is closed. Stage 2 and restricted Stage 3 results are released. V2-EG-012 is closed by the Stage 4 method freeze; implementation of the single frozen EBM may begin, while result claims remain blocked by V2-EG-018 and V2-EG-019.
+Gate 1 is closed. Stage 2, restricted Stage 3, and aggregate Stage 4 results are released for V2 development. V2-EG-018 and V2-EG-019 are closed. Stage 5 synthesis and ARISE-package preparation may begin; merge to `main` and final manuscript release remain blocked.
 
 
 ## Stage 2 Result-Review Gap
@@ -59,5 +59,10 @@ Gate 1 is closed. Stage 2 and restricted Stage 3 results are released. V2-EG-012
 
 | ID | Priority | Gap | Disposition | Status |
 | --- | --- | --- | --- | --- |
-| V2-EG-018 | Core | Does a frozen main-effects EBM improve out-of-cycle prediction beyond Model C? | Implement the two cycle directions and the 500-replicate PSU bootstrap under the Stage 4 joint rule. | Open |
-| V2-EG-019 | Important | Is the learned acceleration function reproducible across cycle-trained models? | Compare centered acceleration term functions on the common weighted 1st–99th percentile support; require Spearman correlation at least 0.70 for a stable-shape claim. | Open |
+| V2-EG-018 | Core | Does a frozen main-effects EBM improve out-of-cycle prediction beyond Model C? | No positive extension: Brier delta -0.000970 (95% CI -0.003093 to 0.001152) and AUC delta -0.000161; Model C remains preferred. | Closed |
+| V2-EG-019 | Important | Is the learned acceleration function reproducible across cycle-trained models? | Stable rank shape supported: Spearman 0.980697 across 101 common eligible points; descriptive global interpretation only. | Closed |
+
+
+| ID | Priority | Gap | Disposition | Status |
+| --- | --- | --- | --- | --- |
+| V2-EG-020 | Important | Which prediction model anchors Stage 5 synthesis after the explainable-extension test? | Retain Stage 3 Model C. Model D did not pass the frozen incremental-benefit gate and remains a descriptive global shape sensitivity only. | Closed |
