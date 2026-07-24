@@ -575,7 +575,7 @@ Causal, biological subgroup, clinical threshold, individual-risk, local-explanat
 """
     presentation = f"""# AgeLens V2 ARISE Presentation — Working Outline
 
-**Target duration:** approximately 8 minutes 20 seconds  
+**Target duration:** approximately 8 minutes 20 seconds
 **Status:** working material pending human review
 
 ## Slide 1 — Title and Research Question (0:45)
