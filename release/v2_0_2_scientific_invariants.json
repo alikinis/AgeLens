@@ -1,0 +1,8 @@
+{
+  "release": "v2.0.2",
+  "base_release": "v2.0.1",
+  "hash_rule": "sha256-canonical-lf-v1",
+  "selection": "Governed V2 scientific configs excluding maintenance and Stage 5 candidate metadata, all released V2 scientific tables excluding the Stage 5 source manifest, and all released V2 figures.",
+  "file_count": 79,
+  "tree_sha256": "f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940"
+}

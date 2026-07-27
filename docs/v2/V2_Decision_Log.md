@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 1.6 |
-| Status | Closed — V2 public maintenance release `v2.0.1` |
+| Version | 1.7 |
+| Status | Closed — V2 public maintenance release `v2.0.2` |
 | Date | 2026-07-27 |
 
 ## D2-001 — Preserve V1 as the immutable baseline
@@ -295,4 +295,16 @@
 | Metadata corrections | Synchronize current README/protocol wording, citation version, V2 environment record, complete inventories, and CI checks. |
 | Scientific consequence | None. No scientific config, cohort, estimand, model, aggregate result, figure, or conclusion changes. |
 | Repository consequence | Commit to `v2-development`, annotated `v2.0.1` tag, and public GitHub Release are authorized. Merge to `main` remains unauthorized. |
+| Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |
+
+## D2-029 - Authorize the V2.0.2 documentation and tooling maintenance release
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Authorize the V2.0.2 documentation and tooling maintenance release from `v2-development`, preserving the immutable V2.0.0 and V2.0.1 tags and releases. |
+| Documentation corrections | Reconcile the root V2 quick-start, governed Python environment, current citation, and complete R dependency list. |
+| Tooling corrections | Include `requirements-v2.txt` in generated public snapshots, run the current portable validator on those snapshots, and exercise that path in CI. |
+| Scientific consequence | None. No scientific config, cohort, estimand, model, notebook, aggregate result, figure, or conclusion changes. |
+| Repository consequence | Commit to `v2-development`, annotated `v2.0.2` tag, and public GitHub Release are authorized. Merge to `main` remains unauthorized. |
 | Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |

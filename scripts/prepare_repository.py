@@ -15,6 +15,7 @@ PUBLIC_ROOT_FILES = {
     "README.md",
     "R_PACKAGES.md",
     "requirements.txt",
+    "requirements-v2.txt",
 }
 
 PUBLIC_DIRECTORIES = {
@@ -94,6 +95,20 @@ def run_check(script: Path, repository: Path, name: str) -> None:
         raise RuntimeError(f"{name} failed.")
 
 
+def run_validator(script: Path, repository: Path, name: str) -> None:
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "--project-root",
+            str(repository),
+        ],
+        check=False,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"{name} failed.")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Create a public-safe AgeLens repository snapshot."
@@ -119,14 +134,27 @@ def main() -> int:
 
         preflight = output / "scripts/preflight_repository.py"
         governance = output / "scripts/check_governance_consistency.py"
+        maintenance = (
+            output
+            / "scripts/v2/26_validate_v2_0_2_maintenance.py"
+        )
 
-        if not preflight.exists() or not governance.exists():
+        if (
+            not preflight.exists()
+            or not governance.exists()
+            or not maintenance.exists()
+        ):
             raise FileNotFoundError(
                 "Required public repository checks were not copied."
             )
 
         run_check(preflight, output, "Repository preflight")
         run_check(governance, output, "Governance consistency")
+        run_validator(
+            maintenance,
+            output,
+            "V2.0.2 maintenance validation",
+        )
 
         print()
         print("Public-safe repository prepared successfully:")

@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-EG-001 |
-| Version | 1.6 |
-| Status | Closed for V2.0.1 public maintenance release — scientific limitations retained |
+| Version | 1.7 |
+| Status | Closed for V2.0.2 public maintenance release — scientific limitations retained |
 | Date | 2026-07-27 |
 
 ## Status Vocabulary
@@ -39,7 +39,7 @@
 
 Gate 0 is closed.
 
-Gate 1 is closed. V2-EG-001 through V2-EG-021 are closed for the governed V2 and public-maintenance scope. The original V2.0.0 scientific release remains immutable and V2.0.1 is authorized as the current public maintenance release. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
+Gate 1 is closed. V2-EG-001 through V2-EG-022 are closed for the governed V2 and public-maintenance scope. The original V2.0.0 scientific release and V2.0.1 integrity release remain immutable, and V2.0.2 is authorized as the current public maintenance release. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
 
 
 ## Stage 2 Result-Review Gap
@@ -100,6 +100,24 @@ individual-risk, and external-validation claims.
 The public-release integrity defects are closed without changing the V2.0.0
 scientific release. The canonical digest of 79 governed scientific configs,
 tables, and figures remains
+`f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940`.
+
+Observational design, internal NHANES cross-cycle validation, restricted
+transportability, absence of independent external-cohort validation, and
+absence of clinical-utility evaluation remain substantive scientific
+limitations.
+
+## V2.0.2 Documentation and Tooling Integrity Gap
+
+| ID | Priority | Gap | Disposition | Status |
+| --- | --- | --- | --- | --- |
+| V2-EG-022 | Repository reproducibility | Do the root V2 quick-start, R dependency list, public-snapshot builder, current citation, and CI checks consistently reproduce the V2.0.2 public package? | Root instructions now use `requirements-v2.txt` and the governed Stage 4 runtime versions; the complete required R package list and BioAge pin are documented; generated snapshots include V2 requirements and run the current portable validator; CI exercises the snapshot path. | Closed |
+
+## V2.0.2 Documentation and Tooling Integrity Disposition
+
+The remaining repository documentation and public-snapshot tooling defects are
+closed without changing the V2 scientific release. The canonical digest of 79
+governed scientific configs, tables, and figures remains
 `f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940`.
 
 Observational design, internal NHANES cross-cycle validation, restricted

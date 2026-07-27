@@ -6,6 +6,7 @@ import argparse
 import csv
 import hashlib
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -83,6 +84,7 @@ def scientific_paths(root: Path) -> list[Path]:
         if rel in {
             "config/v2_stage5_release_candidate.json",
             "config/v2_0_1_maintenance.json",
+            "config/v2_0_2_maintenance.json",
         }:
             continue
         paths.append(path)
@@ -238,8 +240,12 @@ def validate(root: Path) -> None:
             raise ValidationError(f"V2 requirement pin mismatch: {name}")
 
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
-    if "version: 2.0.1" not in citation or "date-released: 2026-07-27" not in citation:
-        raise ValidationError("CITATION.cff is not synchronized to V2.0.1.")
+    if re.search(r"(?m)^version: 2\.0\.(?:1|2)\s*$", citation) is None:
+        raise ValidationError(
+            "CITATION.cff is not compatible with the V2.0.1 baseline."
+        )
+    if "date-released: 2026-07-27" not in citation:
+        raise ValidationError("CITATION.cff release date changed.")
 
     require_phrases(
         root / "README.md",
@@ -253,8 +259,8 @@ def validate(root: Path) -> None:
     require_phrases(
         root / "docs/v2/README.md",
         (
-            "Current public maintenance release: `v2.0.1`",
             "Original scientific release: `v2.0.0`",
+            "Prior public maintenance release: `v2.0.1`",
             "Historical Stage 5 Reviewed Aggregate Release",
             "scripts/v2/25_validate_v2_0_1_maintenance.py",
             "V2_Environment.md",
@@ -263,17 +269,15 @@ def validate(root: Path) -> None:
     require_phrases(
         root / "docs/v2/V2_Research_Protocol.md",
         (
-            "| Version | 1.3 |",
-            "Final public maintenance release `v2.0.1`",
             "Historical Authorization Sequence",
             "Historical Stage 5 Authorization",
             "V2.0.1 Maintenance Release",
+            "D2-028",
         ),
     )
     require_phrases(
         root / "docs/v2/V2_Decision_Log.md",
         (
-            "| Version | 1.6 |",
             "D2-028",
             "Authorize the V2.0.1 public maintenance release",
         ),
@@ -281,7 +285,6 @@ def validate(root: Path) -> None:
     require_phrases(
         root / "docs/v2/V2_Evidence_Gap_Register.md",
         (
-            "| Version | 1.6 |",
             "V2-EG-021",
             "V2.0.1 Maintenance Integrity Disposition",
         ),

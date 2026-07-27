@@ -2,14 +2,15 @@
 
 This directory contains the controlled transition from the completed V1 replication and mortality release to V2 external health validation and limited explainable innovation.
 
-Current status: **Current public maintenance release: `v2.0.1`; original scientific release: `v2.0.0`; V1 remains frozen on `main`**.
+Current status: **Current public maintenance release: `v2.0.2`; prior public maintenance release: `v2.0.1`; original scientific release: `v2.0.0`; V1 remains frozen on `main`**.
 
 Gate 0 is closed. The governed primary non-mortality outcome is serious difficulty walking or climbing stairs (`DLQ050`) among canonical V1 participants age 20 years or older with positive `WTSAF4YR` and a valid outcome response.
 
-Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthesis form the unchanged scientific V2 release. V2.0.1 corrects only public-release integrity and portability. The frozen EBM did not demonstrate incremental predictive benefit beyond Model C; Model C remains the preferred prediction model. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
+Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthesis form the unchanged scientific V2 release. V2.0.1 corrected public-release integrity and portability; V2.0.2 completes only repository documentation and snapshot tooling. The frozen EBM did not demonstrate incremental predictive benefit beyond Model C; Model C remains the preferred prediction model. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
 
 ## Documents
 
+- `V2_0_2_Maintenance_Release.md`
 - `V2_0_1_Maintenance_Release.md`
 - `V2_ARISE_Abstract.md`
 - `V2_ARISE_Alignment.md`
@@ -44,6 +45,7 @@ Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthes
 
 ## Governed Configurations
 
+- `config/v2_0_2_maintenance.json`
 - `config/v2_0_1_maintenance.json`
 - `config/v2_final_release.json`
 - `config/v2_gate0_freeze.json`
@@ -90,6 +92,7 @@ Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthes
 - `scripts/v2/23_validate_stage5_release.py`
 - `scripts/v2/24_validate_v2_final_release.py`
 - `scripts/v2/25_validate_v2_0_1_maintenance.py`
+- `scripts/v2/26_validate_v2_0_2_maintenance.py`
 
 ## Gate 0 Result
 
@@ -105,11 +108,13 @@ The six-domain disability composite, fair/poor general health, and PHQ-9 score �
 
 ## Current Release Boundary
 
-Current public maintenance release: `v2.0.1`.
+Current public maintenance release: `v2.0.2`.
 
-Original scientific release: `v2.0.0`. The original tag remains immutable.
-V2.0.1 changes public-release hygiene, source-manifest portability, citation,
-environment documentation, current-facing governance wording, and CI only.
+Prior public maintenance release: `v2.0.1`.
+Original scientific release: `v2.0.0`. Both earlier tags remain immutable.
+V2.0.1 changed public-release hygiene and portability. V2.0.2 changes only
+root environment instructions, R dependency documentation, citation metadata,
+the public-snapshot builder, current governance wording, and CI coverage.
 
 V1 remains frozen and separate on `main`. Final ARISE submission remains a
 separate gate. Final manuscript claims, merge to `main`, and any new model,
@@ -118,7 +123,7 @@ feature, interaction, subgroup, or tuning search remain unauthorized.
 Portable release validation:
 
 ```powershell
-python .\scripts\v2\25_validate_v2_0_1_maintenance.py --project-root .
+python .\scripts\v2\26_validate_v2_0_2_maintenance.py --project-root .
 ```
 
 Environment details: `V2_Environment.md` and `requirements-v2.txt`.
@@ -132,9 +137,9 @@ Participant-level Parquet and raw XPT files remain outside the public Git reposi
 
 The sections below preserve the sequence of Stage 1 through Stage 5
 authorizations. Statements that an action was “unauthorized” describe the gate
-at that historical stage. D2-027 subsequently authorized V2.0.0, and D2-028
-authorizes the V2.0.1 public maintenance release. The maintenance release does
-not alter any scientific result.
+at that historical stage. D2-027 subsequently authorized V2.0.0, D2-028
+authorized V2.0.1, and D2-029 authorizes the V2.0.2 documentation and tooling
+maintenance release. Neither maintenance release alters any scientific result.
 
 ## Stage 1 Support Audit
 

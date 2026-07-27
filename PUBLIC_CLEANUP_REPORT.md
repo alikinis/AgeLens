@@ -16,8 +16,9 @@ Public notebook provenance is recorded in:
 - `release/public_notebook_sanitization.json`
 - `release/public_notebook_inventory.csv`
 
-The V2.0.1 maintenance release closes public display hygiene,
-source-manifest portability, citation, environment, current-documentation,
-portable-validator, and CI coverage issues. Scientific calculations,
-estimates, aggregate scientific tables, figures, models, and conclusions are
-unchanged.
+The V2.0.1 maintenance release closed public display hygiene,
+source-manifest portability, and public-source validation defects. V2.0.2
+completes the root V2 quick-start environment instructions, R dependency
+documentation, the public-snapshot builder, current citation metadata, and CI
+snapshot validation. Scientific calculations, estimates, aggregate scientific
+tables, figures, models, notebooks, and conclusions are unchanged.

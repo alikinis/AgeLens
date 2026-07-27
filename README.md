@@ -10,7 +10,7 @@ all-cause mortality analysis.
 
 [![Repository safety check](https://github.com/alikinis/AgeLens/actions/workflows/repository-safety-check.yml/badge.svg)](https://github.com/alikinis/AgeLens/actions/workflows/repository-safety-check.yml)
 [![License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.x-3776AB.svg?logo=python&logoColor=white)](requirements.txt)
+[![Python](https://img.shields.io/badge/Python-3.13.14-3776AB.svg?logo=python&logoColor=white)](requirements-v2.txt)
 [![R](https://img.shields.io/badge/R-4.5.1-276DC3.svg?logo=r&logoColor=white)](R_PACKAGES.md)
 [![NHANES](https://img.shields.io/badge/NHANES-2015--2018-0A6EBD.svg)](#data-policy)
 
@@ -22,13 +22,16 @@ all-cause mortality analysis.
 
 ## Release map
 
-> **Current V2 maintenance release: AgeLens V2.0.1.** This branch and the
-> `v2.0.1` tag contain the functional-health validation, transportability,
-> cross-cycle prediction, and restricted explainable-model evaluation.
+> **Current V2 maintenance release: AgeLens V2.0.2.** This branch and the
+> `v2.0.2` tag retain the unchanged functional-health validation,
+> transportability, cross-cycle prediction, and restricted
+> explainable-model evaluation.
 > Start with [`docs/v2/README.md`](docs/v2/README.md) and the
-> [`V2.0.1 maintenance record`](docs/v2/V2_0_1_Maintenance_Release.md).
+> [`V2.0.2 maintenance record`](docs/v2/V2_0_2_Maintenance_Release.md).
 >
-> The frozen mortality-replication line remains available as V1.0.1 on
+> The preceding integrity release, **AgeLens V2.0.1**, remains preserved in
+> [`V2_0_1_Maintenance_Release.md`](docs/v2/V2_0_1_Maintenance_Release.md).
+> The frozen mortality-replication line remains available as V1.0.2 on
 > `main`. V2 uses the dedicated environment file
 > [`requirements-v2.txt`](requirements-v2.txt).
 
@@ -180,7 +183,7 @@ source .venv/bin/activate
 
 ```bash
 python -m pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r requirements-v2.txt
 ```
 
 ### 4. Install the R dependencies
@@ -206,14 +209,18 @@ The final governed execution used:
 
 | Component | Version |
 |---|---:|
-| Python | 3.x |
+| Python | 3.13.14 |
 | NumPy | 2.4.6 |
-| pandas | 2.3.3 |
+| pandas | 3.0.5 |
+| SciPy | 1.18.0 |
+| scikit-learn | 1.9.0 |
+| `interpret` | 0.7.8 |
 | R | 4.5.1 |
 | `survey` | 4.5 |
 | `survival` | 3.8-3 |
 
-See [`requirements.txt`](requirements.txt) and
+See [`requirements-v2.txt`](requirements-v2.txt),
+[`docs/v2/V2_Environment.md`](docs/v2/V2_Environment.md), and
 [`R_PACKAGES.md`](R_PACKAGES.md) for environment details.
 
 ---
@@ -282,7 +289,8 @@ The same check runs automatically through GitHub Actions.
 
 Until a DOI is assigned, cite the software repository as:
 
-> Kınış A. **AgeLens**. Version 1.0.0. 2026.  
+> Kınış A. **AgeLens**. Version 2.0.2. 2026.
+>
 > https://github.com/alikinis/AgeLens
 
 Machine-readable citation metadata are available in
