@@ -16,9 +16,10 @@
   "model_d_role": "descriptive_global_shape_sensitivity_only",
   "generated_metadata": {
     "build": "AgeLens-V2-Stage5-20260724b",
-    "source_manifest_sha256": "9809603011357a07d6348d6beca19af6c127c90698319e655ea01ac144266bb2",
+    "source_manifest_sha256": "8b6340e9b36a040ebb3db5acfa65761b426eb7c88af16e9809dc388b19a95f8d",
     "abstract_word_count": 312,
-    "generated_utc": "2026-07-24T13:48:36+00:00"
+    "generated_utc": "2026-07-24T13:48:36+00:00",
+    "source_manifest_hash_rule": "sha256-canonical-lf-v1"
   },
   "released_results": {
     "stage2_primary_prevalence_ratio_per_5_years": 1.1475644343644,

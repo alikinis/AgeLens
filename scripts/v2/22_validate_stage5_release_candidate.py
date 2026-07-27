@@ -17,6 +17,40 @@ BUILD = "AgeLens-V2-Stage5-20260724b"
 TOLERANCE = 1e-10
 MARKER_BEGIN = "<!-- AGELENS_STAGE5_BEGIN -->"
 MARKER_END = "<!-- AGELENS_STAGE5_END -->"
+SOURCE_MANIFEST_HASH_RULE = "sha256-canonical-lf-v1"
+CANONICAL_TEXT_SUFFIXES = {
+    ".csv", ".json", ".md", ".txt", ".yml", ".yaml",
+    ".cff", ".py", ".r", ".ps1",
+}
+V2_0_1_CORE_SCOPE = {
+    ".github/workflows/repository-safety-check.yml",
+    "CITATION.cff",
+    "PUBLIC_CLEANUP_REPORT.md",
+    "README.md",
+    "config/v2_0_1_maintenance.json",
+    "config/v2_stage5_release_candidate.json",
+    "docs/v2/README.md",
+    "docs/v2/V2_0_1_Maintenance_Release.md",
+    "docs/v2/V2_Decision_Log.md",
+    "docs/v2/V2_Environment.md",
+    "docs/v2/V2_Evidence_Gap_Register.md",
+    "docs/v2/V2_Research_Protocol.md",
+    "notebooks/01_data_ingestion.ipynb",
+    "notebooks/04_external_validation.ipynb",
+    "notebooks/05_validation_completion.ipynb",
+    "release/public_notebook_inventory.csv",
+    "release/public_notebook_sanitization.json",
+    "release/repository_build_manifest.json",
+    "release/v2_0_1_scientific_invariants.json",
+    "requirements-v2.txt",
+    "results/tables/v2/21_stage5_source_manifest.csv",
+    "scripts/preflight_repository.py",
+    "scripts/v2/11_validate_stage2_release.py",
+    "scripts/v2/21_build_stage5_synthesis.py",
+    "scripts/v2/22_validate_stage5_release_candidate.py",
+    "scripts/v2/24_validate_v2_final_release.py",
+    "scripts/v2/25_validate_v2_0_1_maintenance.py",
+}
 
 
 class ValidationError(RuntimeError):
@@ -66,12 +100,19 @@ def parse_bool(value: Any) -> bool:
     raise ValidationError(f"Invalid boolean: {value!r}")
 
 
+def canonical_bytes(path: Path) -> bytes:
+    data = path.read_bytes()
+    if path.suffix.lower() in CANONICAL_TEXT_SUFFIXES:
+        return data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return data
+
+
 def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for block in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
+    return hashlib.sha256(canonical_bytes(path)).hexdigest()
+
+
+def canonical_size(path: Path) -> int:
+    return len(canonical_bytes(path))
 
 
 def run_prior_validator(root: Path, relative_script: str) -> None:
@@ -144,6 +185,9 @@ def validate_git_scope(root: Path) -> None:
         "docs/v2/V2_Stage5_Release_Report.md",
         "docs/v2/V2_Stage5_Synthesis.md",
     }
+    if (root / "config/v2_0_1_maintenance.json").is_file():
+        allowed_exact.update(V2_0_1_CORE_SCOPE)
+
     allowed_prefixes = (
         "config/v2_stage5_",
         "results/figures/v2/21_stage5_",
@@ -443,11 +487,16 @@ def validate(root: Path) -> None:
             raise ValidationError(f"Manifest source missing: {row['source_path']}")
         if sha256(source) != row["sha256"]:
             raise ValidationError(f"Manifest hash mismatch: {row['source_path']}")
-        if int(row["size_bytes"]) != source.stat().st_size:
+        if int(row["size_bytes"]) != canonical_size(source):
             raise ValidationError(f"Manifest size mismatch: {row['source_path']}")
     manifest_hash = sha256(root / "results/tables/v2/21_stage5_source_manifest.csv")
     if manifest_hash != candidate["generated_metadata"]["source_manifest_sha256"]:
         raise ValidationError("Source-manifest package hash changed.")
+    if (
+        candidate["generated_metadata"].get("source_manifest_hash_rule")
+        != SOURCE_MANIFEST_HASH_RULE
+    ):
+        raise ValidationError("Source-manifest hash rule changed.")
 
     runtime = row_map(read_csv(root / "results/tables/v2/21_stage5_runtime_versions.csv"), "component")
     if runtime.get("stage5_build", {}).get("version") != BUILD:

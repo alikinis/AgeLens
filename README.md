@@ -20,6 +20,18 @@ all-cause mortality analysis.
 
 ---
 
+## Release map
+
+> **Current V2 maintenance release: AgeLens V2.0.1.** This branch and the
+> `v2.0.1` tag contain the functional-health validation, transportability,
+> cross-cycle prediction, and restricted explainable-model evaluation.
+> Start with [`docs/v2/README.md`](docs/v2/README.md) and the
+> [`V2.0.1 maintenance record`](docs/v2/V2_0_1_Maintenance_Release.md).
+>
+> The frozen mortality-replication line remains available as V1.0.1 on
+> `main`. V2 uses the dedicated environment file
+> [`requirements-v2.txt`](requirements-v2.txt).
+
 ## Overview
 
 AgeLens is a reproducible implementation of **Phenotypic Age** in the
@@ -98,8 +110,11 @@ flowchart LR
 | `release/` | Notebook integrity records and public-release provenance |
 | `scripts/preflight_repository.py` | Safety check for raw data, secrets, personal paths, and unsafe files |
 
-Public notebook copies have absolute local execution paths redacted from
-**outputs only**. Source cells were not changed. The relationship between the
+Public notebook copies have local execution paths redacted and rendered
+participant-level preview outputs removed. Three display-only source
+statements were changed to aggregate schema/count summaries so rerunning the
+notebooks does not recreate participant rows. Scientific calculation cells,
+results, tables, and figures were not changed. The relationship between the
 governed and public notebook hashes is recorded in:
 
 - `release/public_notebook_inventory.csv`

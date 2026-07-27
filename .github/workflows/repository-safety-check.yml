@@ -26,9 +26,23 @@ jobs:
           scripts/preflight_repository.py
           scripts/check_governance_consistency.py
           scripts/prepare_repository.py
+          scripts/v2/22_validate_stage5_release_candidate.py
+          scripts/v2/23_validate_stage5_release.py
+          scripts/v2/24_validate_v2_final_release.py
+          scripts/v2/25_validate_v2_0_1_maintenance.py
 
       - name: Check repository safety
         run: python scripts/preflight_repository.py .
 
       - name: Check governance consistency
         run: python scripts/check_governance_consistency.py .
+
+
+      - name: Check V2 Stage 5 release portability
+        run: python scripts/v2/23_validate_stage5_release.py --project-root .
+
+      - name: Check V2.0.0 baseline release
+        run: python scripts/v2/24_validate_v2_final_release.py --project-root .
+
+      - name: Check V2.0.1 maintenance release
+        run: python scripts/v2/25_validate_v2_0_1_maintenance.py --project-root .

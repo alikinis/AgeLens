@@ -1,0 +1,14 @@
+# Exact core Python analytical versions recorded in the governed Stage 4 run
+numpy==2.4.6
+pandas==3.0.5
+scipy==1.18.0
+scikit-learn==1.9.0
+interpret==0.7.8
+interpret-core==0.7.8
+
+# Public notebook tooling; exact versions were not captured in the governed runtime table
+matplotlib
+pyarrow
+tabulate
+jupyterlab
+ipykernel

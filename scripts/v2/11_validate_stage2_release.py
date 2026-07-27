@@ -439,7 +439,11 @@ def run_validation(project_root: Path) -> None:
 
     release_summary = pd.DataFrame(summary_rows)
     summary_path = tables / "11_stage2_release_summary.csv"
-    release_summary.to_csv(summary_path, index=False)
+    summary_bytes = release_summary.to_csv(
+        index=False,
+        lineterminator="\n",
+    ).encode("utf-8")
+    summary_path.write_bytes(summary_bytes)
 
     log_dir = project_root / "results/logs/v2"
     log_dir.mkdir(parents=True, exist_ok=True)
@@ -498,9 +502,10 @@ def run_validation(project_root: Path) -> None:
             str(log_path.relative_to(project_root)),
         ],
     }
-    log_path.write_text(
-        json.dumps(report, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
+    log_path.write_bytes(
+        (
+            json.dumps(report, indent=2, ensure_ascii=False) + "\n"
+        ).encode("utf-8")
     )
 
     print("STAGE 2 RELEASE VALIDATION PASSED")

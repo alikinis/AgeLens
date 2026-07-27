@@ -1,0 +1,37 @@
+{
+  "document_id": "AL-V2-MR-001",
+  "release": "v2.0.1",
+  "date": "2026-07-27",
+  "status": "final_public_maintenance_release_authorized",
+  "base_release": "v2.0.0",
+  "base_release_commit": "d0a0ecfb9335cb5ef9f8c5f6e618db7ebe7ecc7b",
+  "source_manifest_hash_rule": "sha256-canonical-lf-v1",
+  "scope": {
+    "participant_level_notebook_previews_removed": true,
+    "display_only_source_statements_changed": 3,
+    "stage5_line_ending_independent_hashing": true,
+    "scientific_analysis_changed": false,
+    "scientific_results_changed": false,
+    "aggregate_scientific_tables_or_figures_changed": false,
+    "model_or_feature_search_performed": false,
+    "citation_metadata_updated": true,
+    "v2_environment_file_added": true,
+    "current_documentation_reconciled": true,
+    "ci_v2_release_checks_added": true,
+    "portable_public_source_validation_added": true,
+    "scientific_invariant_digest_recorded": true
+  },
+  "release_tag": "v2.0.1",
+  "portable_validator": "scripts/v2/25_validate_v2_0_1_maintenance.py",
+  "scientific_invariant_tree_sha256": "f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940",
+  "scientific_invariant_file_count": 79,
+  "permissions": {
+    "commit_to_v2_development_authorized": true,
+    "annotated_v2_0_1_tag_authorized": true,
+    "github_release_authorized": true,
+    "merge_to_main_authorized": false,
+    "arise_final_submission_authorized": false,
+    "final_manuscript_claims_authorized": false,
+    "new_model_feature_interaction_subgroup_or_tuning_search_authorized": false
+  }
+}

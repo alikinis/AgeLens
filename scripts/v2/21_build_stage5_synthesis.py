@@ -17,6 +17,11 @@ BUILD = "AgeLens-V2-Stage5-20260724b"
 TOLERANCE = 1e-10
 STAGE5_MARKER_BEGIN = "<!-- AGELENS_STAGE5_BEGIN -->"
 STAGE5_MARKER_END = "<!-- AGELENS_STAGE5_END -->"
+SOURCE_MANIFEST_HASH_RULE = "sha256-canonical-lf-v1"
+CANONICAL_TEXT_SUFFIXES = {
+    ".csv", ".json", ".md", ".txt", ".yml", ".yaml",
+    ".cff", ".py", ".r", ".ps1",
+}
 
 
 class Stage5Error(RuntimeError):
@@ -53,12 +58,19 @@ def write_text(path: Path, text: str) -> None:
     path.write_text(text.rstrip() + "\n", encoding="utf-8", newline="\n")
 
 
+def canonical_bytes(path: Path) -> bytes:
+    data = path.read_bytes()
+    if path.suffix.lower() in CANONICAL_TEXT_SUFFIXES:
+        return data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return data
+
+
 def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for block in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
+    return hashlib.sha256(canonical_bytes(path)).hexdigest()
+
+
+def canonical_size(path: Path) -> int:
+    return len(canonical_bytes(path))
 
 
 def close(actual: Any, expected: Any, tolerance: float = TOLERANCE) -> bool:
@@ -924,7 +936,7 @@ def build(root: Path) -> None:
         manifest_rows.append({
             "source_path": relpath,
             "sha256": sha256(path),
-            "size_bytes": path.stat().st_size,
+            "size_bytes": canonical_size(path),
             "role": "authoritative_released_stage2_to_stage4_source",
         })
     write_csv(tables / "21_stage5_source_manifest.csv", ["source_path", "sha256", "size_bytes", "role"], manifest_rows)
@@ -984,6 +996,7 @@ def build(root: Path) -> None:
         "generated_metadata": {
             "build": BUILD,
             "source_manifest_sha256": sha256(tables / "21_stage5_source_manifest.csv"),
+            "source_manifest_hash_rule": SOURCE_MANIFEST_HASH_RULE,
             "abstract_word_count": word_count,
             "generated_utc": runtime_rows[-1]["version"],
         },

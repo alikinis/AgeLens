@@ -11,6 +11,7 @@ from typing import Any
 
 RELEASE_TAG = "v2.0.0"
 SOURCE_COMMIT = "b8216019fee4aea339ba1eae8fdd3e17e530fbd9"
+RELEASE_COMMIT = "d0a0ecfb9335cb5ef9f8c5f6e618db7ebe7ecc7b"
 
 EXPECTED_CHANGE_SCOPE = {
     "config/v2_final_release.json",
@@ -111,39 +112,21 @@ def validate(root: Path) -> None:
             "Missing final-release files: " + ", ".join(missing)
         )
 
-    branch = run_git(
-        root,
-        "rev-parse",
-        "--abbrev-ref",
-        "HEAD",
-    ).stdout.strip()
-
-    if branch != "v2-development":
-        raise ValidationError(
-            "Final release must be prepared on v2-development."
+    # V2.0.0 is a historical baseline validator. It is intentionally
+    # portable to GitHub source archives and detached tag checkouts.
+    if (root / ".git").exists():
+        ancestor = run_git(
+            root,
+            "merge-base",
+            "--is-ancestor",
+            SOURCE_COMMIT,
+            "HEAD",
+            check=False,
         )
-
-    ancestor = run_git(
-        root,
-        "merge-base",
-        "--is-ancestor",
-        SOURCE_COMMIT,
-        "HEAD",
-        check=False,
-    )
-
-    if ancestor.returncode != 0:
-        raise ValidationError(
-            "The governed pre-release commit is not an ancestor of HEAD."
-        )
-
-    unexpected = changed_paths(root) - EXPECTED_CHANGE_SCOPE
-
-    if unexpected:
-        raise ValidationError(
-            "Changes outside final-release scope: "
-            + ", ".join(sorted(unexpected))
-        )
+        if ancestor.returncode != 0:
+            raise ValidationError(
+                "The governed V2.0.0 pre-release commit is not an ancestor of HEAD."
+            )
 
     stage5 = read_json(root / "config/v2_stage5_release.json")
     historical = stage5.get("permissions", {})
@@ -261,7 +244,7 @@ def validate(root: Path) -> None:
     require_phrases(
         root / "docs/v2/README.md",
         (
-            "AgeLens V2 final public release authorized as `v2.0.0`",
+            "Original scientific release: `v2.0.0`",
             "V1 remains frozen on `main`",
             "Final ARISE submission remains",
             "scripts/v2/24_validate_v2_final_release.py",
@@ -271,8 +254,8 @@ def validate(root: Path) -> None:
     require_phrases(
         root / "docs/v2/V2_Research_Protocol.md",
         (
-            "| Version | 1.2 |",
-            "Final public release `v2.0.0`",
+            "Original V2.0.0 Final Release",
+            "AgeLens V2 final public release `v2.0.0`",
             "AGELENS_V2_FINAL_RELEASE_BEGIN",
         ),
     )
@@ -280,7 +263,7 @@ def validate(root: Path) -> None:
     require_phrases(
         root / "docs/v2/V2_Decision_Log.md",
         (
-            "| Version | 1.5 |",
+            "AgeLens V2 Decision Log",
             "D2-027",
             "Authorize the final public AgeLens V2 release as `v2.0.0`",
         ),
@@ -289,8 +272,8 @@ def validate(root: Path) -> None:
     require_phrases(
         root / "docs/v2/V2_Evidence_Gap_Register.md",
         (
-            "| Version | 1.5 |",
-            "Closed for V2.0.0 public release",
+            "AgeLens V2 Evidence Gap Register",
+            "All governed V2 evidence gaps are closed for the `v2.0.0`",
             "Final V2 Release Disposition",
         ),
     )
@@ -303,25 +286,21 @@ def validate(root: Path) -> None:
         ),
     )
 
-    tag = run_git(
-        root,
-        "rev-parse",
-        "-q",
-        "--verify",
-        f"refs/tags/{RELEASE_TAG}^{{commit}}",
-        check=False,
-    )
-
-    if tag.returncode == 0:
-        tag_commit = tag.stdout.strip()
-        head_commit = run_git(root, "rev-parse", "HEAD").stdout.strip()
-
-        if tag_commit != head_commit:
+    if (root / ".git").exists():
+        tag = run_git(
+            root,
+            "rev-parse",
+            "-q",
+            "--verify",
+            f"refs/tags/{RELEASE_TAG}^{{commit}}",
+            check=False,
+        )
+        if tag.returncode == 0 and tag.stdout.strip() != RELEASE_COMMIT:
             raise ValidationError(
-                f"{RELEASE_TAG} exists but does not point to HEAD."
+                f"{RELEASE_TAG} does not point to the governed V2.0.0 release commit."
             )
 
-    print("V2 FINAL RELEASE VALIDATION PASSED")
+    print("V2.0.0 BASELINE RELEASE VALIDATION PASSED")
     print("AgeLens V2.0.0 final public release is authorized.")
     print("Model C remains the preferred prediction model.")
     print("V1 remains frozen and separate on main.")

@@ -2,49 +2,66 @@
 
 This directory contains the controlled transition from the completed V1 replication and mortality release to V2 external health validation and limited explainable innovation.
 
-Current status: **AgeLens V2 final public release authorized as `v2.0.0` on `v2-development`; V1 remains frozen on `main`**.
+Current status: **Current public maintenance release: `v2.0.1`; original scientific release: `v2.0.0`; V1 remains frozen on `main`**.
 
 Gate 0 is closed. The governed primary non-mortality outcome is serious difficulty walking or climbing stairs (`DLQ050`) among canonical V1 participants age 20 years or older with positive `WTSAF4YR` and a valid outcome response.
 
-Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthesis form the final public V2 release. The frozen EBM did not demonstrate incremental predictive benefit beyond Model C; Model C remains the preferred prediction model. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
+Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthesis form the unchanged scientific V2 release. V2.0.1 corrects only public-release integrity and portability. The frozen EBM did not demonstrate incremental predictive benefit beyond Model C; Model C remains the preferred prediction model. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
 
 ## Documents
 
-- `V2_Research_Protocol.md`
-- `V2_Evidence_Gap_Register.md`
-- `V2_Decision_Log.md`
-- `V2_Analysis_Plan.md`
+- `V2_0_1_Maintenance_Release.md`
+- `V2_ARISE_Abstract.md`
 - `V2_ARISE_Alignment.md`
+- `V2_ARISE_Presentation.md`
+- `V2_Aggregate_Validation_Report.md`
+- `V2_Analysis_Plan.md`
+- `V2_Decision_Log.md`
+- `V2_Environment.md`
+- `V2_Evidence_Gap_Register.md`
+- `V2_Final_Release.md`
 - `V2_Outcome_Feasibility_Matrix.md`
+- `V2_Research_Protocol.md`
 - `V2_Stage0_Evidence_Audit.md`
 - `V2_Stage1_Design_Rationale.md`
 - `V2_Stage1_Freeze_Report.md`
+- `V2_Stage2_Diagnostic_Review.md`
 - `V2_Stage2_Implementation.md`
-- `V2_Stage3_Implementation.md`
+- `V2_Stage2_Release_Report.md`
 - `V2_Stage3_Human_Review.md`
+- `V2_Stage3_Implementation.md`
 - `V2_Stage3_Release_Report.md`
-- `V2_Stage4_Method_Selection.md`
-- `V2_Stage4_Method_Freeze_Report.md`
-- `V2_Stage4_Implementation.md`
 - `V2_Stage4_Human_Review.md`
+- `V2_Stage4_Implementation.md`
+- `V2_Stage4_Method_Freeze_Report.md`
+- `V2_Stage4_Method_Selection.md`
 - `V2_Stage4_Release_Report.md`
-- `V2_Final_Release.md`
+- `V2_Stage5_Human_Review.md`
+- `V2_Stage5_Implementation.md`
+- `V2_Stage5_Release_Candidate.md`
+- `V2_Stage5_Release_Report.md`
+- `V2_Stage5_Synthesis.md`
 
 ## Governed Configurations
 
-- `config/v2_outcome_candidates.json`
+- `config/v2_0_1_maintenance.json`
+- `config/v2_final_release.json`
 - `config/v2_gate0_freeze.json`
+- `config/v2_outcome_candidates.json`
+- `config/v2_stage1_design_draft.json`
 - `config/v2_stage1_freeze.json`
+- `config/v2_stage1_support_audit.json`
 - `config/v2_stage2_implementation.json`
+- `config/v2_stage2_release.json`
+- `config/v2_stage2_review.json`
 - `config/v2_stage3_implementation.json`
 - `config/v2_stage3_release.json`
-- `config/v2_stage4_method_freeze.json`
 - `config/v2_stage4_implementation.json`
+- `config/v2_stage4_method_freeze.json`
 - `config/v2_stage4_release.json`
-- `config/v2_stage5_synthesis.json`
-- `config/v2_stage5_release_candidate.json`
 - `config/v2_stage5_release.json`
-- `config/v2_final_release.json`
+- `config/v2_stage5_release_candidate.json`
+- `config/v2_stage5_synthesis.json`
 
 ## Validation Scripts
 
@@ -55,6 +72,10 @@ Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthes
 - `scripts/v2/05_run_stage2_conventional_models.py`
 - `scripts/v2/06_stage2_conventional_models.R`
 - `scripts/v2/07_validate_stage2_results.py`
+- `scripts/v2/08_run_stage2_diagnostic_review.py`
+- `scripts/v2/09_stage2_diagnostic_review.R`
+- `scripts/v2/10_validate_stage2_review.py`
+- `scripts/v2/11_validate_stage2_release.py`
 - `scripts/v2/12_run_stage3_transportability_prediction.py`
 - `scripts/v2/13_stage3_transportability_prediction.R`
 - `scripts/v2/14_validate_stage3_results.py`
@@ -68,6 +89,7 @@ Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthes
 - `scripts/v2/22_validate_stage5_release_candidate.py`
 - `scripts/v2/23_validate_stage5_release.py`
 - `scripts/v2/24_validate_v2_final_release.py`
+- `scripts/v2/25_validate_v2_0_1_maintenance.py`
 
 ## Gate 0 Result
 
@@ -81,19 +103,38 @@ The corrected pooled feasibility result for the primary outcome was:
 
 The six-domain disability composite, fair/poor general health, and PHQ-9 score ≥10 remain secondary outcomes.
 
-## Final Release Boundary
+## Current Release Boundary
 
-AgeLens V2 is released as `v2.0.0` from `v2-development`.
+Current public maintenance release: `v2.0.1`.
 
-V1 remains frozen and separate on `main`. Final ARISE submission remains
-a separate gate. Final manuscript claims, merge to `main`, and any new
-model, feature, interaction, subgroup, or tuning search remain
-unauthorized.
+Original scientific release: `v2.0.0`. The original tag remains immutable.
+V2.0.1 changes public-release hygiene, source-manifest portability, citation,
+environment documentation, current-facing governance wording, and CI only.
+
+V1 remains frozen and separate on `main`. Final ARISE submission remains a
+separate gate. Final manuscript claims, merge to `main`, and any new model,
+feature, interaction, subgroup, or tuning search remain unauthorized.
+
+Portable release validation:
+
+```powershell
+python .\scripts\v2\25_validate_v2_0_1_maintenance.py --project-root .
+```
+
+Environment details: `V2_Environment.md` and `requirements-v2.txt`.
 
 ## Private Data Separation
 
 Participant-level Parquet and raw XPT files remain outside the public Git repository. Only aggregate tables, validation logs, scripts, and public-safe metadata may be committed.
 
+
+## Release Chronology Note
+
+The sections below preserve the sequence of Stage 1 through Stage 5
+authorizations. Statements that an action was “unauthorized” describe the gate
+at that historical stage. D2-027 subsequently authorized V2.0.0, and D2-028
+authorizes the V2.0.1 public maintenance release. The maintenance release does
+not alter any scientific result.
 
 ## Stage 1 Support Audit
 
@@ -277,9 +318,15 @@ explanation, new model or feature search, clinical claim, merge to `main`, or
 final manuscript release is authorized.
 
 <!-- AGELENS_STAGE5_BEGIN -->
-## Stage 5 Reviewed Aggregate Release
+## Historical Stage 5 Reviewed Aggregate Release
 
-Stage 5 aggregate synthesis and ARISE working materials passed review after corrective revision and may be committed to `v2-development`. Model C remains preferred; Model D remains only a negative incremental result and restricted descriptive global-shape sensitivity. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain unauthorized.
+At the Stage 5 review gate, the aggregate synthesis and ARISE working
+materials passed corrective review and were authorized for commit to
+`v2-development`. At that historical point, final V2 release, final manuscript
+claims, final ARISE submission, and merge to `main` remained unauthorized.
+D2-027 later authorized V2.0.0; D2-028 authorizes the V2.0.1 maintenance
+release. Model C remains preferred and Model D remains only a negative
+incremental result and restricted descriptive global-shape sensitivity.
 
 Run:
 

@@ -1,0 +1,14 @@
+{
+  "document_id": "AL-V2-MI-001",
+  "release": "v2.0.1",
+  "base_release": "v2.0.0",
+  "hash_rule": "canonical-lf-tree-sha256-v1",
+  "selection": {
+    "configs": "config/v2_*.json excluding v2_stage5_release_candidate.json and v2_0_1_maintenance.json",
+    "tables": "results/tables/v2/*.csv excluding 21_stage5_source_manifest.csv",
+    "figures": "results/figures/v2/*.png"
+  },
+  "file_count": 79,
+  "tree_sha256": "f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940",
+  "scientific_content_changed_from_v2_0_0": false
+}

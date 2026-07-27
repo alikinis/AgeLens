@@ -6,8 +6,8 @@
 | --- | --- |
 | Document title | AgeLens V2 Research Protocol |
 | Document ID | AL-V2-RP-001 |
-| Version | 1.2 |
-| Status | Final public release `v2.0.0`; V1 frozen on `main` |
+| Version | 1.3 |
+| Status | Final public maintenance release `v2.0.1`; original V2.0.0 preserved; V1 frozen on `main` |
 | Date | 2026-07-27 |
 | Relationship to V1 | V1 remains frozen as the canonical replication and mortality-validation baseline |
 
@@ -108,7 +108,7 @@ Create aggregate outputs, validation report, abstract, and a 5–10 minute prese
 8. Explainability does not create causal interpretation.
 9. Only aggregate, disclosure-safe outputs enter the public release.
 
-## 9. Immediate Authorization
+## 9. Historical Authorization Sequence
 
 The protocol previously authorized Stage 1 design work:
 
@@ -119,7 +119,7 @@ The protocol previously authorized Stage 1 design work:
 - performance-metric and validation design;
 - governance-document updates.
 
-Gate 1 is closed. Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed aggregate Stage 5 working package are released for V2 development. The frozen EBM did not pass the positive incremental-extension rule, and Model C remains the preferred prediction model. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain subject to a separate final gate.
+At the pre-final Stage 5 point, Gate 1 was closed and Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 working package were released for V2 development. The frozen EBM did not pass the positive incremental-extension rule, and Model C remained the preferred prediction model. The then-pending final-release gate was later resolved by D2-027 for V2.0.0. D2-028 authorizes only the V2.0.1 public maintenance corrections; ARISE submission, final manuscript claims, and merge to `main` remain separate.
 
 
 ## 10. Stage 1 Design Draft
@@ -253,7 +253,7 @@ individual interpretation.
 Model C remains the preferred prediction model. No additional model, feature,
 interaction, or tuning search is authorized.
 
-## 18. Stage 5 Authorization
+## 18. Historical Stage 5 Authorization
 
 Stage 5 may:
 
@@ -271,12 +271,12 @@ separate final gate.
 <!-- AGELENS_STAGE5_BEGIN -->
 ## Stage 5 Reviewed Release
 
-The aggregate Stage 5 synthesis and ARISE working materials passed review after corrective revision and are released for commit to `v2-development`. The release fits no model, opens no participant-level data, changes no V1 artifact, and retains all null, negative, nonlinear, and transportability restrictions. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain separate unauthorized gates.
+At the Stage 5 review gate, the aggregate synthesis and ARISE working materials passed corrective review and were released for commit to `v2-development`. That historical gate fit no model, opened no participant-level analytic data, changed no V1 artifact, and retained all null, negative, nonlinear, and transportability restrictions. D2-027 later authorized V2.0.0. D2-028 authorizes the V2.0.1 public maintenance release; final ARISE submission, final manuscript claims, and merge to `main` remain separate unauthorized gates.
 <!-- AGELENS_STAGE5_END -->
 
 
 <!-- AGELENS_V2_FINAL_RELEASE_BEGIN -->
-## Final V2 Release
+## Original V2.0.0 Final Release
 
 AgeLens V2 final public release `v2.0.0` is authorized from the governed
 `v2-development` branch.
@@ -291,3 +291,18 @@ manuscript claims, merge to `main`, and any new model, feature,
 interaction, subgroup, or tuning search remain unauthorized through this
 release.
 <!-- AGELENS_V2_FINAL_RELEASE_END -->
+
+
+## V2.0.1 Maintenance Release
+
+D2-028 authorizes V2.0.1 as a public maintenance release. It removes rendered
+participant-level notebook previews, makes Stage 5 source-manifest hashing
+line-ending independent, adds portable release validation, reconciles current
+documentation and citation metadata, records the V2 analytical environment,
+and expands CI coverage.
+
+The V2.0.0 scientific release remains immutable. No scientific config, cohort,
+outcome, estimand, model, aggregate result table, figure, or conclusion is
+changed. V1 remains separate on `main`. Final ARISE submission, final
+manuscript claims, merge to `main`, and new scientific modeling remain
+unauthorized.

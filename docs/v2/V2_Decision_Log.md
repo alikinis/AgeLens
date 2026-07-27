@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 1.5 |
-| Status | Closed — V2 final public release `v2.0.0` |
+| Version | 1.6 |
+| Status | Closed — V2 public maintenance release `v2.0.1` |
 | Date | 2026-07-27 |
 
 ## D2-001 — Preserve V1 as the immutable baseline
@@ -282,4 +282,17 @@
 | Model decision | Model C remains preferred; Model D remains a negative incremental result and restricted descriptive global-shape sensitivity only. |
 | V1 consequence | None. V1 remains frozen and separate on `main`. |
 | Repository consequence | Annotated tag `v2.0.0` and a public GitHub Release are authorized. Merge to `main` is not authorized. |
+| Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |
+
+
+## D2-028 - Authorize the V2.0.1 public maintenance release
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Authorize the V2.0.1 public maintenance release from `v2-development`, preserving the immutable V2.0.0 tag and release. |
+| Integrity corrections | Remove participant-row notebook previews; canonicalize Stage 5 text hashing to LF; add portable public-source validation. |
+| Metadata corrections | Synchronize current README/protocol wording, citation version, V2 environment record, complete inventories, and CI checks. |
+| Scientific consequence | None. No scientific config, cohort, estimand, model, aggregate result, figure, or conclusion changes. |
+| Repository consequence | Commit to `v2-development`, annotated `v2.0.1` tag, and public GitHub Release are authorized. Merge to `main` remains unauthorized. |
 | Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |

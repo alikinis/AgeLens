@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 import zipfile
@@ -51,6 +52,17 @@ TEXT_EXTENSIONS = {
 }
 
 MAX_FILE_BYTES = 50 * 1024 * 1024
+
+NOTEBOOK_PARTICIPANT_IDENTIFIERS = (
+    re.compile(r"(?<![A-Za-z0-9_])SEQN(?![A-Za-z0-9_])"),
+    re.compile(
+        r"(?i)(?<![A-Za-z0-9_])participant_id(?![A-Za-z0-9_])"
+    ),
+    re.compile(
+        r"(?i)(?<![A-Za-z0-9_])local_contribution(?![A-Za-z0-9_])"
+    ),
+    re.compile(r"(?i)(?<![A-Za-z0-9_])risk_score(?![A-Za-z0-9_])"),
+)
 
 
 PRIVATE_KEY_LITERAL = '"' + "BEGIN " + "PRIVATE KEY" + '"'
@@ -129,6 +141,83 @@ def inspect_zip(path: Path, root: Path, errors: list[str]) -> None:
                     )
     except zipfile.BadZipFile:
         errors.append(f"Invalid ZIP file: {relative(path, root)}")
+
+
+def notebook_output_text(output: object) -> str:
+    if not isinstance(output, dict):
+        return ""
+
+    parts: list[str] = []
+    output_type = output.get("output_type")
+
+    if output_type == "stream":
+        value = output.get("text", "")
+        parts.append(
+            "".join(value) if isinstance(value, list) else str(value)
+        )
+
+    data = output.get("data", {})
+    if isinstance(data, dict):
+        for value in data.values():
+            parts.append(
+                "".join(value) if isinstance(value, list) else str(value)
+            )
+
+    return "\n".join(parts)
+
+
+def inspect_notebook_outputs(
+    path: Path,
+    root: Path,
+    errors: list[str],
+) -> None:
+    try:
+        notebook = json.loads(path.read_text(encoding="utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        errors.append(
+            f"Invalid notebook JSON in {relative(path, root)}: {exc}"
+        )
+        return
+
+    for cell_index, cell in enumerate(notebook.get("cells", [])):
+        for output_index, output in enumerate(cell.get("outputs", [])):
+            output_type = (
+                output.get("output_type")
+                if isinstance(output, dict)
+                else None
+            )
+            if output_type not in {
+                "display_data",
+                "execute_result",
+                "stream",
+            }:
+                continue
+
+            text = notebook_output_text(output)
+            matched = any(
+                pattern.search(text)
+                for pattern in NOTEBOOK_PARTICIPANT_IDENTIFIERS
+            )
+            if not matched:
+                continue
+
+            if output_type == "stream":
+                lines = text.splitlines()
+                has_table_like_row = any(
+                    re.match(
+                        r"^\s*\d+\s+\d{5,}(?:\s+|$)",
+                        line,
+                    )
+                    for line in lines[1:]
+                )
+                if not has_table_like_row:
+                    continue
+
+            errors.append(
+                "Possible participant-level rendered notebook output in "
+                f"{relative(path, root)} cell {cell_index} "
+                f"output {output_index}"
+            )
 
 
 def inspect_workflow(root: Path, errors: list[str]) -> None:
@@ -210,6 +299,9 @@ def main() -> int:
         if path.suffix.lower() == ".zip":
             inspect_zip(path, root, errors)
 
+        if path.suffix.lower() == ".ipynb":
+            inspect_notebook_outputs(path, root, errors)
+
         if (
             path.suffix.lower() in TEXT_EXTENSIONS
             or path.name in {".gitignore", ".gitattributes"}
@@ -249,8 +341,9 @@ def main() -> int:
 
     print("\nPREFLIGHT PASSED")
     print(
-        "No forbidden raw/participant-level data, unpublished "
-        "manuscript artifacts, personal paths, or common secrets found."
+        "No forbidden raw/participant-level data or rendered notebook "
+        "previews, unpublished manuscript artifacts, personal paths, "
+        "or common secrets found."
     )
     return 0
 

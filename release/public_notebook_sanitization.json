@@ -1,6 +1,6 @@
 {
-  "purpose": "Remove personal absolute local paths from executed notebook outputs before public release.",
-  "scope": "outputs only; notebook source cells were not changed",
+  "purpose": "Remove personal absolute local paths and participant-level previews from public notebook outputs.",
+  "scope": "Executed-output path redaction plus three display-only source changes that prevent participant-level previews from being recreated.",
   "replacement": "<PROJECT_ROOT>",
   "notebooks": [
     {
@@ -14,10 +14,10 @@
     {
       "notebook": "01_data_ingestion.ipynb",
       "governed_sha256": "c9d3ad021a15a36a0aed2247b02f5a291f4b987ef119cf4dab7cd272bb241402",
-      "public_sha256": "15ca6ab44335b280c46f4bbc3e9d94f93845931500d193816e9dc83aa757a278",
+      "public_sha256": "ab9b362792e1311b0cfdf58e97b0fcba91a35dc7c04b439ca0a5ec5ccfd9e74b",
       "redacted_output_path_occurrences": 4,
-      "transformation": "absolute local project paths redacted from executed outputs only",
-      "source_cells_changed": false
+      "transformation": "absolute local project paths redacted; participant-level preview removed; display-only source statement replaced",
+      "source_cells_changed": true
     },
     {
       "notebook": "02_data_preprocessing.ipynb",
@@ -38,18 +38,18 @@
     {
       "notebook": "04_external_validation.ipynb",
       "governed_sha256": "54cbb55e7a1ef1478aabd361b0a68776508c8516e768599d8be36b76adea5579",
-      "public_sha256": "60c6607791c6d3a5964e6606cd35a8ca0a2bf1d50171290fd21e3ab2cff786a3",
+      "public_sha256": "56156ed24197010aa6114a63defacd37cf8df8ae532ca9dd170082d08314a917",
       "redacted_output_path_occurrences": 5,
-      "transformation": "absolute local project paths redacted from executed outputs only",
-      "source_cells_changed": false
+      "transformation": "absolute local project paths redacted; participant-level preview removed; display-only source statement replaced",
+      "source_cells_changed": true
     },
     {
       "notebook": "05_validation_completion.ipynb",
       "governed_sha256": "dbb2ecbac734c008a0f5bd897d58e77d4344b409e6445a58a25bc45ee2373991",
-      "public_sha256": "bc3023b7d38e3b8e341328cbc9bf8cfa2e4ca68c6072a7b47af272c9fc0ac7a4",
+      "public_sha256": "e17429e1d1fc846ad2f4fd4d53082ed934a31e8df4a464b27f93b3042b705e4e",
       "redacted_output_path_occurrences": 6,
-      "transformation": "absolute local project paths redacted from executed outputs only",
-      "source_cells_changed": false
+      "transformation": "absolute local project paths redacted; participant-level preview removed; display-only source statement replaced",
+      "source_cells_changed": true
     },
     {
       "notebook": "06_eg004_creatinine_sensitivity.ipynb",
