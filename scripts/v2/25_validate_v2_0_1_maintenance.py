@@ -86,6 +86,7 @@ def scientific_paths(root: Path) -> list[Path]:
             "config/v2_0_1_maintenance.json",
             "config/v2_0_2_maintenance.json",
             "config/v2_0_3_maintenance.json",
+            "config/v2_0_4_maintenance.json",
         }:
             continue
         paths.append(path)
@@ -241,7 +242,7 @@ def validate(root: Path) -> None:
             raise ValidationError(f"V2 requirement pin mismatch: {name}")
 
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
-    if re.search(r"(?m)^version: 2\.0\.(?:1|2|3)\s*$", citation) is None:
+    if re.search(r"(?m)^version: 2\.0\.(?:1|2|3|4)\s*$", citation) is None:
         raise ValidationError(
             "CITATION.cff is not compatible with the V2.0.1 baseline."
         )
@@ -251,7 +252,6 @@ def validate(root: Path) -> None:
     require_phrases(
         root / "README.md",
         (
-            "AgeLens V2.0.1",
             "docs/v2/V2_0_1_Maintenance_Release.md",
             "requirements-v2.txt",
             "participant-level preview outputs removed",

@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 1.8 |
-| Status | Closed — V2 public maintenance release `v2.0.3` |
+| Version | 1.9 |
+| Status | Closed — V2 public maintenance release `v2.0.4` |
 | Date | 2026-07-27 |
 
 ## D2-001 — Preserve V1 as the immutable baseline
@@ -319,4 +319,16 @@
 | Validator correction | Make the V2.0.3 validator's success claim exactly match the cryptographically governed selection while retaining portable V2.0.1 and V2.0.2 baseline validation. |
 | Scientific consequence | None. No scientific config, cohort, estimand, model, notebook, analysis script, execution script, aggregate result, figure, or conclusion changes. |
 | Repository consequence | Commit to `v2-development`, annotated `v2.0.3` tag, and public GitHub Release are authorized. Merge to `main` remains unauthorized. |
+| Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |
+
+## D2-031 - Authorize the V2.0.4 CI runtime maintenance release
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Authorize the V2.0.4 CI runtime maintenance release from `v2-development`, preserving the immutable V2.0.0 through V2.0.3 tags and releases. |
+| Trigger | The GitHub Actions workflow selected Python 3.12 and executed pandas-dependent release validators without installing dependencies, so a clean hosted runner could fail before validation. |
+| Correction | Select Python 3.13, install `numpy==2.4.6` and `pandas==3.0.5` from `requirements-ci.txt`, verify the CI runtime, and run the V2.0.4 validator plus the public snapshot builder. |
+| Scientific consequence | None. The 79-file and expanded 108-file scientific invariant digests remain unchanged. |
+| Repository consequence | Commit to `v2-development`, annotated `v2.0.4` tag, and public GitHub Release are authorized after the hosted GitHub Actions run passes. Merge to `main` remains unauthorized. |
 | Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |

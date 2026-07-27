@@ -1,0 +1,22 @@
+{
+  "release": "v2.0.4",
+  "base_release": "v2.0.3",
+  "hash_rule": "sha256-canonical-lf-v2",
+  "selection": "The unchanged V2.0.3 expanded invariant: 79 governed scientific configs/tables/figures, all public notebooks, all Python/R scripts in scripts/analysis, and all non-validator Python/R scientific execution scripts in scripts/v2.",
+  "legacy_file_count": 79,
+  "legacy_tree_sha256": "f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940",
+  "expanded_file_count": 108,
+  "expanded_tree_sha256": "e186e85deaf0abc5f7b7cca6d94efcfe1bd07de155f371c7030fece00a4b1fef",
+  "category_counts": {
+    "governed_configs_tables_figures": 79,
+    "public_notebooks": 14,
+    "analysis_scripts": 4,
+    "v2_scientific_execution_scripts": 11
+  },
+  "category_sha256": {
+    "governed_configs_tables_figures": "f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940",
+    "public_notebooks": "ccd03164f7330e9873b227dd4431ac4077c240694aa973bbb8e6a6fe1228190f",
+    "analysis_scripts": "6fd3642b34a90c8bd511fef99f63da4ebaa3c87a754397727884986aebd78914",
+    "v2_scientific_execution_scripts": "4071775040bbedda9ac4563a1408e5f4b2d7161127ccf512dc7feece16e3a0db"
+  }
+}

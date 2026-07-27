@@ -22,21 +22,23 @@ all-cause mortality analysis.
 
 ## Release map
 
-> **Current V2 maintenance release: AgeLens V2.0.3.** This branch and the
-> `v2.0.3` tag retain the unchanged functional-health validation,
-> transportability, cross-cycle prediction, and restricted
-> explainable-model evaluation while extending cryptographic no-change
-> coverage to public notebooks and scientific execution scripts.
+> **Current V2 maintenance release: AgeLens V2.0.4.** This branch and the
+> `v2.0.4` tag retain the unchanged functional-health validation,
+> transportability, cross-cycle prediction, restricted explainable-model
+> evaluation, and 108-artifact cryptographic no-change invariant while repairing the
+> GitHub Actions validator runtime and dependency installation contract.
 > Start with [`docs/v2/README.md`](docs/v2/README.md) and the
-> [`V2.0.3 maintenance record`](docs/v2/V2_0_3_Maintenance_Release.md).
+> [`V2.0.4 maintenance record`](docs/v2/V2_0_4_Maintenance_Release.md).
 >
+> The invariant-coverage release, **AgeLens V2.0.3**, remains preserved in
+> [`V2_0_3_Maintenance_Release.md`](docs/v2/V2_0_3_Maintenance_Release.md).
 > The documentation/tooling release, **AgeLens V2.0.2**, remains preserved in
-> [`V2_0_2_Maintenance_Release.md`](docs/v2/V2_0_2_Maintenance_Release.md),
-> and the earlier integrity release, **AgeLens V2.0.1**, remains preserved in
+> [`V2_0_2_Maintenance_Release.md`](docs/v2/V2_0_2_Maintenance_Release.md), and
+> the earlier integrity release, **AgeLens V2.0.1**, remains preserved in
 > [`V2_0_1_Maintenance_Release.md`](docs/v2/V2_0_1_Maintenance_Release.md).
-> The frozen mortality-replication line remains available as V1.0.2 on
-> `main`. V2 uses the dedicated environment file
-> [`requirements-v2.txt`](requirements-v2.txt).
+> The frozen mortality-replication line remains available as V1.0.2 on `main`.
+> Full V2 reproduction uses [`requirements-v2.txt`](requirements-v2.txt); CI
+> validator dependencies are pinned in [`requirements-ci.txt`](requirements-ci.txt).
 
 ## Overview
 
@@ -284,7 +286,9 @@ The check rejects:
 - damaged ZIP files;
 - files larger than 50 MiB.
 
-The same check runs automatically through GitHub Actions.
+The same check runs automatically through GitHub Actions. The workflow
+uses Python 3.13 and installs the minimal governed validator dependency
+set from `requirements-ci.txt` before executing the V2 release chain.
 
 ---
 
@@ -292,7 +296,7 @@ The same check runs automatically through GitHub Actions.
 
 Until a DOI is assigned, cite the software repository as:
 
-> Kınış A. **AgeLens**. Version 2.0.3. 2026.
+> Kınış A. **AgeLens**. Version 2.0.4. 2026.
 >
 > https://github.com/alikinis/AgeLens
 

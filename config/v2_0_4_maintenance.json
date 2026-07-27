@@ -1,0 +1,41 @@
+{
+  "document_id": "AL-V2-MR-004",
+  "release": "v2.0.4",
+  "release_tag": "v2.0.4",
+  "date": "2026-07-27",
+  "status": "public_ci_runtime_maintenance_authorized",
+  "base_release": "v2.0.3",
+  "base_release_commit": "01f85816f4de7aa73d1159860733845bc9af95d6",
+  "portable_validator": "scripts/v2/28_validate_v2_0_4_maintenance.py",
+  "legacy_scientific_invariant_tree_sha256": "f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940",
+  "legacy_scientific_invariant_file_count": 79,
+  "expanded_scientific_invariant_tree_sha256": "e186e85deaf0abc5f7b7cca6d94efcfe1bd07de155f371c7030fece00a4b1fef",
+  "expanded_scientific_invariant_file_count": 108,
+  "scope": {
+    "github_actions_python_313_enabled": true,
+    "ci_validator_dependencies_declared": true,
+    "ci_dependency_install_step_added": true,
+    "ci_runtime_verification_step_added": true,
+    "current_release_metadata_updated": true,
+    "ci_and_snapshot_current_validator_updated": true,
+    "historical_v2_0_1_validator_compatibility_updated": true,
+    "historical_v2_0_2_validator_compatibility_updated": true,
+    "historical_v2_0_3_validator_compatibility_updated": true,
+    "scientific_analysis_changed": false,
+    "scientific_results_changed": false,
+    "scientific_configs_changed": false,
+    "aggregate_scientific_tables_or_figures_changed": false,
+    "models_or_features_changed": false,
+    "notebooks_changed": false,
+    "analysis_or_execution_scripts_changed": false
+  },
+  "permissions": {
+    "commit_to_v2_development_authorized": true,
+    "annotated_v2_0_4_tag_authorized_after_ci_pass": true,
+    "github_release_authorized_after_ci_pass": true,
+    "merge_to_main_authorized": false,
+    "arise_final_submission_authorized": false,
+    "final_manuscript_claims_authorized": false,
+    "new_model_feature_interaction_subgroup_or_tuning_search_authorized": false
+  }
+}

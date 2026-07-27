@@ -6,8 +6,8 @@
 | --- | --- |
 | Document title | AgeLens V2 Research Protocol |
 | Document ID | AL-V2-RP-001 |
-| Version | 1.5 |
-| Status | Final public maintenance release `v2.0.3`; V2.0.2, V2.0.1, and V2.0.0 preserved; V1 frozen on `main` |
+| Version | 1.6 |
+| Status | Final public maintenance release `v2.0.4`; V2.0.3, V2.0.2, V2.0.1, and V2.0.0 preserved; V1 frozen on `main` |
 | Date | 2026-07-27 |
 | Relationship to V1 | V1 remains frozen as the canonical replication and mortality-validation baseline |
 
@@ -119,7 +119,7 @@ The protocol previously authorized Stage 1 design work:
 - performance-metric and validation design;
 - governance-document updates.
 
-At the pre-final Stage 5 point, Gate 1 was closed and Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 working package were released for V2 development. The frozen EBM did not pass the positive incremental-extension rule, and Model C remained the preferred prediction model. The then-pending final-release gate was later resolved by D2-027 for V2.0.0. D2-028 authorized the V2.0.1 public-integrity corrections, D2-029 authorized only the V2.0.2 documentation and repository-tooling corrections, and D2-030 authorizes only the V2.0.3 invariant-coverage correction. ARISE submission, final manuscript claims, and merge to `main` remain separate.
+At the pre-final Stage 5 point, Gate 1 was closed and Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 working package were released for V2 development. The frozen EBM did not pass the positive incremental-extension rule, and Model C remained the preferred prediction model. The then-pending final-release gate was later resolved by D2-027 for V2.0.0. D2-028 authorized the V2.0.1 public-integrity corrections, D2-029 authorized only the V2.0.2 documentation and repository-tooling corrections, D2-030 authorizes only the V2.0.3 invariant-coverage correction, and D2-031 authorizes only the V2.0.4 CI-runtime correction. ARISE submission, final manuscript claims, and merge to `main` remain separate.
 
 
 ## 10. Stage 1 Design Draft

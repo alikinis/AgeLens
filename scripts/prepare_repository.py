@@ -16,6 +16,7 @@ PUBLIC_ROOT_FILES = {
     "R_PACKAGES.md",
     "requirements.txt",
     "requirements-v2.txt",
+    "requirements-ci.txt",
 }
 
 PUBLIC_DIRECTORIES = {
@@ -136,7 +137,7 @@ def main() -> int:
         governance = output / "scripts/check_governance_consistency.py"
         maintenance = (
             output
-            / "scripts/v2/27_validate_v2_0_3_maintenance.py"
+            / "scripts/v2/28_validate_v2_0_4_maintenance.py"
         )
 
         if (
@@ -153,7 +154,7 @@ def main() -> int:
         run_validator(
             maintenance,
             output,
-            "V2.0.3 maintenance validation",
+            "V2.0.4 maintenance validation",
         )
 
         print()

@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-EG-001 |
-| Version | 1.8 |
-| Status | Closed for V2.0.3 public maintenance release — scientific limitations retained |
+| Version | 1.9 |
+| Status | Closed for V2.0.4 public maintenance release — scientific limitations retained |
 | Date | 2026-07-27 |
 
 ## Status Vocabulary
@@ -39,7 +39,7 @@
 
 Gate 0 is closed.
 
-Gate 1 is closed. V2-EG-001 through V2-EG-023 are closed for the governed V2 and public-maintenance scope. The original V2.0.0 scientific release and the V2.0.1 and V2.0.2 maintenance releases remain immutable, and V2.0.3 is authorized as the current public maintenance release. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
+Gate 1 is closed. V2-EG-001 through V2-EG-024 are closed for the governed V2 and public-maintenance scope. The original V2.0.0 scientific release and V2.0.1 through V2.0.3 maintenance releases remain immutable, and V2.0.4 is authorized as the current public maintenance release. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
 
 
 ## Stage 2 Result-Review Gap
@@ -137,6 +137,25 @@ The validator-coverage limitation is closed without changing the V2 scientific
 release. The prior 79-file digest remains `f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940`. The expanded
 108-file digest is `e186e85deaf0abc5f7b7cca6d94efcfe1bd07de155f371c7030fece00a4b1fef` and directly covers every artifact
 category named in the V2.0.3 no-change assertion.
+
+Observational design, internal NHANES cross-cycle validation, restricted
+transportability, absence of independent external-cohort validation, and
+absence of clinical-utility evaluation remain substantive scientific
+limitations.
+
+## V2.0.4 CI Runtime Integrity Gap
+
+| ID | Priority | Gap | Disposition | Status |
+| --- | --- | --- | --- | --- |
+| V2-EG-024 | Release automation integrity | Can the GitHub Actions workflow execute the pandas-dependent V2 release-validator chain on a clean hosted runner using a runtime consistent with the governed V2 environment? | The workflow now selects Python 3.13, installs pinned NumPy and pandas validator dependencies from `requirements-ci.txt`, verifies the runtime before validation, and runs the V2.0.4 validator and public snapshot builder. | Closed |
+
+## V2.0.4 CI Runtime Integrity Disposition
+
+The hosted-runner dependency defect is closed without changing the V2
+scientific release. The prior 79-file digest remains
+`f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940` and the
+expanded 108-file digest remains
+`e186e85deaf0abc5f7b7cca6d94efcfe1bd07de155f371c7030fece00a4b1fef`.
 
 Observational design, internal NHANES cross-cycle validation, restricted
 transportability, absence of independent external-cohort validation, and

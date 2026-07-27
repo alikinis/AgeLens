@@ -18,7 +18,23 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
+          cache: "pip"
+          cache-dependency-path: requirements-ci.txt
+
+      - name: Install validator dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-ci.txt
+
+      - name: Verify governed CI runtime
+        run: |
+          python - <<'PY'
+          import platform
+          import pandas as pd
+
+          assert platform.python_version_tuple()[:2] == ("3", "13")
+          assert pd.__version__ == "3.0.5"
+          print(f"Python {platform.python_version()}; pandas {pd.__version__}")
+          PY
 
       - name: Compile repository checks
         run: >-
@@ -32,6 +48,7 @@ jobs:
           scripts/v2/25_validate_v2_0_1_maintenance.py
           scripts/v2/26_validate_v2_0_2_maintenance.py
           scripts/v2/27_validate_v2_0_3_maintenance.py
+          scripts/v2/28_validate_v2_0_4_maintenance.py
 
       - name: Check repository safety
         run: python scripts/preflight_repository.py .
@@ -54,6 +71,9 @@ jobs:
 
       - name: Check V2.0.3 maintenance release
         run: python scripts/v2/27_validate_v2_0_3_maintenance.py --project-root .
+
+      - name: Check V2.0.4 maintenance release
+        run: python scripts/v2/28_validate_v2_0_4_maintenance.py --project-root .
 
       - name: Check public snapshot builder
         run: python scripts/prepare_repository.py --project-root . --output "${{ runner.temp }}/agelens-v2-public"

@@ -1,0 +1,4 @@
+# Minimal pinned dependencies for public aggregate validators in GitHub Actions.
+# Versions reconcile to the governed Stage 4 runtime record.
+numpy==2.4.6
+pandas==3.0.5
