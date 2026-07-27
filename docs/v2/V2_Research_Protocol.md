@@ -6,9 +6,9 @@
 | --- | --- |
 | Document title | AgeLens V2 Research Protocol |
 | Document ID | AL-V2-RP-001 |
-| Version | 1.0 |
-| Status | Stage 4 released — Stage 5 synthesis authorized |
-| Date | 2026-07-24 |
+| Version | 1.1 |
+| Status | Stage 5 reviewed working release — final-release review pending |
+| Date | 2026-07-27 |
 | Relationship to V1 | V1 remains frozen as the canonical replication and mortality-validation baseline |
 
 ## 1. Purpose
@@ -119,7 +119,7 @@ The protocol previously authorized Stage 1 design work:
 - performance-metric and validation design;
 - governance-document updates.
 
-Gate 1 is closed. Stage 2, restricted Stage 3, and aggregate Stage 4 results are released for V2 development. The frozen EBM did not pass the positive incremental-extension rule. Model C remains the preferred prediction model, and Stage 5 synthesis is authorized.
+Gate 1 is closed. Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed aggregate Stage 5 working package are released for V2 development. The frozen EBM did not pass the positive incremental-extension rule, and Model C remains the preferred prediction model. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain subject to a separate final gate.
 
 
 ## 10. Stage 1 Design Draft

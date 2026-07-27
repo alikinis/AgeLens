@@ -5,9 +5,9 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 1.3 |
-| Status | Active — Stage 4 released |
-| Date | 2026-07-24 |
+| Version | 1.4 |
+| Status | Active — Stage 5 reviewed working release; final-release review pending |
+| Date | 2026-07-27 |
 
 ## D2-001 — Preserve V1 as the immutable baseline
 

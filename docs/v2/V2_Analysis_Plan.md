@@ -1,8 +1,8 @@
 # AgeLens V2 Analysis Plan
 
-## Version 1.6 — Stage 4 Result Release and Stage 5 Authorization
+## Version 1.7 — Stage 5 Reviewed Synthesis and Finalization Gate
 
-This document defines the frozen Stage 0 elements and the remaining decisions required before final modeling.
+This document records the frozen V2 analysis plan and the reviewed Stage 5 synthesis. No further modeling, feature expansion, interaction search, or tuning is authorized.
 
 ## 1. Frozen V1 Inputs
 

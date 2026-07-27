@@ -2,11 +2,11 @@
 
 This directory contains the controlled transition from the completed V1 replication and mortality release to V2 external health validation and limited explainable innovation.
 
-Current status: **Stage 4 released â€” no positive EBM extension; Stage 5 synthesis authorized**.
+Current status: **Stage 5 reviewed aggregate release completed for `v2-development`; project-owner final-release review pending**.
 
 Gate 0 is closed. The governed primary non-mortality outcome is serious difficulty walking or climbing stairs (`DLQ050`) among canonical V1 participants age 20 years or older with positive `WTSAF4YR` and a valid outcome response.
 
-Stage 2, restricted Stage 3, and aggregate Stage 4 results are released for V2 development. The frozen EBM did not demonstrate incremental predictive benefit beyond Model C; Model C remains the preferred prediction model. Merge to `main` remains unauthorized.
+Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed aggregate Stage 5 working package are released for V2 development. The frozen EBM did not demonstrate incremental predictive benefit beyond Model C; Model C remains the preferred prediction model. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain unauthorized.
 
 ## Documents
 
@@ -70,7 +70,7 @@ The six-domain disability composite, fair/poor general health, and PHQ-9 score â
 
 ## Immediate Next Step
 
-Validate and commit the Stage 4 release, then begin Stage 5 aggregate synthesis, validation-report, and ARISE-package work. No further model or feature search is authorized.
+Complete the project-owner final-release review and verify the current ARISE submission requirements. Final V2 release, final manuscript claims, final ARISE submission, merge to `main`, and any new model, feature, interaction, or tuning search remain unauthorized before that gate.
 
 ## Private Data Separation
 

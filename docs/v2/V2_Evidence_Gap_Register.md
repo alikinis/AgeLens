@@ -5,9 +5,9 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-EG-001 |
-| Version | 1.3 |
-| Status | Active — Stage 4 released; Stage 5 synthesis pending |
-| Date | 2026-07-24 |
+| Version | 1.4 |
+| Status | Active — Stage 5 reviewed working release; final-release limitations retained |
+| Date | 2026-07-27 |
 
 ## Status Vocabulary
 
@@ -39,7 +39,7 @@
 
 Gate 0 is closed.
 
-Gate 1 is closed. Stage 2, restricted Stage 3, and aggregate Stage 4 results are released for V2 development. V2-EG-018 and V2-EG-019 are closed. Stage 5 synthesis and ARISE-package preparation may begin; merge to `main` and final manuscript release remain blocked.
+Gate 1 is closed. Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed aggregate Stage 5 working package are released for V2 development. V2-EG-001 through V2-EG-020 are closed for the authorized V2 scope. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain blocked.
 
 
 ## Stage 2 Result-Review Gap
