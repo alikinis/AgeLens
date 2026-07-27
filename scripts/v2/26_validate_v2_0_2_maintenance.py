@@ -53,6 +53,7 @@ def scientific_paths(root: Path) -> list[Path]:
         "config/v2_stage5_release_candidate.json",
         "config/v2_0_1_maintenance.json",
         "config/v2_0_2_maintenance.json",
+        "config/v2_0_3_maintenance.json",
     }
     for path in sorted((root / "config").glob("v2_*.json")):
         if path.relative_to(root).as_posix() in excluded_configs:
@@ -286,8 +287,13 @@ def validate(root: Path) -> None:
             raise ValidationError(f"{label} invariant digest mismatch.")
 
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
-    if "version: 2.0.2" not in citation:
-        raise ValidationError("CITATION.cff is not synchronized to V2.0.2.")
+    if not any(
+        marker in citation
+        for marker in ("version: 2.0.2", "version: 2.0.3")
+    ):
+        raise ValidationError(
+            "CITATION.cff is not compatible with the V2.0.2 baseline."
+        )
     if "date-released: 2026-07-27" not in citation:
         raise ValidationError("CITATION.cff release date changed.")
 
@@ -306,7 +312,6 @@ def validate(root: Path) -> None:
         "| SciPy | 1.18.0 |",
         "| scikit-learn | 1.9.0 |",
         "| `interpret` | 0.7.8 |",
-        "Version 2.0.2. 2026.",
     ):
         if phrase not in readme:
             raise ValidationError("README correction missing: " + phrase)
@@ -338,8 +343,6 @@ def validate(root: Path) -> None:
         root / "scripts/prepare_repository.py",
         (
             '"requirements-v2.txt"',
-            "26_validate_v2_0_2_maintenance.py",
-            "V2.0.2 maintenance validation",
         ),
     )
     require_phrases(
@@ -353,8 +356,8 @@ def validate(root: Path) -> None:
     require_phrases(
         root / "docs/v2/README.md",
         (
-            "Current public maintenance release: `v2.0.2`",
-            "Prior public maintenance release: `v2.0.1`",
+            "Prior public maintenance release: `v2.0.2`",
+            "Earlier public maintenance release: `v2.0.1`",
             "V2_0_2_Maintenance_Release.md",
             "config/v2_0_2_maintenance.json",
             "scripts/v2/26_validate_v2_0_2_maintenance.py",
@@ -363,15 +366,13 @@ def validate(root: Path) -> None:
     require_phrases(
         root / "docs/v2/V2_Research_Protocol.md",
         (
-            "| Version | 1.4 |",
-            "Final public maintenance release `v2.0.2`",
+            "V2.0.2 documentation and repository-tooling corrections",
             "D2-029",
         ),
     )
     require_phrases(
         root / "docs/v2/V2_Decision_Log.md",
         (
-            "| Version | 1.7 |",
             "D2-029",
             "Authorize the V2.0.2 documentation and tooling maintenance release",
         ),
@@ -379,7 +380,6 @@ def validate(root: Path) -> None:
     require_phrases(
         root / "docs/v2/V2_Evidence_Gap_Register.md",
         (
-            "| Version | 1.7 |",
             "V2-EG-022",
             "V2.0.2 Documentation and Tooling Integrity Disposition",
         ),

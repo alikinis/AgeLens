@@ -18,7 +18,10 @@ Public notebook provenance is recorded in:
 
 The V2.0.1 maintenance release closed public display hygiene,
 source-manifest portability, and public-source validation defects. V2.0.2
-completes the root V2 quick-start environment instructions, R dependency
+completed the root V2 quick-start environment instructions, R dependency
 documentation, the public-snapshot builder, current citation metadata, and CI
-snapshot validation. Scientific calculations, estimates, aggregate scientific
-tables, figures, models, notebooks, and conclusions are unchanged.
+snapshot validation. V2.0.3 extends the cryptographic invariant from 79
+governed configs, tables, and figures to 108 governed artifacts by adding all
+14 public notebooks, four analysis scripts, and 11 V2 scientific execution
+scripts. Scientific calculations, estimates, aggregate scientific tables,
+figures, models, notebooks, execution scripts, and conclusions are unchanged.

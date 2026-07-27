@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 1.7 |
-| Status | Closed — V2 public maintenance release `v2.0.2` |
+| Version | 1.8 |
+| Status | Closed — V2 public maintenance release `v2.0.3` |
 | Date | 2026-07-27 |
 
 ## D2-001 — Preserve V1 as the immutable baseline
@@ -307,4 +307,16 @@
 | Tooling corrections | Include `requirements-v2.txt` in generated public snapshots, run the current portable validator on those snapshots, and exercise that path in CI. |
 | Scientific consequence | None. No scientific config, cohort, estimand, model, notebook, aggregate result, figure, or conclusion changes. |
 | Repository consequence | Commit to `v2-development`, annotated `v2.0.2` tag, and public GitHub Release are authorized. Merge to `main` remains unauthorized. |
+| Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |
+
+## D2-030 - Authorize the V2.0.3 invariant-coverage maintenance release
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Authorize the V2.0.3 invariant-coverage maintenance release from `v2-development`, preserving the immutable V2.0.0, V2.0.1, and V2.0.2 tags and releases. |
+| Integrity correction | Extend the canonical no-change invariant from 79 governed configs, tables, and figures to 108 artifacts by adding all 14 public notebooks, four analysis scripts, and 11 V2 scientific execution scripts. |
+| Validator correction | Make the V2.0.3 validator's success claim exactly match the cryptographically governed selection while retaining portable V2.0.1 and V2.0.2 baseline validation. |
+| Scientific consequence | None. No scientific config, cohort, estimand, model, notebook, analysis script, execution script, aggregate result, figure, or conclusion changes. |
+| Repository consequence | Commit to `v2-development`, annotated `v2.0.3` tag, and public GitHub Release are authorized. Merge to `main` remains unauthorized. |
 | Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |

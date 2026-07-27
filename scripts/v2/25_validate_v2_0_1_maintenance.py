@@ -85,6 +85,7 @@ def scientific_paths(root: Path) -> list[Path]:
             "config/v2_stage5_release_candidate.json",
             "config/v2_0_1_maintenance.json",
             "config/v2_0_2_maintenance.json",
+            "config/v2_0_3_maintenance.json",
         }:
             continue
         paths.append(path)
@@ -240,7 +241,7 @@ def validate(root: Path) -> None:
             raise ValidationError(f"V2 requirement pin mismatch: {name}")
 
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
-    if re.search(r"(?m)^version: 2\.0\.(?:1|2)\s*$", citation) is None:
+    if re.search(r"(?m)^version: 2\.0\.(?:1|2|3)\s*$", citation) is None:
         raise ValidationError(
             "CITATION.cff is not compatible with the V2.0.1 baseline."
         )
@@ -260,7 +261,7 @@ def validate(root: Path) -> None:
         root / "docs/v2/README.md",
         (
             "Original scientific release: `v2.0.0`",
-            "Prior public maintenance release: `v2.0.1`",
+            "V2_0_1_Maintenance_Release.md",
             "Historical Stage 5 Reviewed Aggregate Release",
             "scripts/v2/25_validate_v2_0_1_maintenance.py",
             "V2_Environment.md",

@@ -31,6 +31,7 @@ jobs:
           scripts/v2/24_validate_v2_final_release.py
           scripts/v2/25_validate_v2_0_1_maintenance.py
           scripts/v2/26_validate_v2_0_2_maintenance.py
+          scripts/v2/27_validate_v2_0_3_maintenance.py
 
       - name: Check repository safety
         run: python scripts/preflight_repository.py .
@@ -50,6 +51,9 @@ jobs:
 
       - name: Check V2.0.2 maintenance release
         run: python scripts/v2/26_validate_v2_0_2_maintenance.py --project-root .
+
+      - name: Check V2.0.3 maintenance release
+        run: python scripts/v2/27_validate_v2_0_3_maintenance.py --project-root .
 
       - name: Check public snapshot builder
         run: python scripts/prepare_repository.py --project-root . --output "${{ runner.temp }}/agelens-v2-public"

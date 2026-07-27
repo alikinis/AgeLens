@@ -22,14 +22,17 @@ all-cause mortality analysis.
 
 ## Release map
 
-> **Current V2 maintenance release: AgeLens V2.0.2.** This branch and the
-> `v2.0.2` tag retain the unchanged functional-health validation,
+> **Current V2 maintenance release: AgeLens V2.0.3.** This branch and the
+> `v2.0.3` tag retain the unchanged functional-health validation,
 > transportability, cross-cycle prediction, and restricted
-> explainable-model evaluation.
+> explainable-model evaluation while extending cryptographic no-change
+> coverage to public notebooks and scientific execution scripts.
 > Start with [`docs/v2/README.md`](docs/v2/README.md) and the
-> [`V2.0.2 maintenance record`](docs/v2/V2_0_2_Maintenance_Release.md).
+> [`V2.0.3 maintenance record`](docs/v2/V2_0_3_Maintenance_Release.md).
 >
-> The preceding integrity release, **AgeLens V2.0.1**, remains preserved in
+> The documentation/tooling release, **AgeLens V2.0.2**, remains preserved in
+> [`V2_0_2_Maintenance_Release.md`](docs/v2/V2_0_2_Maintenance_Release.md),
+> and the earlier integrity release, **AgeLens V2.0.1**, remains preserved in
 > [`V2_0_1_Maintenance_Release.md`](docs/v2/V2_0_1_Maintenance_Release.md).
 > The frozen mortality-replication line remains available as V1.0.2 on
 > `main`. V2 uses the dedicated environment file
@@ -289,7 +292,7 @@ The same check runs automatically through GitHub Actions.
 
 Until a DOI is assigned, cite the software repository as:
 
-> Kınış A. **AgeLens**. Version 2.0.2. 2026.
+> Kınış A. **AgeLens**. Version 2.0.3. 2026.
 >
 > https://github.com/alikinis/AgeLens
 

@@ -136,7 +136,7 @@ def main() -> int:
         governance = output / "scripts/check_governance_consistency.py"
         maintenance = (
             output
-            / "scripts/v2/26_validate_v2_0_2_maintenance.py"
+            / "scripts/v2/27_validate_v2_0_3_maintenance.py"
         )
 
         if (
@@ -153,7 +153,7 @@ def main() -> int:
         run_validator(
             maintenance,
             output,
-            "V2.0.2 maintenance validation",
+            "V2.0.3 maintenance validation",
         )
 
         print()
