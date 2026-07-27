@@ -53,6 +53,36 @@ TEXT_EXTENSIONS = {
 MAX_FILE_BYTES = 50 * 1024 * 1024
 
 
+PRIVATE_KEY_LITERAL = '"' + "BEGIN " + "PRIVATE KEY" + '"'
+
+INTENTIONAL_SCANNER_LITERALS: dict[str, tuple[str, ...]] = {
+    "scripts/v2/21_build_stage5_synthesis.py": (
+        PRIVATE_KEY_LITERAL,
+    ),
+    "scripts/v2/22_validate_stage5_release_candidate.py": (
+        PRIVATE_KEY_LITERAL,
+        r'r"(?:[A-Za-z]:\\Users\\|/Users/|/home/)"',
+    ),
+}
+
+
+def mask_intentional_scanner_literals(
+    text: str,
+    rel: str,
+    errors: list[str],
+) -> str:
+    """Mask only exact, governed security-scanner definition literals."""
+    for literal in INTENTIONAL_SCANNER_LITERALS.get(rel, ()):
+        count = text.count(literal)
+        if count != 1:
+            errors.append(
+                "Intentional scanner literal count changed in "
+                f"{rel}: expected 1, found {count} for {literal!r}"
+            )
+            continue
+        text = text.replace(literal, "", 1)
+    return text
+
 def relative(path: Path, root: Path) -> str:
     return path.relative_to(root).as_posix()
 
@@ -189,14 +219,20 @@ def main() -> int:
                 errors="ignore",
             )
 
+            scan_text = mask_intentional_scanner_literals(
+                text,
+                rel,
+                errors,
+            )
+
             for label, pattern in SECRET_PATTERNS.items():
-                if pattern.search(text):
+                if pattern.search(scan_text):
                     errors.append(f"Possible {label} in {rel}")
 
             # The checker source contains the regex definitions themselves.
             if path.resolve() != this_script:
                 for label, pattern in PERSONAL_PATH_PATTERNS.items():
-                    if pattern.search(text):
+                    if pattern.search(scan_text):
                         errors.append(f"Possible {label} in {rel}")
 
     inspect_workflow(root, errors)
