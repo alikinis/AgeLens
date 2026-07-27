@@ -1,7 +1,7 @@
 # AgeLens V2 ARISE Presentation — Working Outline
 
 **Target duration:** approximately 8 minutes 20 seconds
-**Status:** working material pending human review
+**Status:** reviewed working material; final recording and submission pending project-owner approval
 
 ## Slide 1 — Title and Research Question (0:45)
 
@@ -97,7 +97,7 @@
 
 **Recommended visual:** `21_stage5_evidence_synthesis.png`.
 
-**Speaker notes:** Close with observational and internal-NHANES limitations. No causal, clinical, threshold, or individual-risk claim is made. Human review and final release remain pending.
+**Speaker notes:** Close with observational and internal-NHANES limitations. No causal, clinical, threshold, or individual-risk claim is made. Human review of the working materials is complete; final V2 release and ARISE submission remain pending separate project-owner approval.
 
 ## Take-home Message
 
