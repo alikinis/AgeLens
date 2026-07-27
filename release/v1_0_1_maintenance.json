@@ -1,0 +1,15 @@
+{
+  "document_id": "AL-V1-MR-001",
+  "release": "v1.0.1",
+  "date": "2026-07-27",
+  "status": "public_safety_maintenance_authorized",
+  "base_release": "v1.0.0",
+  "scope": {
+    "participant_level_notebook_previews_removed": true,
+    "display_only_source_statements_changed": 3,
+    "scientific_calculation_cells_changed": false,
+    "scientific_results_changed": false,
+    "aggregate_tables_or_figures_changed": false
+  },
+  "v1_scientific_release_immutable": true
+}

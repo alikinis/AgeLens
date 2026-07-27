@@ -119,14 +119,32 @@ def main() -> int:
 
         preflight = output / "scripts/preflight_repository.py"
         governance = output / "scripts/check_governance_consistency.py"
+        maintenance = output / "scripts/validate_v1_0_1_maintenance.py"
 
-        if not preflight.exists() or not governance.exists():
+        if (
+            not preflight.exists()
+            or not governance.exists()
+            or not maintenance.exists()
+        ):
             raise FileNotFoundError(
                 "Required public repository checks were not copied."
             )
 
         run_check(preflight, output, "Repository preflight")
         run_check(governance, output, "Governance consistency")
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(maintenance),
+                "--project-root",
+                str(output),
+            ],
+            check=False,
+        )
+        if result.returncode != 0:
+            raise RuntimeError(
+                "V1.0.1 maintenance validation failed."
+            )
 
         print()
         print("Public-safe repository prepared successfully:")

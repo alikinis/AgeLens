@@ -41,6 +41,8 @@ This public repository contains code, governed methodology, aggregate results,
 and reproducibility records. It does **not** distribute participant-level data
 or the unpublished manuscript.
 
+**Maintenance release:** `v1.0.1` removes rendered participant-level notebook previews and strengthens the automated public-safety scan; scientific V1 results are unchanged.
+
 ---
 
 ## Main result
@@ -99,8 +101,10 @@ flowchart LR
 | `scripts/preflight_repository.py` | Safety check for raw data, secrets, personal paths, and unsafe files |
 
 Public notebook copies have absolute local execution paths redacted from
-**outputs only**. Source cells were not changed. The relationship between the
-governed and public notebook hashes is recorded in:
+outputs. Three display-only statements were also changed so rerunning the public
+notebooks cannot recreate participant-level previews. No scientific calculation
+cell, cohort rule, estimate, aggregate table, figure, or conclusion was changed.
+The relationship between governed and public notebook hashes is recorded in:
 
 - `release/public_notebook_inventory.csv`
 - `release/public_notebook_sanitization.json`
