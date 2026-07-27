@@ -119,7 +119,7 @@ def main() -> int:
 
         preflight = output / "scripts/preflight_repository.py"
         governance = output / "scripts/check_governance_consistency.py"
-        maintenance = output / "scripts/validate_v1_0_1_maintenance.py"
+        maintenance = output / "scripts/validate_v1_0_2_maintenance.py"
 
         if (
             not preflight.exists()
@@ -143,7 +143,7 @@ def main() -> int:
         )
         if result.returncode != 0:
             raise RuntimeError(
-                "V1.0.1 maintenance validation failed."
+                "V1.0.2 maintenance validation failed."
             )
 
         print()

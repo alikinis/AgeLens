@@ -41,7 +41,7 @@ This public repository contains code, governed methodology, aggregate results,
 and reproducibility records. It does **not** distribute participant-level data
 or the unpublished manuscript.
 
-**Maintenance release:** `v1.0.1` removes rendered participant-level notebook previews and strengthens the automated public-safety scan; scientific V1 results are unchanged.
+**Maintenance release:** `v1.0.2` retains the V1.0.1 public-safety corrections and completes the R dependency documentation, citation metadata, and public-snapshot validation; scientific V1 results are unchanged.
 
 ---
 
@@ -271,7 +271,7 @@ The same check runs automatically through GitHub Actions.
 
 Until a DOI is assigned, cite the software repository as:
 
-> Kınış A. **AgeLens**. Version 1.0.0. 2026.  
+> Kınış A. **AgeLens**. Version 1.0.2. 2026.
 > https://github.com/alikinis/AgeLens
 
 Machine-readable citation metadata are available in

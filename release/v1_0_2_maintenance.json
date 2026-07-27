@@ -1,0 +1,25 @@
+{
+  "release": "v1.0.2",
+  "release_tag": "v1.0.2",
+  "date": "2026-07-27",
+  "status": "public_documentation_maintenance_authorized",
+  "base_release": "v1.0.1",
+  "scope": {
+    "r_dependency_documentation_completed": true,
+    "readme_citation_updated": true,
+    "citation_metadata_updated": true,
+    "public_snapshot_validation_updated": true,
+    "ci_validation_updated": true,
+    "scientific_code_changed": false,
+    "scientific_calculations_changed": false,
+    "scientific_results_changed": false,
+    "aggregate_tables_or_figures_changed": false,
+    "notebooks_changed": false
+  },
+  "permissions": {
+    "commit_to_main_authorized": true,
+    "annotated_v1_0_2_tag_authorized": true,
+    "github_release_authorized": true,
+    "scientific_scope_expansion_authorized": false
+  }
+}

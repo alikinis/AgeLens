@@ -27,6 +27,7 @@ jobs:
           scripts/check_governance_consistency.py
           scripts/prepare_repository.py
           scripts/validate_v1_0_1_maintenance.py
+          scripts/validate_v1_0_2_maintenance.py
 
       - name: Check repository safety
         run: python scripts/preflight_repository.py .
@@ -34,5 +35,11 @@ jobs:
       - name: Check governance consistency
         run: python scripts/check_governance_consistency.py .
 
-      - name: Check V1.0.1 maintenance package
+      - name: Check V1.0.1 maintenance baseline
         run: python scripts/validate_v1_0_1_maintenance.py --project-root .
+
+      - name: Check V1.0.2 maintenance package
+        run: python scripts/validate_v1_0_2_maintenance.py --project-root .
+
+      - name: Check public snapshot builder
+        run: python scripts/prepare_repository.py --project-root . --output "${{ runner.temp }}/agelens-v1-public"

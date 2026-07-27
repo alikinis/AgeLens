@@ -214,14 +214,14 @@ def validate(root: Path) -> None:
             )
 
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
-    for phrase in (
-        "version: 1.0.1",
-        "date-released: 2026-07-27",
-    ):
-        if phrase not in citation:
-            raise ValidationError(
-                f"Citation metadata missing: {phrase}"
-            )
+    if re.search(r"(?m)^version: 1\.0\.(?:1|2)\s*$", citation) is None:
+        raise ValidationError(
+            "Citation metadata is not compatible with V1.0.1 maintenance."
+        )
+    if "date-released: 2026-07-27" not in citation:
+        raise ValidationError(
+            "Citation release date changed."
+        )
 
     print("V1.0.1 MAINTENANCE VALIDATION PASSED")
     print("Participant-level notebook previews are absent.")
