@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-EG-001 |
-| Version | 1.4 |
-| Status | Active — Stage 5 reviewed working release; final-release limitations retained |
+| Version | 1.5 |
+| Status | Closed for V2.0.0 public release — scientific limitations retained |
 | Date | 2026-07-27 |
 
 ## Status Vocabulary
@@ -39,7 +39,7 @@
 
 Gate 0 is closed.
 
-Gate 1 is closed. Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed aggregate Stage 5 working package are released for V2 development. V2-EG-001 through V2-EG-020 are closed for the authorized V2 scope. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain blocked.
+Gate 1 is closed. V2-EG-001 through V2-EG-020 are closed for the governed V2 scope. AgeLens V2 final public release `v2.0.0` is authorized. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
 
 
 ## Stage 2 Result-Review Gap
@@ -72,3 +72,18 @@ Gate 1 is closed. Stage 2, restricted Stage 3, aggregate Stage 4, and the review
 
 Stage 5 review does not close scientific limits by inference. Observational design, internal NHANES cross-cycle validation, restricted transportability, absence of independent external-cohort validation, and absence of clinical utility remain explicit limitations. They do not block the reviewed working package but continue to block unsupported final claims.
 <!-- AGELENS_STAGE5_END -->
+
+
+## Final V2 Release Disposition
+
+All governed V2 evidence gaps are closed for the `v2.0.0`
+public-release scope.
+
+Closure does not remove the substantive limitations of the work.
+Observational design, internal NHANES cross-cycle validation, restricted
+transportability, absence of independent external-cohort validation,
+and absence of clinical-utility evaluation remain explicit.
+
+Those limitations do not block the final public V2 release, but they
+continue to block unsupported causal, clinical, threshold,
+individual-risk, and external-validation claims.

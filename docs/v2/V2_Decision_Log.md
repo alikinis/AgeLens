@@ -5,8 +5,8 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 1.4 |
-| Status | Active — Stage 5 reviewed working release; final-release review pending |
+| Version | 1.5 |
+| Status | Closed — V2 final public release `v2.0.0` |
 | Date | 2026-07-27 |
 
 ## D2-001 — Preserve V1 as the immutable baseline
@@ -270,3 +270,16 @@
 
 **Decision:** Release the corrected aggregate Stage 5 synthesis and ARISE working package for commit to `v2-development`. Retain Model C as preferred; retain Model D only as a negative incremental result and restricted descriptive global-shape sensitivity. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain unauthorized.
 <!-- AGELENS_STAGE5_END -->
+
+
+## D2-027 - Authorize the final public AgeLens V2 release
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Authorize the final public AgeLens V2 release as `v2.0.0` from `v2-development`. |
+| Scientific scope | No new analysis, model, feature, interaction, subgroup, tuning exercise, or participant-level public output is introduced. |
+| Model decision | Model C remains preferred; Model D remains a negative incremental result and restricted descriptive global-shape sensitivity only. |
+| V1 consequence | None. V1 remains frozen and separate on `main`. |
+| Repository consequence | Annotated tag `v2.0.0` and a public GitHub Release are authorized. Merge to `main` is not authorized. |
+| Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |

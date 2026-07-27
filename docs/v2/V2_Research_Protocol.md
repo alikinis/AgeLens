@@ -6,8 +6,8 @@
 | --- | --- |
 | Document title | AgeLens V2 Research Protocol |
 | Document ID | AL-V2-RP-001 |
-| Version | 1.1 |
-| Status | Stage 5 reviewed working release — final-release review pending |
+| Version | 1.2 |
+| Status | Final public release `v2.0.0`; V1 frozen on `main` |
 | Date | 2026-07-27 |
 | Relationship to V1 | V1 remains frozen as the canonical replication and mortality-validation baseline |
 
@@ -273,3 +273,21 @@ separate final gate.
 
 The aggregate Stage 5 synthesis and ARISE working materials passed review after corrective revision and are released for commit to `v2-development`. The release fits no model, opens no participant-level data, changes no V1 artifact, and retains all null, negative, nonlinear, and transportability restrictions. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain separate unauthorized gates.
 <!-- AGELENS_STAGE5_END -->
+
+
+<!-- AGELENS_V2_FINAL_RELEASE_BEGIN -->
+## Final V2 Release
+
+AgeLens V2 final public release `v2.0.0` is authorized from the governed
+`v2-development` branch.
+
+The release retains Model C as the preferred prediction model, preserves
+the negative Model D incremental result, and retains all observational,
+transportability, external-validation, clinical-utility, and disclosure
+limitations.
+
+V1 remains frozen and separate on `main`. Final ARISE submission, final
+manuscript claims, merge to `main`, and any new model, feature,
+interaction, subgroup, or tuning search remain unauthorized through this
+release.
+<!-- AGELENS_V2_FINAL_RELEASE_END -->

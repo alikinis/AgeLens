@@ -1,0 +1,42 @@
+{
+  "document_id": "AL-V2-FR-001",
+  "document_version": "1.0",
+  "release_version": "2.0.0",
+  "release_tag": "v2.0.0",
+  "date": "2026-07-27",
+  "status": "final_public_release_authorized",
+  "source_branch": "v2-development",
+  "pre_release_source_commit": "b8216019fee4aea339ba1eae8fdd3e17e530fbd9",
+  "tag_rule": "The annotated v2.0.0 tag must point to the commit containing this record and passing the final validator.",
+  "project_owner_review": {
+    "status": "completed",
+    "decision": "authorize_final_public_v2_release",
+    "scientific_scope_changed": false,
+    "new_analysis_or_model_fitted": false
+  },
+  "scientific_decision": {
+    "preferred_prediction_model": "Stage3_Model_C",
+    "model_d_incremental_benefit_supported": false,
+    "model_d_role": "negative_incremental_result_and_descriptive_global_shape_sensitivity_only",
+    "stage2_nonlinearity_retained": true,
+    "stage3_transportability_restricted": true,
+    "null_and_negative_findings_retained": true
+  },
+  "relationship_to_v1": {
+    "v1_immutable": true,
+    "v1_formula_changed": false,
+    "v1_harmonization_changed": false,
+    "v1_mortality_changed": false,
+    "v1_results_changed": false,
+    "merge_to_main_required": false
+  },
+  "permissions": {
+    "final_v2_public_release_authorized": true,
+    "annotated_v2_0_0_tag_authorized": true,
+    "github_release_authorized": true,
+    "arise_final_submission_authorized": false,
+    "final_manuscript_claims_authorized": false,
+    "merge_to_main_authorized": false,
+    "new_model_feature_interaction_subgroup_or_tuning_search_authorized": false
+  }
+}

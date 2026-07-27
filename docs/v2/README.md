@@ -2,11 +2,11 @@
 
 This directory contains the controlled transition from the completed V1 replication and mortality release to V2 external health validation and limited explainable innovation.
 
-Current status: **Stage 5 reviewed aggregate release completed for `v2-development`; project-owner final-release review pending**.
+Current status: **AgeLens V2 final public release authorized as `v2.0.0` on `v2-development`; V1 remains frozen on `main`**.
 
 Gate 0 is closed. The governed primary non-mortality outcome is serious difficulty walking or climbing stairs (`DLQ050`) among canonical V1 participants age 20 years or older with positive `WTSAF4YR` and a valid outcome response.
 
-Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed aggregate Stage 5 working package are released for V2 development. The frozen EBM did not demonstrate incremental predictive benefit beyond Model C; Model C remains the preferred prediction model. Final V2 release, final manuscript claims, final ARISE submission, and merge to `main` remain unauthorized.
+Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthesis form the final public V2 release. The frozen EBM did not demonstrate incremental predictive benefit beyond Model C; Model C remains the preferred prediction model. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
 
 ## Documents
 
@@ -28,6 +28,7 @@ Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed aggregate Stage
 - `V2_Stage4_Implementation.md`
 - `V2_Stage4_Human_Review.md`
 - `V2_Stage4_Release_Report.md`
+- `V2_Final_Release.md`
 
 ## Governed Configurations
 
@@ -40,6 +41,10 @@ Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed aggregate Stage
 - `config/v2_stage4_method_freeze.json`
 - `config/v2_stage4_implementation.json`
 - `config/v2_stage4_release.json`
+- `config/v2_stage5_synthesis.json`
+- `config/v2_stage5_release_candidate.json`
+- `config/v2_stage5_release.json`
+- `config/v2_final_release.json`
 
 ## Validation Scripts
 
@@ -55,6 +60,14 @@ Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed aggregate Stage
 - `scripts/v2/14_validate_stage3_results.py`
 - `scripts/v2/15_validate_stage3_release.py`
 - `scripts/v2/16_validate_stage4_method_freeze.py`
+- `scripts/v2/17_prepare_stage4_reference.R`
+- `scripts/v2/18_run_stage4_ebm.py`
+- `scripts/v2/19_validate_stage4_results.py`
+- `scripts/v2/20_validate_stage4_release.py`
+- `scripts/v2/21_build_stage5_synthesis.py`
+- `scripts/v2/22_validate_stage5_release_candidate.py`
+- `scripts/v2/23_validate_stage5_release.py`
+- `scripts/v2/24_validate_v2_final_release.py`
 
 ## Gate 0 Result
 
@@ -68,9 +81,14 @@ The corrected pooled feasibility result for the primary outcome was:
 
 The six-domain disability composite, fair/poor general health, and PHQ-9 score ≥10 remain secondary outcomes.
 
-## Immediate Next Step
+## Final Release Boundary
 
-Complete the project-owner final-release review and verify the current ARISE submission requirements. Final V2 release, final manuscript claims, final ARISE submission, merge to `main`, and any new model, feature, interaction, or tuning search remain unauthorized before that gate.
+AgeLens V2 is released as `v2.0.0` from `v2-development`.
+
+V1 remains frozen and separate on `main`. Final ARISE submission remains
+a separate gate. Final manuscript claims, merge to `main`, and any new
+model, feature, interaction, subgroup, or tuning search remain
+unauthorized.
 
 ## Private Data Separation
 
