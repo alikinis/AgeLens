@@ -26,6 +26,8 @@ governed configs, tables, and figures to 108 governed artifacts by adding all
 scripts. V2.0.4 fetches complete Git history for historical ancestry
 checks, uses the Node 24-based Python setup action, aligns GitHub Actions with
 Python 3.13, installs the minimal pinned validator dependencies before
-validation, and verifies the CI runtime contract. Scientific calculations, estimates, aggregate
-scientific tables, figures, models, notebooks, execution scripts, and
-conclusions are unchanged.
+validation, and verifies the CI runtime contract. V2.0.5 distinguishes the
+V2.0.4 maintenance-work date from the public GitHub publication timestamp
+`2026-07-28T06:06:29Z` and synchronizes current citation metadata to 2026-07-28.
+Scientific calculations, estimates, aggregate scientific tables, figures,
+models, notebooks, execution scripts, and conclusions are unchanged.

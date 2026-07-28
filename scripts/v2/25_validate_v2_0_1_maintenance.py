@@ -87,6 +87,7 @@ def scientific_paths(root: Path) -> list[Path]:
             "config/v2_0_2_maintenance.json",
             "config/v2_0_3_maintenance.json",
             "config/v2_0_4_maintenance.json",
+            "config/v2_0_5_maintenance.json",
         }:
             continue
         paths.append(path)
@@ -242,12 +243,12 @@ def validate(root: Path) -> None:
             raise ValidationError(f"V2 requirement pin mismatch: {name}")
 
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
-    if re.search(r"(?m)^version: 2\.0\.(?:1|2|3|4)\s*$", citation) is None:
+    if re.search(r"(?m)^version: 2\.0\.(?:1|2|3|4|5)\s*$", citation) is None:
         raise ValidationError(
             "CITATION.cff is not compatible with the V2.0.1 baseline."
         )
-    if "date-released: 2026-07-27" not in citation:
-        raise ValidationError("CITATION.cff release date changed.")
+    if re.search(r"(?m)^date-released: 2026-07-(?:27|28)\s*$", citation) is None:
+        raise ValidationError("CITATION.cff release date is incompatible.")
 
     require_phrases(
         root / "README.md",

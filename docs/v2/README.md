@@ -2,14 +2,15 @@
 
 This directory contains the controlled transition from the completed V1 replication and mortality release to V2 external health validation and limited explainable innovation.
 
-Current status: **Current public maintenance release: `v2.0.4`; prior public maintenance release: `v2.0.3`; earlier public maintenance releases: `v2.0.2` and `v2.0.1`; original scientific release: `v2.0.0`; V1 remains frozen on `main`**.
+Current status: **Current public maintenance release: `v2.0.5`; prior public maintenance release: `v2.0.4`; earlier public maintenance releases: `v2.0.3`, `v2.0.2`, and `v2.0.1`; original scientific release: `v2.0.0`; V1 remains frozen on `main`**.
 
 Gate 0 is closed. The governed primary non-mortality outcome is serious difficulty walking or climbing stairs (`DLQ050`) among canonical V1 participants age 20 years or older with positive `WTSAF4YR` and a valid outcome response.
 
-Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthesis form the unchanged scientific V2 release. V2.0.1 corrected public-release integrity and portability; V2.0.2 completed repository documentation and snapshot tooling; V2.0.3 added cryptographic no-change coverage for public notebooks and scientific execution scripts; V2.0.4 repairs the GitHub Actions Python/dependency setup for those validators. The frozen EBM did not demonstrate incremental predictive benefit beyond Model C; Model C remains the preferred prediction model. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
+Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthesis form the unchanged scientific V2 release. V2.0.1 corrected public-release integrity and portability; V2.0.2 completed repository documentation and snapshot tooling; V2.0.3 added cryptographic no-change coverage for public notebooks and scientific execution scripts; V2.0.4 repairs the GitHub Actions Python/dependency setup for those validators; V2.0.5 corrects the public-release date metadata without changing scientific content. The frozen EBM did not demonstrate incremental predictive benefit beyond Model C; Model C remains the preferred prediction model. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
 
 ## Documents
 
+- `V2_0_5_Maintenance_Release.md`
 - `V2_0_4_Maintenance_Release.md`
 - `V2_0_3_Maintenance_Release.md`
 - `V2_0_2_Maintenance_Release.md`
@@ -47,6 +48,7 @@ Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthes
 
 ## Governed Configurations
 
+- `config/v2_0_5_maintenance.json`
 - `config/v2_0_4_maintenance.json`
 - `config/v2_0_3_maintenance.json`
 - `config/v2_0_2_maintenance.json`
@@ -98,6 +100,7 @@ Stage 2, restricted Stage 3, aggregate Stage 4, and the reviewed Stage 5 synthes
 - `scripts/v2/25_validate_v2_0_1_maintenance.py`
 - `scripts/v2/26_validate_v2_0_2_maintenance.py`
 - `scripts/v2/27_validate_v2_0_3_maintenance.py`
+- `scripts/v2/29_validate_v2_0_5_maintenance.py`
 - `scripts/v2/28_validate_v2_0_4_maintenance.py`
 
 ## Gate 0 Result
@@ -114,7 +117,7 @@ The six-domain disability composite, fair/poor general health, and PHQ-9 score â
 
 ## Current Release Boundary
 
-Current public maintenance release: `v2.0.4`.
+Current public maintenance release: `v2.0.5`.
 
 Prior public maintenance release: `v2.0.3`.
 Earlier public maintenance releases: `v2.0.2` and `v2.0.1`.
@@ -134,7 +137,7 @@ feature, interaction, subgroup, or tuning search remain unauthorized.
 Portable release validation:
 
 ```powershell
-python .\scripts\v2\28_validate_v2_0_4_maintenance.py --project-root .
+python .\scripts\v2\29_validate_v2_0_5_maintenance.py --project-root .
 ```
 
 Environment details: `V2_Environment.md` and `requirements-v2.txt`. The minimal CI validator contract is recorded in `requirements-ci.txt`.

@@ -5,9 +5,9 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-EG-001 |
-| Version | 1.9 |
-| Status | Closed for V2.0.4 public maintenance release — scientific limitations retained |
-| Date | 2026-07-27 |
+| Version | 2.0 |
+| Status | Closed for V2.0.5 public maintenance release — scientific limitations retained |
+| Date | 2026-07-28 |
 
 ## Status Vocabulary
 
@@ -39,7 +39,7 @@
 
 Gate 0 is closed.
 
-Gate 1 is closed. V2-EG-001 through V2-EG-024 are closed for the governed V2 and public-maintenance scope. The original V2.0.0 scientific release and V2.0.1 through V2.0.3 maintenance releases remain immutable, and V2.0.4 is authorized as the current public maintenance release. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
+Gate 1 is closed. V2-EG-001 through V2-EG-025 are closed for the governed V2 and public-maintenance scope. The original V2.0.0 scientific release and V2.0.1 through V2.0.4 maintenance releases remain immutable, and V2.0.5 is authorized as the current public maintenance release. Final ARISE submission, final manuscript claims, and merge to `main` remain separate and unauthorized.
 
 
 ## Stage 2 Result-Review Gap
@@ -155,6 +155,24 @@ The hosted-runner dependency and shallow-history defects are closed without
 changing the V2 scientific release. The prior 79-file digest remains
 `f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940` and the
 expanded 108-file digest remains
+`e186e85deaf0abc5f7b7cca6d94efcfe1bd07de155f371c7030fece00a4b1fef`.
+
+Observational design, internal NHANES cross-cycle validation, restricted
+transportability, absence of independent external-cohort validation, and
+absence of clinical-utility evaluation remain substantive scientific
+limitations.
+
+## V2.0.5 Release-Date Metadata Integrity Gap
+
+| ID | Priority | Gap | Disposition | Status |
+| --- | --- | --- | --- | --- |
+| V2-EG-025 | Release metadata integrity | Does the repository distinguish the V2.0.4 maintenance-work date from the actual public GitHub publication timestamp? | The V2.0.4 record now retains 2026-07-27 as the maintenance-work date and records `2026-07-28T06:06:29Z` as the public publication timestamp. Current citation and release metadata advance to V2.0.5 dated 2026-07-28. | Closed |
+
+## V2.0.5 Release-Date Metadata Integrity Disposition
+
+The one-day publication-metadata discrepancy is closed without rewriting the
+immutable V2.0.4 tag and without changing the V2 scientific release. The prior
+79-file digest remains `f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940` and the expanded 108-file digest remains
 `e186e85deaf0abc5f7b7cca6d94efcfe1bd07de155f371c7030fece00a4b1fef`.
 
 Observational design, internal NHANES cross-cycle validation, restricted

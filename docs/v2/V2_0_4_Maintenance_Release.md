@@ -7,6 +7,12 @@ AgeLens V2.0.4 is authorized as a public maintenance release from
 V2.0.0 through V2.0.3 tags and releases remain unchanged. V1 remains frozen and
 separate on `main`.
 
+## Publication metadata correction
+
+The V2.0.4 maintenance work was completed on 2026-07-27. The public GitHub
+Release was published at `2026-07-28T06:06:29Z`. V2.0.5 records that public
+publication date without moving or rewriting the immutable V2.0.4 tag.
+
 ## Reason for the release
 
 The V2.0.3 workflow selected Python 3.12 and immediately executed the Stage 5

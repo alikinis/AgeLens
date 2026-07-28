@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 RELEASE = "v2.0.4"
-DATE = "2026-07-27"
+DATE = "2026-07-28"
 BASE_RELEASE = "v2.0.3"
 BASE_RELEASE_COMMIT = "01f85816f4de7aa73d1159860733845bc9af95d6"
 LEGACY_TREE_SHA256 = "f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940"
@@ -68,6 +68,7 @@ def invariant_categories(root: Path) -> dict[str, list[Path]]:
         "config/v2_0_2_maintenance.json",
         "config/v2_0_3_maintenance.json",
         "config/v2_0_4_maintenance.json",
+        "config/v2_0_5_maintenance.json",
     }
     legacy: list[Path] = []
     for path in sorted((root / "config").glob("v2_*.json")):
@@ -225,6 +226,14 @@ def validate(root: Path) -> None:
     for key, value in expected.items():
         if config.get(key) != value:
             raise ValidationError(f"Unexpected V2.0.4 maintenance value: {key}")
+    corrected_metadata = {
+        "maintenance_work_date": "2026-07-27",
+        "github_release_published_at": "2026-07-28T06:06:29Z",
+        "publication_metadata_corrected_in": "v2.0.5",
+    }
+    for key, value in corrected_metadata.items():
+        if config.get(key) != value:
+            raise ValidationError("V2.0.4 publication metadata correction missing: " + key)
 
     scope = config.get("scope", {})
     for key in (
@@ -314,43 +323,43 @@ def validate(root: Path) -> None:
         raise ValidationError("Deprecated Node 20 setup-python action remains.")
 
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
-    if "version: 2.0.4" not in citation or "date-released: 2026-07-27" not in citation:
-        raise ValidationError("CITATION.cff is not synchronized to V2.0.4.")
+    if not any(marker in citation for marker in ("version: 2.0.4", "version: 2.0.5")) or "date-released: 2026-07-28" not in citation:
+        raise ValidationError("CITATION.cff is not compatible with the corrected V2.0.4 baseline.")
 
     require_phrases(root / "README.md", (
         "AgeLens V2.0.4",
         "docs/v2/V2_0_4_Maintenance_Release.md",
         "AgeLens V2.0.3",
         "requirements-ci.txt",
-        "Version 2.0.4. 2026.",
+        "Version 2.0.5. 2026.",
     ))
     require_phrases(root / "scripts/prepare_repository.py", (
         '"requirements-ci.txt"',
-        "28_validate_v2_0_4_maintenance.py",
-        "V2.0.4 maintenance validation",
+        "29_validate_v2_0_5_maintenance.py",
+        "V2.0.5 maintenance validation",
     ))
     require_phrases(root / "docs/v2/README.md", (
-        "Current public maintenance release: `v2.0.4`",
-        "Prior public maintenance release: `v2.0.3`",
+        "V2_0_4_Maintenance_Release.md",
+        "prior public maintenance release: `v2.0.4`",
         "V2_0_4_Maintenance_Release.md",
         "config/v2_0_4_maintenance.json",
         "scripts/v2/28_validate_v2_0_4_maintenance.py",
         "requirements-ci.txt",
     ))
     require_phrases(root / "docs/v2/V2_Research_Protocol.md", (
-        "| Version | 1.6 |",
-        "Final public maintenance release `v2.0.4`",
+        "| Version | 1.7 |",
+        "V2.0.4",
         "D2-031",
     ))
     require_phrases(root / "docs/v2/V2_Decision_Log.md", (
-        "| Version | 1.9 |",
+        "| Version | 2.0 |",
         "D2-031",
         "Authorize the V2.0.4 CI runtime maintenance release",
         "fetch-depth: 0",
         "actions/setup-python@v6",
     ))
     require_phrases(root / "docs/v2/V2_Evidence_Gap_Register.md", (
-        "| Version | 1.9 |",
+        "| Version | 2.0 |",
         "V2-EG-024",
         "V2.0.4 CI Runtime Integrity Disposition",
         "complete Git history and tags",
@@ -364,7 +373,7 @@ def validate(root: Path) -> None:
     ))
     require_phrases(root / "scripts/v2/25_validate_v2_0_1_maintenance.py", (
         "config/v2_0_4_maintenance.json",
-        "(?:1|2|3|4)",
+        "(?:1|2|3|4|5)",
     ))
     require_phrases(root / "scripts/v2/26_validate_v2_0_2_maintenance.py", (
         "config/v2_0_4_maintenance.json",
@@ -382,7 +391,7 @@ def validate(root: Path) -> None:
     print("The workflow verifies pandas 3.0.5 before running the release-validator chain.")
     print("Historical V2.0.1 through V2.0.3 validation remains portable without a Git checkout.")
     print("The 79-file and expanded 108-file scientific invariants are unchanged.")
-    print("Hosted GitHub Actions must pass before the v2.0.4 tag and release are created.")
+    print("The immutable V2.0.4 tag is retained; its publication timestamp is corrected in V2.0.5 metadata.")
 
 
 def main() -> None:

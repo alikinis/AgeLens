@@ -22,14 +22,16 @@ all-cause mortality analysis.
 
 ## Release map
 
-> **Current V2 maintenance release: AgeLens V2.0.4.** This branch and the
-> `v2.0.4` tag retain the unchanged functional-health validation,
+> **Current V2 maintenance release: AgeLens V2.0.5.** This branch and the
+> `v2.0.5` tag retain the unchanged functional-health validation,
 > transportability, cross-cycle prediction, restricted explainable-model
-> evaluation, and 108-artifact cryptographic no-change invariant while repairing the
-> GitHub Actions validator runtime and dependency installation contract.
+> evaluation, and 108-artifact cryptographic no-change invariant while
+> correcting the public-release date metadata recorded for V2.0.4.
 > Start with [`docs/v2/README.md`](docs/v2/README.md) and the
-> [`V2.0.4 maintenance record`](docs/v2/V2_0_4_Maintenance_Release.md).
+> [`V2.0.5 maintenance record`](docs/v2/V2_0_5_Maintenance_Release.md).
 >
+> The CI-runtime release, **AgeLens V2.0.4**, remains preserved in
+> [`V2_0_4_Maintenance_Release.md`](docs/v2/V2_0_4_Maintenance_Release.md).
 > The invariant-coverage release, **AgeLens V2.0.3**, remains preserved in
 > [`V2_0_3_Maintenance_Release.md`](docs/v2/V2_0_3_Maintenance_Release.md).
 > The documentation/tooling release, **AgeLens V2.0.2**, remains preserved in
@@ -296,7 +298,7 @@ set from `requirements-ci.txt` before executing the V2 release chain.
 
 Until a DOI is assigned, cite the software repository as:
 
-> Kınış A. **AgeLens**. Version 2.0.4. 2026.
+> Kınış A. **AgeLens**. Version 2.0.5. 2026.
 >
 > https://github.com/alikinis/AgeLens
 

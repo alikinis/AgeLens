@@ -55,6 +55,7 @@ def scientific_paths(root: Path) -> list[Path]:
         "config/v2_0_2_maintenance.json",
         "config/v2_0_3_maintenance.json",
         "config/v2_0_4_maintenance.json",
+        "config/v2_0_5_maintenance.json",
     }
     for path in sorted((root / "config").glob("v2_*.json")):
         if path.relative_to(root).as_posix() in excluded_configs:
@@ -290,13 +291,13 @@ def validate(root: Path) -> None:
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
     if not any(
         marker in citation
-        for marker in ("version: 2.0.2", "version: 2.0.3", "version: 2.0.4")
+        for marker in ("version: 2.0.2", "version: 2.0.3", "version: 2.0.4", "version: 2.0.5")
     ):
         raise ValidationError(
             "CITATION.cff is not compatible with the V2.0.2 baseline."
         )
-    if "date-released: 2026-07-27" not in citation:
-        raise ValidationError("CITATION.cff release date changed.")
+    if not any(marker in citation for marker in ("date-released: 2026-07-27", "date-released: 2026-07-28")):
+        raise ValidationError("CITATION.cff release date is incompatible.")
 
     readme = (root / "README.md").read_text(encoding="utf-8")
     for phrase in (

@@ -5,9 +5,9 @@
 | Field | Value |
 | --- | --- |
 | Document ID | AL-V2-DL-001 |
-| Version | 1.9 |
-| Status | Closed — V2 public maintenance release `v2.0.4` |
-| Date | 2026-07-27 |
+| Version | 2.0 |
+| Status | Closed — V2 public maintenance release `v2.0.5` |
+| Date | 2026-07-28 |
 
 ## D2-001 — Preserve V1 as the immutable baseline
 
@@ -331,4 +331,16 @@
 | Correction | Fetch complete Git history and tags with `fetch-depth: 0`, use `actions/setup-python@v6`, select Python 3.13, install `numpy==2.4.6` and `pandas==3.0.5` from `requirements-ci.txt`, verify the CI runtime, and run the V2.0.4 validator plus the public snapshot builder. |
 | Scientific consequence | None. The 79-file and expanded 108-file scientific invariant digests remain unchanged. |
 | Repository consequence | Commit to `v2-development`, annotated `v2.0.4` tag, and public GitHub Release are authorized after the hosted GitHub Actions run passes. Merge to `main` remains unauthorized. |
+| Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |
+
+## D2-032 - Authorize the V2.0.5 release-date metadata maintenance release
+
+| Field | Value |
+| --- | --- |
+| Status | Approved |
+| Decision | Authorize V2.0.5 as a metadata-only maintenance release from `v2-development`, preserving the immutable V2.0.0 through V2.0.4 tags and releases. |
+| Trigger | The V2.0.4 repository record used 2026-07-27, while the public GitHub Release was published at `2026-07-28T06:06:29Z`. |
+| Correction | Distinguish the V2.0.4 maintenance-work date from its public publication timestamp; synchronize current citation and release metadata to V2.0.5 dated 2026-07-28; retain the historical validator chain and unchanged scientific invariants. |
+| Scientific consequence | None. The 79-file and expanded 108-file scientific invariant digests remain unchanged. |
+| Repository consequence | Commit to `v2-development`, annotated `v2.0.5` tag, and public GitHub Release are authorized after hosted GitHub Actions passes. Merge to `main` remains unauthorized. |
 | Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |

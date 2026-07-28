@@ -67,6 +67,7 @@ def invariant_categories(root: Path) -> dict[str, list[Path]]:
         "config/v2_0_2_maintenance.json",
         "config/v2_0_3_maintenance.json",
         "config/v2_0_4_maintenance.json",
+        "config/v2_0_5_maintenance.json",
     }
     legacy: list[Path] = []
     for path in sorted((root / "config").glob("v2_*.json")):
@@ -324,13 +325,13 @@ def validate(root: Path) -> None:
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
     if not any(
         marker in citation
-        for marker in ("version: 2.0.3", "version: 2.0.4")
+        for marker in ("version: 2.0.3", "version: 2.0.4", "version: 2.0.5")
     ):
         raise ValidationError(
             "CITATION.cff is not compatible with the V2.0.3 baseline."
         )
-    if "date-released: 2026-07-27" not in citation:
-        raise ValidationError("CITATION.cff release date changed.")
+    if not any(marker in citation for marker in ("date-released: 2026-07-27", "date-released: 2026-07-28")):
+        raise ValidationError("CITATION.cff release date is incompatible.")
 
     require_phrases(
         root / "README.md",
@@ -353,7 +354,7 @@ def validate(root: Path) -> None:
         root / "scripts/v2/25_validate_v2_0_1_maintenance.py",
         (
             "config/v2_0_3_maintenance.json",
-            "(?:1|2|3|4)",
+            "(?:1|2|3|4|5)",
         ),
     )
     require_phrases(
