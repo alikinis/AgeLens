@@ -147,12 +147,12 @@ limitations.
 
 | ID | Priority | Gap | Disposition | Status |
 | --- | --- | --- | --- | --- |
-| V2-EG-024 | Release automation integrity | Can the GitHub Actions workflow execute the pandas-dependent V2 release-validator chain on a clean hosted runner using a runtime consistent with the governed V2 environment? | The workflow now selects Python 3.13, installs pinned NumPy and pandas validator dependencies from `requirements-ci.txt`, verifies the runtime before validation, and runs the V2.0.4 validator and public snapshot builder. | Closed |
+| V2-EG-024 | Release automation integrity | Can the GitHub Actions workflow execute the pandas-dependent V2 release-validator chain and historical ancestry checks on a clean hosted runner using a runtime consistent with the governed V2 environment? | The workflow now fetches complete Git history and tags, uses the Node 24-based Python setup action, selects Python 3.13, installs pinned NumPy and pandas validator dependencies from `requirements-ci.txt`, verifies the runtime before validation, and runs the V2.0.4 validator and public snapshot builder. | Closed |
 
 ## V2.0.4 CI Runtime Integrity Disposition
 
-The hosted-runner dependency defect is closed without changing the V2
-scientific release. The prior 79-file digest remains
+The hosted-runner dependency and shallow-history defects are closed without
+changing the V2 scientific release. The prior 79-file digest remains
 `f3ab99ccfa6252177d54491729d93fb326246879e8974e1070360d073fc0c940` and the
 expanded 108-file digest remains
 `e186e85deaf0abc5f7b7cca6d94efcfe1bd07de155f371c7030fece00a4b1fef`.

@@ -327,8 +327,8 @@
 | --- | --- |
 | Status | Approved |
 | Decision | Authorize the V2.0.4 CI runtime maintenance release from `v2-development`, preserving the immutable V2.0.0 through V2.0.3 tags and releases. |
-| Trigger | The GitHub Actions workflow selected Python 3.12 and executed pandas-dependent release validators without installing dependencies, so a clean hosted runner could fail before validation. |
-| Correction | Select Python 3.13, install `numpy==2.4.6` and `pandas==3.0.5` from `requirements-ci.txt`, verify the CI runtime, and run the V2.0.4 validator plus the public snapshot builder. |
+| Trigger | The GitHub Actions workflow selected Python 3.12 and executed pandas-dependent release validators without installing dependencies. The first hosted V2.0.4 candidate then exposed a second CI-only defect: the default shallow checkout could not resolve the governed V2.0.0 pre-release commit for the historical ancestry check. |
+| Correction | Fetch complete Git history and tags with `fetch-depth: 0`, use `actions/setup-python@v6`, select Python 3.13, install `numpy==2.4.6` and `pandas==3.0.5` from `requirements-ci.txt`, verify the CI runtime, and run the V2.0.4 validator plus the public snapshot builder. |
 | Scientific consequence | None. The 79-file and expanded 108-file scientific invariant digests remain unchanged. |
 | Repository consequence | Commit to `v2-development`, annotated `v2.0.4` tag, and public GitHub Release are authorized after the hosted GitHub Actions run passes. Merge to `main` remains unauthorized. |
 | Submission consequence | Final ARISE submission and final manuscript claims remain separate and unauthorized. |

@@ -232,6 +232,9 @@ def validate(root: Path) -> None:
         "ci_validator_dependencies_declared",
         "ci_dependency_install_step_added",
         "ci_runtime_verification_step_added",
+        "github_actions_full_history_checkout_enabled",
+        "github_actions_setup_python_node24_enabled",
+        "hosted_ci_ancestry_failure_corrected",
         "current_release_metadata_updated",
         "ci_and_snapshot_current_validator_updated",
         "historical_v2_0_1_validator_compatibility_updated",
@@ -291,6 +294,9 @@ def validate(root: Path) -> None:
 
     workflow = (root / ".github/workflows/repository-safety-check.yml").read_text(encoding="utf-8")
     for phrase in (
+        'actions/checkout@v6',
+        'fetch-depth: 0',
+        'actions/setup-python@v6',
         'python-version: "3.13"',
         'cache-dependency-path: requirements-ci.txt',
         'python -m pip install --disable-pip-version-check -r requirements-ci.txt',
@@ -304,6 +310,8 @@ def validate(root: Path) -> None:
             raise ValidationError("CI runtime correction missing: " + phrase)
     if 'python-version: "3.12"' in workflow:
         raise ValidationError("Stale Python 3.12 CI selection remains.")
+    if 'actions/setup-python@v5' in workflow:
+        raise ValidationError("Deprecated Node 20 setup-python action remains.")
 
     citation = (root / "CITATION.cff").read_text(encoding="utf-8")
     if "version: 2.0.4" not in citation or "date-released: 2026-07-27" not in citation:
@@ -338,14 +346,19 @@ def validate(root: Path) -> None:
         "| Version | 1.9 |",
         "D2-031",
         "Authorize the V2.0.4 CI runtime maintenance release",
+        "fetch-depth: 0",
+        "actions/setup-python@v6",
     ))
     require_phrases(root / "docs/v2/V2_Evidence_Gap_Register.md", (
         "| Version | 1.9 |",
         "V2-EG-024",
         "V2.0.4 CI Runtime Integrity Disposition",
+        "complete Git history and tags",
     ))
     require_phrases(root / "PUBLIC_CLEANUP_REPORT.md", (
         "V2.0.4",
+        "complete Git history",
+        "Node 24-based Python setup action",
         "Python 3.13",
         "minimal pinned validator dependencies",
     ))
@@ -364,6 +377,7 @@ def validate(root: Path) -> None:
     ))
 
     print("V2.0.4 MAINTENANCE VALIDATION PASSED")
+    print("GitHub Actions fetches full history and uses the Node 24 Python setup action.")
     print("GitHub Actions selects Python 3.13 and installs pinned validator dependencies.")
     print("The workflow verifies pandas 3.0.5 before running the release-validator chain.")
     print("Historical V2.0.1 through V2.0.3 validation remains portable without a Git checkout.")

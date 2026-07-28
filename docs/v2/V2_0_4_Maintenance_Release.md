@@ -14,8 +14,16 @@ and maintenance validator chain without installing dependencies. Stage 2 and
 Stage 3 release validators import pandas, so a clean hosted runner could fail
 with `ModuleNotFoundError` before repository validation began.
 
+The first hosted V2.0.4 candidate run installed and verified the pinned
+dependencies successfully, then exposed a separate shallow-checkout defect:
+the default one-commit checkout did not contain the governed V2.0.0
+pre-release commit required by the historical ancestry check.
+
 ## Maintenance corrections
 
+- fetch complete Git history and tags with `fetch-depth: 0` so historical
+  release ancestry checks can resolve their governed commits;
+- use the Node 24-based `actions/setup-python@v6` action;
 - select Python 3.13 in GitHub Actions;
 - declare the minimal validator dependency contract in `requirements-ci.txt`;
 - pin NumPy 2.4.6 and pandas 3.0.5 to the governed Stage 4 runtime record;

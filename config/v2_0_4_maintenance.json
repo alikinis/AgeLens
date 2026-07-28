@@ -27,7 +27,10 @@
     "aggregate_scientific_tables_or_figures_changed": false,
     "models_or_features_changed": false,
     "notebooks_changed": false,
-    "analysis_or_execution_scripts_changed": false
+    "analysis_or_execution_scripts_changed": false,
+    "github_actions_full_history_checkout_enabled": true,
+    "github_actions_setup_python_node24_enabled": true,
+    "hosted_ci_ancestry_failure_corrected": true
   },
   "permissions": {
     "commit_to_v2_development_authorized": true,

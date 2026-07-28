@@ -23,8 +23,9 @@ documentation, the public-snapshot builder, current citation metadata, and CI
 snapshot validation. V2.0.3 extends the cryptographic invariant from 79
 governed configs, tables, and figures to 108 governed artifacts by adding all
 14 public notebooks, four analysis scripts, and 11 V2 scientific execution
-scripts. V2.0.4 aligns GitHub Actions with Python 3.13, installs the
-minimal pinned validator dependencies before validation, and verifies the
-CI runtime contract. Scientific calculations, estimates, aggregate
+scripts. V2.0.4 fetches complete Git history for historical ancestry
+checks, uses the Node 24-based Python setup action, aligns GitHub Actions with
+Python 3.13, installs the minimal pinned validator dependencies before
+validation, and verifies the CI runtime contract. Scientific calculations, estimates, aggregate
 scientific tables, figures, models, notebooks, execution scripts, and
 conclusions are unchanged.
